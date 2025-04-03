@@ -1,14 +1,6 @@
-This is a Micro SaaS project.
-
 ## Getting Started
 
-First, run the api server:
-
-```bash
-npm run api
-```
-
-Then run the aplication:
+To run the aplication:
 
 ```bash
 npm run dev
