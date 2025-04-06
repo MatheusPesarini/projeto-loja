@@ -5,7 +5,6 @@ const prisma = new PrismaClient();
 async function main() {
 	const user = await prisma.user.upsert({
 		where: {
-			// Chegando se o usuário já existe na hora de rodar o migrate para não criar um usuário duplicado
 			email: 'test@test.com',
 		},
 		update: {},

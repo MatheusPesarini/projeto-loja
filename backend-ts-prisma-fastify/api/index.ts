@@ -17,7 +17,6 @@ import updateProductRoutes from './routes/update-product/updateProduct';
 
 const fastify = Fastify({ logger: true });
 
-// Registre o plugin @fastify/cookie
 fastify.register(fastifyCookie, {
 	secret: 'my-secret', // Use uma chave secreta para assinar os cookies
 	hook: 'onRequest', // Execute o plugin no gancho onRequest

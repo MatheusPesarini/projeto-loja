@@ -33,7 +33,6 @@ export default async function createUserRoutes(fastify: FastifyInstance) {
 				},
 			});
 
-			//reply.redirect("/", 303);
 			reply.send(user);
 		} catch (error) {
 			fastify.log.error(error);
