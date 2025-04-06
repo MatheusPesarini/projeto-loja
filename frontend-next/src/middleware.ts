@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { isAuthenticated } from './lib/cookie/dal';
 
-// Definir rotas protegidas e públicas
 const protectedRoutes = ['/dashboard'];
 const publicRoutes = [
 	{ path: '/', whenAuthenticated: 'allow' },

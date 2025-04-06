@@ -1,10 +1,10 @@
-import { verifySession } from "@/lib/cookie/dal";
-import Link from "next/link";
-import LogoutButton from "../logoutButton/page";
+import { verifySession } from '@/lib/cookie/dal';
+import Link from 'next/link';
+import LogoutButton from '../logoutButton/page';
 
 export default async function Header() {
 	const session = await verifySession();
-	const userRole = session?.userRole;
+	const userAuth = session?.isAuth;
 
 	return (
 		<header className="flex py-2 px-4 bg-gray-800 text-white">
@@ -12,10 +12,10 @@ export default async function Header() {
 				<h1>Teste</h1>
 				<nav>
 					<ul className="flex space-x-4">
-						{ userRole === "user" ? (
+						{userAuth ? (
 							<>
 								<li>
-									<Link href={"/dashboard"}>Dashboard</Link>
+									<Link href={'/dashboard'}>Dashboard</Link>
 								</li>
 								<li>
 									<LogoutButton />
@@ -24,10 +24,10 @@ export default async function Header() {
 						) : (
 							<>
 								<li>
-									<Link href={"/register"}>Cadastro</Link>
+									<Link href={'/register'}>Cadastro</Link>
 								</li>
 								<li>
-									<Link href={"/login"}>Login</Link>
+									<Link href={'/login'}>Login</Link>
 								</li>
 							</>
 						)}

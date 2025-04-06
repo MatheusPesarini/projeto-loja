@@ -37,12 +37,9 @@ export async function submitAction(prevState: LoginFormState, data: FormData) {
 		};
 	}
 
-	// Obtenha a resposta como JSON
 	const responseData = await result.json();
 
-	// Se o backend retornou o token, defina-o como cookie manualmente
 	if (responseData.token) {
-		// Define o cookie no navegador
 		(await cookies()).set('session', responseData.token, {
 			httpOnly: true,
 			secure: false,

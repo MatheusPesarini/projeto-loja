@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers';
 import { decrypt } from './session';
 
-// Função para verificar se está autenticado (para middleware)
 export async function isAuthenticated() {
 	try {
 		const cookie = (await cookies()).get('session')?.value;
@@ -18,11 +17,9 @@ export async function isAuthenticated() {
 	}
 }
 
-// Função para verificação de sessão
 export async function verifySession() {
 	const cookie = (await cookies()).get('session')?.value;
 
-	// Se não houver cookie, retorne imediatamente
 	if (!cookie) {
 		return { isAuth: false };
 	}
@@ -37,7 +34,6 @@ export async function verifySession() {
 		return {
 			isAuth: true,
 			userId: session.userId,
-			userRole: session.userRole || 'user',
 		};
 	} catch (error) {
 		console.error('Erro ao verificar sessão:', error);
@@ -45,19 +41,3 @@ export async function verifySession() {
 	}
 }
 
-// Função separada para obter apenas o papel do usuário
-export async function getUserRole() {
-	const cookie = (await cookies()).get('session')?.value;
-
-	if (!cookie) {
-		return 'user'; // Papel padrão
-	}
-
-	try {
-		const session = await decrypt(cookie);
-		return session?.userRole || 'user';
-	} catch (error) {
-		console.error('Erro ao obter papel do usuário:', error);
-		return 'user';
-	}
-}

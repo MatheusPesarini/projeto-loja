@@ -19,16 +19,13 @@ export async function handleSubmit() {
 			throw new Error('Erro ao fazer logout');
 		}
 
-		// 2. Limpar o cookie no frontend também
 		(
-			await // 2. Limpar o cookie no frontend também
+			await
 			cookies()
 		).delete('session');
 
-		// 3. Registrar sucesso
 		console.log('Logout realizado com sucesso');
 
-		// 4. Redirecionar para a página de login
 		redirect('/login');
 	} catch (error) {
 		console.error('Erro ao fazer logout', error);
