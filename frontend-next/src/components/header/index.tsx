@@ -12,16 +12,7 @@ export default async function Header() {
 				<h1>Teste</h1>
 				<nav>
 					<ul className="flex space-x-4">
-						{userRole === "admin" ? (
-							<>
-								<li>
-									<Link href={"/dashboard"}>Admin Dashboard</Link>
-								</li>
-								<li>
-									<LogoutButton />
-								</li>
-							</>
-						) : userRole === "user" ? (
+						{ userRole === "user" ? (
 							<>
 								<li>
 									<Link href={"/dashboard"}>Dashboard</Link>
