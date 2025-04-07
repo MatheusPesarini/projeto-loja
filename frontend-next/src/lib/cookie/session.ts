@@ -1,7 +1,9 @@
 import { jwtVerify } from 'jose';
-import type { SessionPayload } from '../../app/actions/definitions';
+import type { SessionPayload } from '@/lib/actions/definitions';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const secretKey = 'my-secret';
+const secretKey = 'process.env.JWT_SECRET_KEY' as string;
 const encodedKey = new TextEncoder().encode(secretKey);
 
 // Cache manual para a função decrypt

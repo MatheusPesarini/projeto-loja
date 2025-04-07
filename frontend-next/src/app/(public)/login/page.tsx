@@ -1,10 +1,10 @@
 "use client";
 
-import { submitAction } from "@/app/actions/auth/login";
+import { submitAction } from "@/lib/actions/auth/login";
 import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import type { LoginFormState } from "@/app/actions/definitions";
+import type { LoginFormState } from "@/lib/actions/definitions";
 
 const initialState = {
 	errors: {},

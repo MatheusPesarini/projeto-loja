@@ -1,7 +1,7 @@
 "use client";
 
-import { submitAction } from "@/app/actions/auth/register";
-import type { RegisterFormState } from "@/app/actions/definitions";
+import { submitAction } from "@/lib/actions/auth/register";
+import type { RegisterFormState } from "@/lib/actions/definitions";
 import { useActionState } from "react";
 
 const initialState = {

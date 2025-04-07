@@ -1,6 +1,6 @@
 "use client";
 
-import { handleSubmit } from "@/app/actions/auth/logout";
+import { handleSubmit } from "@/lib/actions/auth/logout";
 import { useRouter } from "next/navigation";
 
 export default function LogoutButton() {
