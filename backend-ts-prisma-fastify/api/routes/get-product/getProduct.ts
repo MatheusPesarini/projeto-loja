@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export default async function getProductRoutes(fastify: FastifyInstance) {
-	fastify.get('/getProduct', async (request, reply) => {
+	fastify.get('/products', async (request, reply) => {
 		try {
 			const products = prisma.product.findMany();
 			reply.send(products);
@@ -14,7 +14,7 @@ export default async function getProductRoutes(fastify: FastifyInstance) {
 		}
 	});
 
-	fastify.get('/getProducts/:id', async (request, reply) => {
+	fastify.get('/product/:id', async (request, reply) => {
 		const { id } = request.params as { id: string };
 		try {
 			const product = await prisma.product.findUnique({
