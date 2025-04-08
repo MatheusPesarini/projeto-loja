@@ -1,5 +1,8 @@
-import UserDashboard from '@/app/(private)/userDashboard/page';
-
 export default async function Dashboard() {
-	return <UserDashboard />;
+	return (
+		<div>
+			<h1>Dashboard</h1>
+			<p>Welcome to your User dashboard</p>
+		</div>
+	);
 }

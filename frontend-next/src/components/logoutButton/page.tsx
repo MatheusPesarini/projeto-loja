@@ -1,6 +1,6 @@
 "use client";
 
-import { handleSubmit } from "@/lib/actions/auth/logout";
+import { submitLogout } from "@/lib/actions/auth/postLogout";
 import { useRouter } from "next/navigation";
 
 export default function LogoutButton() {
@@ -8,11 +8,11 @@ export default function LogoutButton() {
 
 	const handleLogout = async () => {
 		try {
-			await handleSubmit();
+			await submitLogout();
 			router.refresh();
 			router.push("/login");
 		} catch (error) {
-			console.error('Erro ao fazer login', error);
+			console.error('Erro ao fazer logout', error);
 		}
 	};
 

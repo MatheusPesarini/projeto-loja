@@ -6,7 +6,7 @@ import {
 } from '@/lib/actions/definitions';
 import { cookies } from 'next/headers';
 
-export async function submitAction(prevState: LoginFormState, data: FormData) {
+export async function submitLogin(prevState: LoginFormState, data: FormData) {
 	const validatedFields = LoginFormSchema.safeParse({
 		email: data.get('email') as string,
 		password: data.get('password') as string,

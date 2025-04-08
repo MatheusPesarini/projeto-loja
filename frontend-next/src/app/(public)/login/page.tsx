@@ -1,6 +1,6 @@
 "use client";
 
-import { submitAction } from "@/lib/actions/auth/login";
+import { submitLogin } from "@/lib/actions/auth/postLogin";
 import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -14,7 +14,7 @@ const initialState = {
 export default function Login() {
 	const router = useRouter();
 	const [state, formAction, isPending] = useActionState(
-		submitAction,
+		submitLogin,
 		initialState,
 	);
 

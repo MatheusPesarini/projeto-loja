@@ -1,6 +1,6 @@
 "use client";
 
-import { submitAction } from "@/lib/actions/auth/register";
+import { submitRegister } from "@/lib/actions/auth/postRegister";
 import type { RegisterFormState } from "@/lib/actions/definitions";
 import { useActionState } from "react";
 
@@ -11,7 +11,7 @@ const initialState = {
 
 export default function Register() {
 	const [state, formAction, isPending] = useActionState(
-		submitAction,
+		submitRegister,
 		initialState,
 	);
 

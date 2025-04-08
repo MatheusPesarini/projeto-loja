@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { decrypt } from './session';
+import { verifySession } from './session';
 
 export async function isAuthenticated() {
 	try {
@@ -9,7 +9,7 @@ export async function isAuthenticated() {
 			return false;
 		}
 
-		const session = await decrypt(cookie);
+		const session = await verifySession(cookie);
 		return !!session?.userId;
 	} catch (error) {
 		console.error('Erro ao verificar autenticação:', error);
@@ -17,27 +17,28 @@ export async function isAuthenticated() {
 	}
 }
 
-export async function verifySession() {
-	const cookie = (await cookies()).get('session')?.value;
+// Talvez uso futuro para retornar ID do usuário
+// export async function verifySession() {
+// 	const cookie = (await cookies()).get('session')?.value;
 
-	if (!cookie) {
-		return { isAuth: false };
-	}
+// 	if (!cookie) {
+// 		return { isAuth: false };
+// 	}
 
-	try {
-		const session = await decrypt(cookie);
+// 	try {
+// 		const session = await decrypt(cookie);
 
-		if (!session?.userId) {
-			return { isAuth: false };
-		}
+// 		if (!session?.userId) {
+// 			return { isAuth: false };
+// 		}
 
-		return {
-			isAuth: true,
-			userId: session.userId,
-		};
-	} catch (error) {
-		console.error('Erro ao verificar sessão:', error);
-		return { isAuth: false };
-	}
-}
+// 		return {
+// 			isAuth: true,
+// 			userId: session.userId,
+// 		};
+// 	} catch (error) {
+// 		console.error('Erro ao verificar sessão:', error);
+// 		return { isAuth: false };
+// 	}
+// }
 

@@ -6,7 +6,7 @@ import {
 } from '@/lib/actions/definitions';
 import { redirect } from 'next/navigation';
 
-export async function submitAction(
+export async function submitRegister(
 	prevState: RegisterFormState,
 	data: FormData,
 ) {

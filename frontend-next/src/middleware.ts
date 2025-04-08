@@ -4,6 +4,7 @@ import { isAuthenticated } from './lib/cookie/dal';
 const protectedRoutes = ['/dashboard'];
 const publicRoutes = [
 	{ path: '/', whenAuthenticated: 'allow' },
+	{ path: '/shopProducts', whenAuthenticated: 'allow' },
 	{ path: '/login', whenAuthenticated: 'redirect' },
 	{ path: '/register', whenAuthenticated: 'redirect' },
 ];
@@ -14,7 +15,6 @@ const DASHBOARD_ROUTE = '/dashboard';
 export async function middleware(request: NextRequest) {
 	const path = request.nextUrl.pathname;
 
-	// Verificar se é uma rota protegida
 	const isProtectedRoute = protectedRoutes.some(
 		(route) => path === route || path.startsWith(`${route}/`),
 	);
@@ -26,7 +26,6 @@ export async function middleware(request: NextRequest) {
 		}
 	}
 
-	// Verificar se é uma rota pública que redireciona usuários autenticados
 	const publicRoute = publicRoutes.find((route) => route.path === path);
 	if (publicRoute?.whenAuthenticated === 'redirect') {
 		const auth = await isAuthenticated();

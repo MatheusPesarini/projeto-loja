@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export async function handleSubmit() {
+export async function submitLogout() {
 	try {
 		const response = await fetch('http://localhost:3001/logout', {
 			method: 'POST',

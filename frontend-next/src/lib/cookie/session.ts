@@ -1,62 +1,38 @@
 import { jwtVerify } from 'jose';
 import type { SessionPayload } from '@/lib/actions/definitions';
-import dotenv from 'dotenv';
-dotenv.config();
 
-const secretKey = 'process.env.JWT_SECRET_KEY' as string;
+const secretKey = process.env.JWT_SECRET_KEY;
+if (!secretKey) {
+	throw new Error('JWT_SECRET_KEY não está definida nas variáveis de ambiente');
+}
 const encodedKey = new TextEncoder().encode(secretKey);
 
-// Cache manual para a função decrypt
-const tokenCache = new Map<string, SessionPayload | null>();
-
-export async function decrypt(session: string | undefined = '') {
-	// Se o token for undefined ou vazio, retorne null
+export async function verifySession(
+	session: string | undefined,
+): Promise<SessionPayload | null> {
 	if (!session) {
+		console.log('Nenhum token de sessão fornecido.'); // Opcional
 		return null;
 	}
 
-	// Verificar se o token já está no cache
-	if (tokenCache.has(session)) {
-		return tokenCache.get(session);
-	}
-
-	console.log('JWT decodificado - chamada real');
-
 	try {
-		// Verificar a assinatura e decodificar
+		console.log('Tentando verificar o JWT...'); // Opcional
 		const { payload } = await jwtVerify(session, encodedKey, {
 			algorithms: ['HS256'],
 		});
-
-		// Verificar se o token expirou
-		const now = Math.floor(Date.now() / 1000);
-		if (payload.exp && payload.exp < now) {
-			// Token expirado, tentar fazer logout silenciosamente
-			try {
-				fetch('http://localhost:3001/logout', {
-					method: 'POST',
-					credentials: 'include',
-					cache: 'no-cache',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ action: 'logout' }),
-				}).catch(() => {});
-			} catch (e) {
-				// Ignorar erros de fetch
-			}
-
-			// Armazenar no cache
-			tokenCache.set(session, null);
-			return null;
-		}
-
-		const result = payload as SessionPayload;
-
-		// Armazenar no cache
-		tokenCache.set(session, result);
-		return result;
-	} catch (error) {
-		// Armazenar no cache
-		tokenCache.set(session, null);
+		console.log('JWT verificado com sucesso.'); // Opcional
+		return payload as SessionPayload;
+	} catch (error: unknown) {
+		console.warn('Token JWT expirado.');
+		const response = await fetch('http://localhost:3001/logout', {
+			method: 'POST',
+			credentials: 'include',
+			cache: 'no-cache',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ action: 'logout' }),
+		});
 		return null;
 	}
 }
