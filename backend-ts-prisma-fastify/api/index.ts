@@ -5,20 +5,18 @@ import helmet from '@fastify/helmet';
 
 // import { getUserRoutes } from "./routes/get-user-DEPRECATED/user";
 import loginUserRoutes from './routes/login-user/login';
-import createUserRoutes from './routes/create-user/register';
+import createUserRoutes from './routes/register-user/register';
 import deleteUserRoutes from './routes/delete-user/deleteUser';
 import logoutRoutes from './routes/logout/logout';
 import updateProfileRoutes from './routes/update-profile/updateProfile';
 
-import createProductRoutes from './routes/create-product/createProduct';
 import getProductRoutes from './routes/get-product/getProduct';
 import deleteProductRoutes from './routes/delete-product/deleteProduct';
-import updateProductRoutes from './routes/update-product/updateProduct';
 
 const fastify = Fastify({ logger: true });
 
 fastify.register(fastifyCookie, {
-	secret: 'my-secret', // Use uma chave secreta para assinar os cookies
+	secret: process.env.JWT_SECRET_KEY, // Use uma chave secreta para assinar os cookies
 	hook: 'onRequest', // Execute o plugin no gancho onRequest
 	parseOptions: {}, // Opções de análise de cookies
 });
@@ -38,10 +36,8 @@ fastify.register(deleteUserRoutes);
 fastify.register(logoutRoutes);
 fastify.register(updateProfileRoutes);
 
-fastify.register(createProductRoutes);
 fastify.register(getProductRoutes);
 fastify.register(deleteProductRoutes);
-fastify.register(updateProductRoutes);
 
 const start = async () => {
 	try {

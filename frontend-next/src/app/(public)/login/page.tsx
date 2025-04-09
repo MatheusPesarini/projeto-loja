@@ -31,16 +31,28 @@ export default function Login() {
 		<div className="flex flex-col items-center mt-10">
 			<h1 className="font-bold mb-5">Login</h1>
 			<form className="flex flex-col items-center" action={formAction}>
+				{state?.errors?._form && (
+					<div className="text-red-500 mt-2 mb-4 text-center">
+						{' '}
+						{state.errors._form.map((error) => (
+							<p key={error}>{error}</p>
+						))}
+					</div>
+				)}
 				<div className="mb-10 flex flex-col items-center">
-					<h1>Email</h1>
+					<label htmlFor="email">Email</label>
 					<input
 						type="email"
 						placeholder="Digite seu e-mail"
 						name="email"
+						id="email"
+						aria-describedby="email"
+						aria-invalid={state?.errors?.email ? 'true' : 'false'}
+						aria-errormessage={state?.errors?.email ? 'email' : undefined}
 						className="text-black bg-amber-50 w-80 p-2 rounded"
 					/>
 					{state?.errors?.email && (
-						<div className="text-red-500 mt-1">
+						<div id="email" className="text-red-500 mt-1">
 							{state.errors.email.map((error) => (
 								<p key={error}>{error}</p>
 							))}
@@ -49,15 +61,19 @@ export default function Login() {
 				</div>
 
 				<div className="mb-10 flex flex-col items-center">
-					<h1>Senha</h1>
+					<label htmlFor="password">Senha</label>
 					<input
 						type="password"
 						placeholder="Digite sua senha"
 						name="password"
+						id="password"
+						aria-describedby="password"
+						aria-invalid={state?.errors?.password ? 'true' : 'false'}
+						aria-errormessage={state?.errors?.password ? 'password' : undefined}
 						className="text-black bg-amber-50 w-80 p-2 rounded"
 					/>
 					{state?.errors?.password && (
-						<div className="text-red-500 mt-1">
+						<div id="password" className="text-red-500 mt-1">
 							{state.errors.password.map((error) => (
 								<p key={error}>{error}</p>
 							))}
