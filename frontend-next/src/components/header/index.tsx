@@ -1,18 +1,18 @@
-import { isAuthenticated } from '@/lib/cookie/dal';
+'use client';
+
 import Link from 'next/link';
 import LogoutButton from '../logoutButton/page';
 
-export default async function Header() {
-	const session = await isAuthenticated();
-	const boolSessionAuth = session;
-
+export default function Header({
+	isAuthenticated,
+}: { isAuthenticated: boolean }) {
 	return (
 		<header className="flex py-2 px-4 bg-gray-800 text-white">
 			<div className="flex items-center justify-between w-full max-w-7xl mx-auto">
 				<h1>Teste</h1>
 				<nav>
 					<ul className="flex space-x-4">
-						{boolSessionAuth ? (
+						{isAuthenticated ? (
 							<>
 								<li>
 									<Link href={'/'}>Home</Link>
@@ -25,6 +25,13 @@ export default async function Header() {
 								</li>
 								<li>
 									<LogoutButton />
+								</li>
+								<li>
+									<img
+										src="https://avatar.vercel.sh/default"
+										alt="Avatar"
+										className="w-8 h-8 rounded-full"
+									/>
 								</li>
 							</>
 						) : (

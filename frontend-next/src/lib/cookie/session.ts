@@ -24,7 +24,7 @@ export async function verifySession(
 		return payload as SessionPayload;
 	} catch (error: unknown) {
 		console.warn('Token JWT expirado.');
-		const response = await fetch('http://localhost:3001/logout', {
+		await fetch('http://localhost:3001/logout', {
 			method: 'POST',
 			credentials: 'include',
 			cache: 'no-cache',

@@ -1,18 +1,20 @@
-"use client";
+'use client';
 
-import { submitLogin } from "@/lib/actions/auth/postLogin";
-import { useActionState } from "react";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import type { LoginFormState } from "@/lib/actions/definitions";
+import { submitLogin } from '@/lib/actions/auth/postLogin';
+import { useActionState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import type { LoginFormState } from '@/lib/actions/definitions';
 
 const initialState = {
 	errors: {},
-	message: "",
+	message: '',
 } as LoginFormState;
 
 export default function Login() {
 	const router = useRouter();
+	const { setIsAuthenticated } = useAuth();
 	const [state, formAction, isPending] = useActionState(
 		submitLogin,
 		initialState,
@@ -20,10 +22,10 @@ export default function Login() {
 
 	useEffect(() => {
 		if (state?.success) {
-			router.push("/dashboard");
-			router.refresh();
+			setIsAuthenticated(true);
+			router.push('/dashboard');
 		}
-	}, [state, router]);
+	}, [state, router, setIsAuthenticated]);
 
 	return (
 		<div className="flex flex-col items-center mt-10">
@@ -69,7 +71,7 @@ export default function Login() {
 					disabled={isPending}
 					className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
 				>
-					{isPending ? "Enviando..." : "Entrar"}
+					{isPending ? 'Enviando...' : 'Entrar'}
 				</button>
 			</form>
 		</div>

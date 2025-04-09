@@ -19,14 +19,9 @@ export async function submitLogout() {
 			throw new Error('Erro ao fazer logout');
 		}
 
-		(
-			await
-			cookies()
-		).delete('session');
+		(await cookies()).delete('session');
 
 		console.log('Logout realizado com sucesso');
-
-		redirect('/login');
 	} catch (error) {
 		console.error('Erro ao fazer logout', error);
 		throw error;

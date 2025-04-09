@@ -51,5 +51,6 @@ export async function submitLogin(prevState: LoginFormState, data: FormData) {
 
 	return {
 		success: true,
+		isAuthenticated: true,
 	};
 }
