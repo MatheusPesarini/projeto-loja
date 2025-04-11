@@ -1,4 +1,4 @@
-import { SignJWT } from 'jose';
+import { jwtVerify, SignJWT } from 'jose';
 
 const encodedKey = new TextEncoder().encode(process.env.JWT_SECRET_KEY);
 
@@ -20,4 +20,16 @@ export async function createUserSession(userId: string) {
 	const session = await encrypt({ userId, expiresAt });
 	console.log('Token gerado:', session);
 	return session;
+}
+
+export async function verifyUserSession(token: string) {
+	try {
+		const { payload } = await jwtVerify(token, encodedKey, {
+			algorithms: ['HS256'],
+		});
+		return payload.userId as string;
+	} catch (error) {
+		console.error('Erro ao verificar o token:', error);
+		return null;
+	}
 }

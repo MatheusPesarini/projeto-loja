@@ -4,7 +4,6 @@ import {
 	LoginFormSchema,
 	type LoginFormState,
 } from '@/lib/actions/definitions';
-import { cookies } from 'next/headers';
 
 export async function submitLogin(
 	prevState: LoginFormState | undefined,
@@ -58,27 +57,8 @@ export async function submitLogin(
 
 		const responseData = await result.json();
 
-		if (responseData.token) {
-			(await cookies()).set('session', responseData.token, {
-				httpOnly: true,
-				secure: false,
-				path: '/',
-				maxAge: 60 * 60 * 24 * 7, // 7 dias
-				sameSite: 'lax',
-			});
-		} else {
-			console.error('API de login retornou sucesso mas sem token.');
-			return {
-				errors: {
-					_form: ['Erro inesperado ao processar login. Tente novamente.'],
-				},
-				message: 'Erro inesperado ao processar login.',
-				success: false,
-			};
-		}
-
 		return {
-			message: 'Login realizado com sucesso!', 
+			message: responseData.message,
 			success: true,
 			isAuthenticated: true,
 			errors: {},

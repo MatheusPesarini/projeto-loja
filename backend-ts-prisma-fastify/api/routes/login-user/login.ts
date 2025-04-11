@@ -1,14 +1,14 @@
 import type { FastifyInstance } from 'fastify';
-import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
 import argon2 from 'argon2';
 import { createUserSession } from '../../middleware/session';
-
-const prisma = new PrismaClient();
+import { users } from '../../../db/schema';
+import { eq } from 'drizzle-orm';
+import { db } from '../../../db/database-connection';
 
 const loginUserSchema = z.object({
-	email: z.string().email(),
-	password: z.string().min(1),
+	email: z.string().email({ message: 'Email inválido' }),
+	password: z.string().min(1, { message: 'Senha não pode estar vazia' }),
 });
 
 export default async function loginUserRoutes(fastify: FastifyInstance) {
@@ -16,29 +16,32 @@ export default async function loginUserRoutes(fastify: FastifyInstance) {
 		const result = loginUserSchema.safeParse(request.body);
 
 		if (!result.success) {
-			reply.status(400).send({ error: 'Dados inválidos' });
-			return;
+			return reply.status(400).send({
+				error: 'Dados inválidos',
+				details: result.error.flatten().fieldErrors,
+			});
 		}
 
 		const { email, password } = result.data;
 
 		try {
-			const user = await prisma.user.findUnique({
-				where: {
-					email,
-				},
-			});
+			const foundUsers = await db
+				.select({ id: users.id, passwordHash: users.password })
+				.from(users)
+				.where(eq(users.email, email))
+				.limit(1)
+				.execute();
+
+			const user = foundUsers[0];
 
 			if (!user) {
-				reply.status(404).send({ error: 'Usuário não encontrado' });
-				return;
+				return reply.status(404).send({ error: 'Usuário não encontrado' });
 			}
 
-			const isPasswordValid = await argon2.verify(user.password, password);
+			const isPasswordValid = await argon2.verify(user.passwordHash, password);
 
 			if (!isPasswordValid) {
-				reply.status(401).send({ error: 'Senha inválida' });
-				return;
+				return reply.status(401).send({ error: 'Senha inválida' });
 			}
 
 			const sessionToken = await createUserSession(user.id);
@@ -47,13 +50,13 @@ export default async function loginUserRoutes(fastify: FastifyInstance) {
 				httpOnly: true,
 				secure: false, // true apenas em produção
 				path: '/',
-				maxAge: 604800, // 7 dias em segundos
-				sameSite: 'none',
+				maxAge: 60 * 60 * 24 * 7,
+				sameSite: 'lax',
 			});
 
-			console.log('Cookie definido com token:', sessionToken);
+			fastify.log.info(`User ${user.id} logged in successfully.`);
 
-			reply.send({ message: 'Login bem-sucedido', token: sessionToken });
+			reply.send({ message: 'Login bem-sucedido' });
 		} catch (error) {
 			fastify.log.error(error);
 			reply.status(500).send({ error: 'Erro ao fazer login' });

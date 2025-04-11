@@ -16,9 +16,9 @@ import deleteProductRoutes from './routes/delete-product/deleteProduct';
 const fastify = Fastify({ logger: true });
 
 fastify.register(fastifyCookie, {
-	secret: process.env.JWT_SECRET_KEY, // Use uma chave secreta para assinar os cookies
-	hook: 'onRequest', // Execute o plugin no gancho onRequest
-	parseOptions: {}, // Opções de análise de cookies
+	secret: process.env.JWT_SECRET_KEY, 
+	hook: 'onRequest',
+	parseOptions: {}, 
 });
 
 fastify.register(helmet);
