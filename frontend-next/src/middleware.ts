@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { isAuthenticated } from './lib/cookie/dal';
+import { isAuthenticated } from './lib/session/dal';
 
 const protectedRoutes = ['/dashboard'];
 const publicRoutes = [

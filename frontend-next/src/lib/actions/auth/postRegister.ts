@@ -59,13 +59,12 @@ export async function submitRegister(
 					message: errorMessage,
 					success: false,
 				};
-			} else {
-				return {
-					errors: { _form: [errorMessage] },
-					message: errorMessage,
-					success: false,
-				};
 			}
+			return {
+				errors: { _form: [errorMessage] },
+				message: errorMessage,
+				success: false,
+			};
 		}
 	} catch (error) {
 		console.error('Erro inesperado durante o registro:', error);

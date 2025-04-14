@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/header';
 import { AuthProvider } from '@/context/AuthContext';
-import { isAuthenticated } from '@/lib/cookie/dal';
+import { isAuthenticated } from '@/lib/session/dal';
 
 export const metadata: Metadata = {
 	title: 'Micro SaaS',

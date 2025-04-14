@@ -1,6 +1,6 @@
 'use server';
 
-import { cookies } from 'next/headers';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export async function submitLogout() {
@@ -12,18 +12,19 @@ export async function submitLogout() {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ action: 'logout' }),
 		});
 
 		if (!response.ok) {
-			throw new Error('Erro ao fazer logout');
+			console.error('Erro ao fazer logout no backend:', response.statusText);
+			return { success: false, error: 'Falha ao deslogar no servidor.' };
 		}
 
-		(await cookies()).delete('session');
-
-		console.log('Logout realizado com sucesso');
+		console.log('Logout no backend realizado com sucesso');
 	} catch (error) {
 		console.error('Erro ao fazer logout', error);
 		throw error;
 	}
+
+	revalidatePath('/', 'layout'); 
+	redirect('/login');
 }

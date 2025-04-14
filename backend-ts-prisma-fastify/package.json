@@ -7,7 +7,7 @@
 		"api": "tsx api/index.ts"
 	},
 	"drizzle": {
-		"seed": ""
+		"generate": "npx drizzle-kit generate"
 	},
 	"keywords": [],
 	"author": "",
