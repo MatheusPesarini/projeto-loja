@@ -4,7 +4,7 @@ import { db } from '../../../db/database-connection';
 import { z } from 'zod';
 import argon2 from 'argon2';
 import { eq } from 'drizzle-orm';
-import { verifyUserSession } from '../../middleware/session';
+import { verifySession } from '../../middleware/session';
 
 const paramsSchema = z.object({
 	id: z.string().uuid({ message: 'ID de usuário inválido' }),
@@ -39,7 +39,7 @@ export default async function updateProfileRoutes(fastify: FastifyInstance) {
 					.send({ error: 'Não autorizado: Token de sessão ausente' });
 			}
 
-			userIdFromToken = (await verifyUserSession(sessionsToken)) ?? undefined;
+			userIdFromToken = (await verifySession(sessionsToken)) ?? undefined;
 
 			if (!userIdFromToken) {
 				throw new Error('Falha ao obter ID do usuário do token');

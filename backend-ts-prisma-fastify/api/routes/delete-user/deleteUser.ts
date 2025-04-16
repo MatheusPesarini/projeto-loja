@@ -3,7 +3,7 @@ import { db } from '../../../db/database-connection';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 import { users } from '../../../db/schema';
-import { verifyUserSession } from '../../middleware/session';
+import { verifySession } from '../../middleware/session';
 
 const paramsSchema = z.object({
 	id: z.string().uuid({ message: 'ID de usuário inválido' }),
@@ -28,7 +28,7 @@ export default async function deleteUserRoutes(fastify: FastifyInstance) {
 					.status(401)
 					.send({ error: 'Não autorizado: Token de sessão ausente' });
 			}
-			userIdFromToken = await verifyUserSession(sessionToken);
+			userIdFromToken = await verifySession(sessionToken);
 			if (!userIdFromToken) {
 				throw new Error('Falha ao obter ID do usuário do token');
 			}
@@ -70,13 +70,6 @@ export default async function deleteUserRoutes(fastify: FastifyInstance) {
 
 			const deletedUser = deletedUsers[0];
 			fastify.log.info('User deleted successfully: ', deletedUser);
-
-			reply.clearCookie('session', {
-				path: '/',
-				secure: process.env.NODE_ENV === 'production',
-				httpOnly: true,
-				sameSite: 'lax', // Deve corresponder ao setCookie
-			});
 
 			reply.send({
 				success: true,

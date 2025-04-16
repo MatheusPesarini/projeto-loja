@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import LogoutButton from '../logoutButton/page';
+import LogoutButton from '../logoutButton/logoutButton';
 
 export default function Header({
 	isAuthenticated,

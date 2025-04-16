@@ -1,7 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 import argon2 from 'argon2';
-import { createSession } from '../../middleware/session';
 import { users } from '../../../db/schema';
 import { eq } from 'drizzle-orm';
 import { db } from '../../../db/database-connection';
@@ -43,16 +42,6 @@ export default async function loginUserRoutes(fastify: FastifyInstance) {
 			if (!isPasswordValid) {
 				return reply.status(401).send({ error: 'Senha inválida' });
 			}
-
-			const sessionToken = await createSession(user.id);
-
-			reply.setCookie('session', sessionToken, {
-				httpOnly: true,
-				secure: false, // true apenas em produção
-				path: '/',
-				maxAge: 60 * 60 * 24 * 7,
-				sameSite: 'lax',
-			});
 
 			fastify.log.info(`User ${user.id} logged in successfully.`);
 

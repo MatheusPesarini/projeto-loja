@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import type { LoginFormState } from '@/lib/actions/definitions';
 
+import FormInput from '@/components/formInput/formInput';
+
 const initialState = {
 	errors: {},
 	message: '',
@@ -39,26 +41,14 @@ export default function Login() {
 						))}
 					</div>
 				)}
-				<div className="mb-10 flex flex-col items-center">
-					<label htmlFor="email">Email</label>
-					<input
-						type="email"
-						placeholder="Digite seu e-mail"
-						name="email"
-						id="email"
-						aria-describedby="email"
-						aria-invalid={state?.errors?.email ? 'true' : 'false'}
-						aria-errormessage={state?.errors?.email ? 'email' : undefined}
-						className="text-black bg-amber-50 w-80 p-2 rounded"
-					/>
-					{state?.errors?.email && (
-						<div id="email" className="text-red-500 mt-1">
-							{state.errors.email.map((error) => (
-								<p key={error}>{error}</p>
-							))}
-						</div>
-					)}
-				</div>
+				<FormInput
+					label="Email"
+					name="email"
+					type="email"
+					placeholder="Digite seu e-mail"
+					errors={state?.errors?.email}
+					required
+				/>
 
 				<div className="mb-10 flex flex-col items-center">
 					<label htmlFor="password">Senha</label>
