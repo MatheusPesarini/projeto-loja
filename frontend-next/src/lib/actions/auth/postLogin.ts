@@ -60,7 +60,7 @@ export async function submitLogin(
 
 		const setCookieHeader = result.headers.get('set-cookie');
 		if (setCookieHeader) {
-			const [cookiePair, ...directives] = setCookieHeader.split(';');
+			const [cookiePair] = setCookieHeader.split(';');
 			const [name, value] = cookiePair.split('=');
 			(await cookies()).set(name, value, {
 				httpOnly: true,
