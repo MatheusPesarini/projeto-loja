@@ -58,13 +58,18 @@ export async function submitLogin(
 
 		const responseData = await result.json();
 
-		(await cookies()).set('session', responseData.token, {
-			httpOnly: true,
-			secure: false,
-			path: '/',
-			maxAge: 60 * 60 * 24 * 7,
-			sameSite: 'lax',
-		});
+		const setCookieHeader = result.headers.get('set-cookie');
+		if (setCookieHeader) {
+			const [cookiePair, ...directives] = setCookieHeader.split(';');
+			const [name, value] = cookiePair.split('=');
+			(await cookies()).set(name, value, {
+				httpOnly: true,
+				secure: false,
+				path: '/',
+				maxAge: 60 * 60 * 24 * 7,
+				sameSite: 'lax',
+			});
+		}
 
 		return {
 			message: responseData.message,

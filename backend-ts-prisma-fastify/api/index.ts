@@ -8,11 +8,9 @@ import dotenv from 'dotenv';
 import loginUserRoutes from './routes/login-user/login';
 import createUserRoutes from './routes/register-user/register';
 import deleteUserRoutes from './routes/delete-user/deleteUser';
-import logoutRoutes from './routes/logout-user/logout';
 import updateProfileRoutes from './routes/update-profile/updateProfile';
 
 import getProductRoutes from './routes/get-product/getProduct';
-import deleteProductRoutes from './routes/delete-product/deleteProduct';
 
 dotenv.config();
 const fastify = Fastify({ logger: true });
@@ -35,16 +33,13 @@ fastify.register(cors, {
 fastify.register(loginUserRoutes);
 fastify.register(createUserRoutes);
 fastify.register(deleteUserRoutes);
-fastify.register(logoutRoutes);
 fastify.register(updateProfileRoutes);
 
 fastify.register(getProductRoutes);
-fastify.register(deleteProductRoutes);
 
 const start = async () => {
 	try {
 		await fastify.listen({ port: 3001 });
-		const address = fastify.server.address();
 	} catch (error) {
 		fastify.log.error(error);
 		process.exit(1);

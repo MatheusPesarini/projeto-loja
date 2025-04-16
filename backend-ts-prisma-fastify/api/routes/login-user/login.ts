@@ -4,6 +4,7 @@ import argon2 from 'argon2';
 import { users } from '../../../db/schema';
 import { eq } from 'drizzle-orm';
 import { db } from '../../../db/database-connection';
+import { createSession } from '../../middleware/session';
 
 const loginUserSchema = z.object({
 	email: z.string().email({ message: 'Email inválido' }),
@@ -43,12 +44,35 @@ export default async function loginUserRoutes(fastify: FastifyInstance) {
 				return reply.status(401).send({ error: 'Senha inválida' });
 			}
 
+			const sessionToken = await createSession(user.id);
+
+			reply.setCookie('session', sessionToken, {
+				path: '/',
+				secure: false,
+				httpOnly: true,
+				sameSite: 'lax',
+				maxAge: 60 * 60 * 24 * 7,
+			});
+
 			fastify.log.info(`User ${user.id} logged in successfully.`);
 
-			reply.send({ message: 'Login bem-sucedido' });
+			// Sucesso
+			reply.send({
+				success: true,
+				message: 'Login bem-sucedido',
+			});
 		} catch (error) {
-			fastify.log.error(error);
-			reply.status(500).send({ error: 'Erro ao fazer login' });
+			fastify.log.error('Erro durante o processo de login:', error);
+			// Erro genérico -> Mapeia para errors._form
+			let errorMessage = 'Erro interno ao tentar fazer login.';
+			if (error instanceof Error && error.message.includes('JWT_SECRET_KEY')) {
+				errorMessage = 'Erro de configuração interna do servidor.';
+			}
+
+			reply.status(500).send({
+				success: false,
+				errors: { _form: [errorMessage] },
+			});
 		}
 	});
 }

@@ -24,7 +24,7 @@ export default function FormInput({
 	return (
 		<div className="mb-6 w-full max-w-xs">
 			{' '}
-			<label htmlFor={inputId} className="block text-sm font-medium mb-1">
+			<label htmlFor={inputId} className="block text-sm font-medium mb-1 text-center">
 				{label}
 			</label>
 			<input

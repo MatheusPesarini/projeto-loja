@@ -50,28 +50,15 @@ export default function Login() {
 					required
 				/>
 
-				<div className="mb-10 flex flex-col items-center">
-					<label htmlFor="password">Senha</label>
-					<input
-						type="password"
-						placeholder="Digite sua senha"
-						name="password"
-						id="password"
-						aria-describedby="password"
-						aria-invalid={state?.errors?.password ? 'true' : 'false'}
-						aria-errormessage={state?.errors?.password ? 'password' : undefined}
-						className="text-black bg-amber-50 w-80 p-2 rounded"
-					/>
-					{state?.errors?.password && (
-						<div id="password" className="text-red-500 mt-1">
-							{state.errors.password.map((error) => (
-								<p key={error}>{error}</p>
-							))}
-						</div>
-					)}
-				</div>
+				<FormInput
+					label="Senha"
+					name="password"
+					type="password"
+					placeholder="Digite seu senha"
+					errors={state?.errors?.password}
+					required
+				/>
 
-				{state?.message && <p className="text-red-500">{state.message}</p>}
 				<button
 					type="submit"
 					disabled={isPending}
