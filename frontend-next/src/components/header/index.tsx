@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import LogoutButton from '../logoutButton/logoutButton';
+import Image from 'next/image';
 
 export default function Header({
 	isAuthenticated,
@@ -27,10 +28,12 @@ export default function Header({
 									<LogoutButton />
 								</li>
 								<li>
-									<img
+									<Image
 										src="https://avatar.vercel.sh/default"
 										alt="Avatar"
-										className="w-8 h-8 rounded-full"
+										width={32}
+										height={32} 
+										className="rounded-full" 
 									/>
 								</li>
 							</>

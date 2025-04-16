@@ -56,14 +56,12 @@ export default async function loginUserRoutes(fastify: FastifyInstance) {
 
 			fastify.log.info(`User ${user.id} logged in successfully.`);
 
-			// Sucesso
 			reply.send({
 				success: true,
 				message: 'Login bem-sucedido',
 			});
 		} catch (error) {
 			fastify.log.error('Erro durante o processo de login:', error);
-			// Erro genérico -> Mapeia para errors._form
 			let errorMessage = 'Erro interno ao tentar fazer login.';
 			if (error instanceof Error && error.message.includes('JWT_SECRET_KEY')) {
 				errorMessage = 'Erro de configuração interna do servidor.';
