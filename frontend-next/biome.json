@@ -10,12 +10,11 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"formatWithErrors": false,
+		"indentStyle": "tab",
+		"indentWidth": 2
 	},
 	"linter": {
-		"domains": {
-			"next": "recommended"
-		},
 		"enabled": true,
 		"rules": {
 			"recommended": true
@@ -23,9 +22,9 @@
 	},
 	"javascript": {
 		"formatter": {
-			"quoteStyle": "double",
+			"quoteStyle": "single",
 			"semicolons": "always"
-		} 
+		}
 	},
 	"assist": {
 		"enabled": true,

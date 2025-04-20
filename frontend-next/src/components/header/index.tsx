@@ -3,10 +3,13 @@
 import Link from 'next/link';
 import LogoutButton from '../logoutButton/logoutButton';
 import Image from 'next/image';
+import ThemeButton from './theme-switch-button';
 
 export default function Header({
 	isAuthenticated,
-}: { isAuthenticated: boolean }) {
+}: {
+	isAuthenticated: boolean;
+}) {
 	return (
 		<header className="flex py-2 px-4 bg-gray-800 text-white">
 			<div className="flex items-center justify-between w-full max-w-7xl mx-auto">
@@ -32,8 +35,8 @@ export default function Header({
 										src="https://avatar.vercel.sh/default"
 										alt="Avatar"
 										width={32}
-										height={32} 
-										className="rounded-full" 
+										height={32}
+										className="rounded-full"
 									/>
 								</li>
 							</>
@@ -47,6 +50,7 @@ export default function Header({
 								</li>
 							</>
 						)}
+						<ThemeButton />
 					</ul>
 				</nav>
 			</div>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function NotFound() {
 	return (
@@ -8,7 +8,7 @@ export default function NotFound() {
 			</h1>
 			<p>Essa página não existe</p>
 
-			<Link href={"/"}>Ir para a página inicial</Link>
+			<Link href={'/'}>Ir para a página inicial</Link>
 		</div>
 	);
 }
