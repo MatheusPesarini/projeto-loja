@@ -1,3 +1,6 @@
+import Link from "next/link";
+import Image from "next/image";
+
 interface MenuItem {
   title: string;
   links: {
@@ -6,11 +9,9 @@ interface MenuItem {
   }[];
 }
 
-interface Footer2Props {
+type FooterProps = {
   logo?: {
     url: string;
-    src: string;
-    alt: string;
     title: string;
   };
   tagline?: string;
@@ -22,78 +23,61 @@ interface Footer2Props {
   }[];
 }
 
-const Footer2 = ({
+const Footer = ({
   logo = {
-    src: "https://www.shadcnblocks.com/images/block/block-1.svg",
-    alt: "blocks for shadcn/ui",
-    title: "Shadcnblocks.com",
-    url: "https://www.shadcnblocks.com",
+    url: "/",
+    title: "PatoLoja",
   },
-  tagline = "Components made easy.",
   menuItems = [
     {
-      title: "Product",
+      title: "Produtos",
       links: [
-        { text: "Overview", url: "#" },
-        { text: "Pricing", url: "#" },
-        { text: "Marketplace", url: "#" },
-        { text: "Features", url: "#" },
-        { text: "Integrations", url: "#" },
-        { text: "Pricing", url: "#" },
+        { text: "Masculino", url: "/men" },
+        { text: "Feminino", url: "/women" },
       ],
     },
     {
-      title: "Company",
+      title: "Empresa",
       links: [
-        { text: "About", url: "#" },
-        { text: "Team", url: "#" },
-        { text: "Blog", url: "#" },
-        { text: "Careers", url: "#" },
-        { text: "Contact", url: "#" },
-        { text: "Privacy", url: "#" },
+        { text: "Sobre", url: "/about" },
+        { text: "Contato", url: "/contact" },
       ],
     },
     {
-      title: "Resources",
+      title: "Outros",
       links: [
-        { text: "Help", url: "#" },
-        { text: "Sales", url: "#" },
-        { text: "Advertise", url: "#" },
+        { text: "Ajuda", url: "/help" },
+        { text: "Perfil", url: "/profile" },
       ],
     },
     {
       title: "Social",
       links: [
-        { text: "Twitter", url: "#" },
-        { text: "Instagram", url: "#" },
-        { text: "LinkedIn", url: "#" },
+        { text: "Instagram", url: "https://www.instagram.com/math_pesarini/" },
+        { text: "LinkedIn", url: "https://www.linkedin.com/in/matheus-rogerio-pesarini/" },
       ],
     },
   ],
-  copyright = "© 2024 Shadcnblocks.com. All rights reserved.",
+  copyright = "© 2025 patoloja.com. Todos direitos reservados.",
   bottomLinks = [
     { text: "Terms and Conditions", url: "#" },
     { text: "Privacy Policy", url: "#" },
   ],
-}: Footer2Props) => {
+}: FooterProps) => {
   return (
-    <section className="py-32">
+    <section className="py-6 h-72 bg-gray-100 dark:bg-gray-900">
       <div className="container">
-        <footer>
+        <footer className="px-4">
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
             <div className="col-span-2 mb-8 lg:mb-0">
               <div className="flex items-center gap-2 lg:justify-start">
-                <a href="https://shadcnblocks.com">
-                  <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    title={logo.title}
-                    className="h-10"
-                  />
-                </a>
-                <p className="text-xl font-semibold">{logo.title}</p>
+                <Link href={logo.url} className="flex items-center gap-2">
+                  <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} />
+                  <span className="text-lg font-semibold tracking-tighter">
+                    {logo.title}
+                  </span>
+                </Link>
               </div>
-              <p className="mt-4 font-bold">{tagline}</p>
             </div>
             {menuItems.map((section, sectionIdx) => (
               <div key={sectionIdx}>
@@ -127,4 +111,4 @@ const Footer2 = ({
   );
 };
 
-export { Footer2 };
+export { Footer };

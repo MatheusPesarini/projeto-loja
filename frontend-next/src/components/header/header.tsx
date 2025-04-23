@@ -35,7 +35,7 @@ interface MenuItem {
   items?: MenuItem[];
 }
 
-type Navbar1Props = {
+type NavbarProps = {
   logo?: {
     url: string;
     title: string;
@@ -110,7 +110,7 @@ export default function Navbar({
     signup: { title: "Cadastro", url: "/register" },
   },
   isAuthenticated,
-}: Navbar1Props): JSX.Element {
+}: NavbarProps): JSX.Element {
   return (
     <section className="py-4">
       <div className="px-10">

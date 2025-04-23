@@ -39,7 +39,7 @@ export default function LoginForm({
 	useEffect(() => {
 		if (state?.success) {
 			setIsAuthenticated(true);
-			router.push('/dashboard');
+			router.push('/');
 		}
 	}, [state, router, setIsAuthenticated]);
 

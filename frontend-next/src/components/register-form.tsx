@@ -33,6 +33,7 @@ export default function RegisterForm({
 		initialState,
 	);
 
+	const nameErrors = state?.errors?.name;
 	const emailErrors = state?.errors?.email;
 	const passwordErrors = state?.errors?.password;
 	const formErrors = state?.errors?._form;
@@ -49,6 +50,28 @@ export default function RegisterForm({
 				<CardContent>
 					<form action={formAction} className="space-y-4">
 						{' '}
+						<div className="grid gap-2">
+							<Label htmlFor="name">Nome</Label>
+							<Input
+								type="name"
+								id="name"
+								name="name"
+								required
+								aria-describedby="name-error"
+								className={cn(
+									'text-black bg-amber-50 w-full p-2 rounded border',
+									nameErrors ? 'border-red-500' : 'border-gray-300',
+								)}
+							/>
+							<div id="name-error" aria-live="polite" aria-atomic="true">
+								{nameErrors &&
+									nameErrors.map((error: string) => (
+										<p className="mt-1 text-sm text-red-500" key={error}>
+											{error}
+										</p>
+									))}
+							</div>
+						</div>
 						<div className="grid gap-2">
 							<Label htmlFor="email">E-mail</Label>
 							<Input
