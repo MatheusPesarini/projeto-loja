@@ -73,3 +73,13 @@ export type SessionPayload = {
 	userId: string;
 	expiresAt: Date;
 };
+
+export type SearchProductState = {
+	errors?: {
+		query?: string[];
+		_form?: string[];
+	};
+	message?: string;
+	success?: boolean;
+	data?: Product[];
+}

@@ -26,6 +26,8 @@ import { JSX } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import LogoutButton from "../logoutButton/logoutButton";
+import ThemeButton from "./theme-switch-button";
+import { InputSearch } from "../ui/inputSearch";
 
 interface MenuItem {
   title: string;
@@ -112,46 +114,57 @@ export default function Navbar({
   return (
     <section className="py-4">
       <div className="px-10">
-        <nav className="hidden justify-between lg:flex">
+        <nav className="hidden items-center lg:grid lg:grid-cols-3">
           <Link href={logo.url} className="flex items-center gap-2">
             <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} />
             <span className="text-lg font-semibold tracking-tighter">
               {logo.title}
             </span>
           </Link>
-          <div className="flex items-center gap-6">
-            <div className="flex items-center">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {menu.map((item) => renderMenuItem(item))}
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
+
+          <div className="flex items-center justify-self-center">
+            <NavigationMenu>
+              <NavigationMenuList>
+                {menu.map((item) => renderMenuItem(item))}
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
-          <div className="flex gap-2">
+
+          <div className="flex items-center justify-self-end gap-2">
+            <InputSearch className="w-48 h-8 bg-neutral-100" placeholder="Procurar" />
             {isAuthenticated ? (
               <>
                 <LogoutButton />
+                <Link href="/profile" className="flex items-center">
+                  <Image
+                    src="https://avatar.vercel.sh/default"
+                    alt="Avatar"
+                    width={36}
+                    height={36}
+                    className="rounded-full"
+                  />
+                </Link>
               </>
             ) : (
               <>
                 <Button asChild variant="outline" size="sm">
-                  <a href={auth.login.url}>{auth.login.title}</a>
+                  <Link href={auth.login.url}>{auth.login.title}</Link>
                 </Button>
                 <Button asChild size="sm">
-                  <a href={auth.signup.url}>{auth.signup.title}</a>
+                  <Link href={auth.signup.url}>{auth.signup.title}</Link>
                 </Button>
               </>
             )}
+            <ThemeButton />
           </div>
         </nav>
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
-            <a href={logo.url} className="flex items-center gap-2">
+            <Link href={logo.url} className="flex items-center gap-2">
               <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} />
-            </a>
+            </Link>
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon">
@@ -161,9 +174,9 @@ export default function Navbar({
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2">
+                    <Link href={logo.url} className="flex items-center gap-2">
                       <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} />
-                    </a>
+                    </Link>
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
@@ -183,10 +196,10 @@ export default function Navbar({
                     ) : (
                       <>
                         <Button asChild variant="outline" size="sm">
-                          <a href={auth.login.url}>{auth.login.title}</a>
+                          <Link href={auth.login.url}>{auth.login.title}</Link>
                         </Button>
                         <Button asChild size="sm">
-                          <a href={auth.signup.url}>{auth.signup.title}</a>
+                          <Link href={auth.signup.url}>{auth.signup.title}</Link>
                         </Button>
                       </>
                     )}
@@ -196,11 +209,11 @@ export default function Navbar({
             </Sheet>
           </div>
         </div>
-      </div>
+      </div >
       <div className="bg-gray-200 h-[1px] my-2">
         {" "}
       </div>
-    </section>
+    </section >
   );
 };
 

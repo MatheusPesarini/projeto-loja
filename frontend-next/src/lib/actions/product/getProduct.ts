@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 const ProductArraySchema = z.array(ProductSchema);
 
-export async function getProductAction() {
+export async function getProduct() {
 	const result = await fetch('http://localhost:3001/products', {
 		method: 'GET',
 		cache: 'no-cache',
