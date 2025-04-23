@@ -1,0 +1,30 @@
+{
+    "biome.enabled": true,
+    "biome.requireConfigFile": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.defaultFormatter": "biomejs.biome",
+    "files.associations": {
+        "*.tsx": "typescriptreact"
+    },
+    "[javascript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[javascriptreact]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescriptreact]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+}
