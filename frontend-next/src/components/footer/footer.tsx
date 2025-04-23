@@ -65,11 +65,10 @@ const Footer = ({
   ],
 }: FooterProps) => {
   return (
-    <section className="py-6 h-72 bg-gray-100 dark:bg-gray-900">
-      <div className="container">
-        <footer className="px-4">
+    <section className="pt-6 pb-2 bg-gray-100 dark:bg-gray-900">
+        <footer>
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
-            <div className="col-span-2 mb-8 lg:mb-0">
+            <div className="col-span-2 mb-10 lg:mb-0">
               <div className="flex items-center gap-2 lg:justify-start">
                 <Link href={logo.url} className="flex items-center gap-2">
                   <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} />
@@ -88,25 +87,26 @@ const Footer = ({
                       key={linkIdx}
                       className="font-medium hover:text-primary"
                     >
-                      <a href={link.url}>{link.text}</a>
+                      <Link href={link.url}>{link.text}</Link>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-          <div className="mt-24 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium text-muted-foreground md:flex-row md:items-center">
-            <p>{copyright}</p>
-            <ul className="flex gap-4">
-              {bottomLinks.map((link, linkIdx) => (
-                <li key={linkIdx} className="underline hover:text-primary">
-                  <a href={link.url}>{link.text}</a>
-                </li>
-              ))}
-            </ul>
+          <div className="px-4 mt-10 border-t pt-4"> {/* Ajuste mt-12 conforme necessário */}
+            <div className="flex flex-col justify-between gap-4 text-sm font-medium text-muted-foreground md:flex-row md:items-center">
+              <p>{copyright}</p>
+              <ul className="flex gap-4">
+                {bottomLinks.map((link, linkIdx) => (
+                  <li key={linkIdx} className="underline hover:text-primary">
+                    <Link href={link.url}>{link.text}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </footer>
-      </div>
     </section>
   );
 };
