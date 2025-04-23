@@ -3,6 +3,7 @@ import './globals.css';
 import Header from '@/components/header';
 import { AuthProvider } from '@/context/AuthContext';
 import { isAuthenticated } from '@/lib/session/dal';
+import Navbar from '@/components/header/header';
 
 export const metadata: Metadata = {
 	title: 'Micro SaaS',
@@ -20,7 +21,7 @@ export default async function RootLayout({
 		<html lang="pt-BR">
 			<body className={'antialiased'}>
 				<AuthProvider>
-					<Header isAuthenticated={auth} />
+					<Navbar isAuthenticated={auth} />
 					{children}
 				</AuthProvider>
 			</body>
