@@ -42,7 +42,7 @@ export async function searchProduct(prevState: SearchProductState | undefined, d
       console.error(`[searchProduct] API Error (${result.status}): ${errorMessage}`);
       return {
         message: errorMessage,
-        errors: { _form: [errorMessage] },
+        errors: { _form: [errorMessage] }, 
       };
     }
 

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Header from '@/components/header';
 import { AuthProvider } from '@/context/AuthContext';
 import { isAuthenticated } from '@/lib/session/dal';
 import Navbar from '@/components/header/header';

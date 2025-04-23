@@ -255,7 +255,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
         </AccordionTrigger>
         <AccordionContent className="mt-2 pl-4">
           {item.items.map((subItem) => (
-            <SubMenuLink key={subItem.title} item={subItem} isMobile={true} />
+            <SubMenuLink key={subItem.title} item={subItem} />
           ))}
         </AccordionContent>
       </AccordionItem>
@@ -273,17 +273,15 @@ const renderMobileMenuItem = (item: MenuItem) => {
   );
 };
 
-const SubMenuLink = ({ item, isMobile = false }: { item: MenuItem, isMobile?: boolean }) => {
-  const linkClasses = isMobile
-    ? "block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-    : "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer";
-
+const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
-    <Link
+    <a
+      className="flex flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
       href={item.url}
-      className={linkClasses}
     >
-      <div className="text-sm font-medium leading-none">{item.title}</div>
-    </Link>
+      <div>
+        <div className="text-sm font-semibold">{item.title}</div>
+      </div>
+    </a>
   );
 };
