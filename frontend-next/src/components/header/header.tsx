@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Menu, Store } from "lucide-react";
 
 import {
   Accordion,
@@ -57,7 +57,7 @@ type NavbarProps = {
 export default function Navbar({
   logo = {
     url: "/",
-    title: "PatoLoja",
+    title: "Loja",
   },
   menu = [
     {
@@ -112,11 +112,12 @@ export default function Navbar({
   isAuthenticated,
 }: NavbarProps): JSX.Element {
   return (
-    <section className="py-4">
+    <section className="pt-4">
       <div className="px-10">
         <nav className="hidden items-center lg:grid lg:grid-cols-3">
           <Link href={logo.url} className="flex items-center gap-2">
-            <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} />
+            {/* <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} /> */}
+            <Store className="size-8" />
             <span className="text-lg font-semibold tracking-tighter">
               {logo.title}
             </span>
@@ -210,7 +211,7 @@ export default function Navbar({
           </div>
         </div>
       </div >
-      <div className="bg-gray-200 h-[1px] my-2">
+      <div className="bg-gray-200 h-[1px] mt-2">
         {" "}
       </div>
     </section >
