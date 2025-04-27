@@ -168,7 +168,7 @@ export default function Navbar({
           </Link>
 
           <div className="flex items-center justify-self-center">
-            <NavigationMenu>
+            <NavigationMenu viewport={false}>
               <NavigationMenuList>
                 {menu.map((item) => renderMenuItem(item))}
               </NavigationMenuList>
@@ -208,7 +208,7 @@ export default function Navbar({
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
             <Link href={logo.url} className="flex items-center gap-2">
-              <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} />
+              {/* <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} /> */}
             </Link>
             <Sheet>
               <SheetTrigger asChild>
@@ -220,7 +220,7 @@ export default function Navbar({
                 <SheetHeader>
                   <SheetTitle>
                     <Link href={logo.url} className="flex items-center gap-2">
-                      <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} />
+                      {/* <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} /> */}
                     </Link>
                   </SheetTitle>
                 </SheetHeader>
@@ -267,7 +267,7 @@ const renderMenuItem = (item: MenuItem) => {
     return (
       <NavigationMenuItem key={item.title}>
         <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground">
+        <NavigationMenuContent className="bg-popover text-popover-foreground z-50">
           {item.items.map((subItem) => (
             <NavigationMenuLink asChild key={subItem.title} className="w-80">
               <SubMenuLink item={subItem} />
@@ -320,13 +320,13 @@ const renderMobileMenuItem = (item: MenuItem) => {
 
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
-    <a
+    <Link
       className="flex flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
       href={item.url}
     >
       <div>
         <div className="text-sm font-semibold">{item.title}</div>
       </div>
-    </a>
+    </Link>
   );
 };

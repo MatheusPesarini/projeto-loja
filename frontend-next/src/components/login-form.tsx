@@ -18,6 +18,7 @@ import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import Link from 'next/link';
 
 const initialState: LoginFormState = {
 	errors: {},
@@ -139,12 +140,9 @@ export default function LoginForm({
 						</Button>
 						<div className="mt-4 text-center text-sm">
 							Não tem uma conta?{' '}
-							<a
-								onClick={() => router.push('/register')}
-								className="underline underline-offset-4 cursor-pointer"
-							>
+							<Link href={'/register'} className="underline underline-offset-4 cursor-pointer">
 								Registrar-se
-							</a>
+							</Link>
 						</div>
 					</form>
 				</CardContent>

@@ -16,6 +16,7 @@ import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import Link from 'next/link';
 
 const initialState: RegisterFormState = {
 	errors: {},
@@ -144,12 +145,9 @@ export default function RegisterForm({
 						</Button>
 						<div className="mt-4 text-center text-sm">
 							Já tem uma conta?{' '}
-							<a
-								onClick={() => router.push('/login')}
-								className="underline underline-offset-4 cursor-pointer"
-							>
+							<Link href={'/login'} className="underline underline-offset-4 cursor-pointer">
 								Logar-se
-							</a>
+							</Link>
 						</div>
 					</form>
 				</CardContent>
