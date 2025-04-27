@@ -1,6 +1,6 @@
 import StandardPage from "@/components/standard-page";
 
-export default function MenPage() {
+export default function NewPage() {
   return (
     <StandardPage />
   )

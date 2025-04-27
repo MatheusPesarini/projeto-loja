@@ -22,7 +22,7 @@ export default async function RootLayout({
 	const auth = await isAuthenticated();
 
 	return (
-		<html lang="pt-br" suppressHydrationWarning>
+		<html lang="pt-BR" suppressHydrationWarning>
 			<body className={`${inter.className} flex flex-col min-h-screen`}>
 				<AuthProvider>
 					<ThemeProvider
