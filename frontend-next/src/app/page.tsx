@@ -1,74 +1,11 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { Card, CardContent } from '@/components/ui/card';
+import { ImageCarousel } from '@/components/carrousel-images/carrousel-images';
 
-type Images = {
-	src: string;
-	alt: string;
-}
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-async function fetchImages(): Promise<Images[]> {
-	try {
-		const res = await fetch(`${API_URL}/images/home`, {
-		});
-		if (!res.ok) {
-			console.error("Falha ao buscar imagens da API:", res.statusText);
-			return [];
-		}
-		const data = await res.json();
-		return data;
-	} catch (error) {
-		console.error("Erro ao buscar imagens:", error);
-		return [];
-	}
-}
-
-export default async function Home() {
-	const images = await fetchImages();
-
+export default function Home() {
 	return (
 		<div className="flex flex-col">
-			<section className="relative w-full pt-8 pb-8 bg-gray-200 dark:bg-gray-800 ">
-				<Carousel opts={{ align: "start", loop: true }} className='w-full max-w-4xl mx-auto'>
-					<CarouselContent>
-						{images.map((image, index) => (
-							<CarouselItem key={index} className="md:basis-1/1 lg:basis-1/1">
-								<div className="p-1">
-									<Card className="overflow-hidden">
-										<CardContent className="flex aspect-[16/7] items-center justify-center p-0"> {/* Ajuste aspect ratio */}
-											<Image
-												src={image.src}
-												alt={image.alt}
-												fill // Usa fill para cobrir o espaço do CardContent
-												style={{ objectFit: 'cover' }} // Garante que a imagem cubra sem distorcer
-												priority={index === 0} // Prioriza o carregamento da primeira imagem
-												sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px" // Ajuda na otimização
-											/>
-											<div className="relative z-10 p-4 bg-zinc-800/25 backdrop-blur-md rounded-md">
-												<h1 className="text-4xl md:text-6xl font-bold text-zinc-900/60 mb-4">
-													Sua Nova Coleção Chegou
-												</h1>
-												<p className="text-lg md:text-xl text-zinc-900/80 mb-6">
-													Descubra as últimas tendências da moda.
-												</p>
-												<Button asChild size="lg" className='bg-zinc-900/80'>
-													<Link href="/new">Ver Novidades</Link>
-												</Button>
-											</div>
-										</CardContent>
-									</Card>
-								</div>
-							</CarouselItem>
-						))}
-					</CarouselContent>
-					<CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
-					<CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
-				</Carousel>
-			</section>
+			<ImageCarousel />
 
 			<section className="py-12 md:py-16 px-4 md:px-8">
 				<h2 className="text-2xl md:text-3xl font-semibold text-center mb-8">
@@ -83,6 +20,16 @@ export default async function Home() {
 					<Link href="/women" className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"> {/* Placeholder bg */}
 						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
 							<span className="text-white text-xl font-medium">Feminino</span>
+						</div>
+					</Link>
+					<Link href="/women" className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"> {/* Placeholder bg */}
+						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+							<span className="text-white text-xl font-medium">Infatil</span>
+						</div>
+					</Link>
+					<Link href="/women" className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"> {/* Placeholder bg */}
+						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+							<span className="text-white text-xl font-medium">Acessórios</span>
 						</div>
 					</Link>
 				</div>
