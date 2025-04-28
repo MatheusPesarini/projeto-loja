@@ -14,7 +14,7 @@ type Images = {
   alt: string;
 };
 
-export function ImageCarousel({ autoplay = true, autoplayDelay = 5000 }) {
+export function ImageCarousel({ autoplay = true, autoplayDelay = 3500 }) {
   const [images, setImages] = useState<Images[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -63,8 +63,6 @@ export function ImageCarousel({ autoplay = true, autoplayDelay = 5000 }) {
         }}
         plugins={autoplay ? [plugin.current!] : undefined}
         className="w-full"
-        onMouseEnter={autoplay ? plugin.current?.stop : undefined}
-        onMouseLeave={autoplay ? plugin.current?.reset : undefined}
       >
         <CarouselContent>
           {images.map((image, index) => (
