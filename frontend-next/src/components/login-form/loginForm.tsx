@@ -1,6 +1,6 @@
 'use client';
 
-import { submitLogin } from '@/lib/actions/auth/postLogin';
+import { submitLogin } from '@/lib/actions/auth/post-login';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';

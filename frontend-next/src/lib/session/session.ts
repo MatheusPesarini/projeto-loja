@@ -1,6 +1,6 @@
 import { jwtVerify } from 'jose';
 import type { SessionPayload } from '@/lib/actions/definitions';
-import { submitLogout } from '../actions/auth/postLogout';
+import { submitLogout } from '../actions/auth/post-logout';
 
 const secretKey = process.env.JWT_SECRET_KEY;
 if (!secretKey) {

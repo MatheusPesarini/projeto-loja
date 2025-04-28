@@ -7,7 +7,7 @@ import Autoplay from "embla-carousel-autoplay"
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import { fetchImages } from "@/lib/actions/images/getHomeImage";
+import { fetchImages } from "@/lib/actions/images/get-home-image";
 
 type Images = {
   src: string;

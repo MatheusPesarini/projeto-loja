@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ImageCarousel } from '@/components/carrousel-images/carrousel-images';
+import { ImageCarousel } from '@/components/carrousel-images/carrouselImages';
 
 export default function Home() {
 	return (

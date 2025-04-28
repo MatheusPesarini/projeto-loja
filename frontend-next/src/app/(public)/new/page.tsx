@@ -1,4 +1,4 @@
-import StandardPage from "@/components/standard-page";
+import StandardPage from "@/components/standardPage";
 
 export default function NewPage() {
   return (

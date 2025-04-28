@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { Search } from 'lucide-react';
 import { SearchProductState } from '@/lib/actions/definitions';
 import { useActionState } from 'react';
-import { searchProduct } from '@/lib/actions/inputSearch/searchProduct';
+import { searchProduct } from '@/lib/actions/inputSearch/search-product';
 
 const initialState: SearchProductState = { message: '', errors: {} };
 

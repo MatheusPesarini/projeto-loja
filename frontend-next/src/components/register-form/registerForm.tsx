@@ -1,6 +1,6 @@
 'use client';
 
-import { submitRegister } from '@/lib/actions/auth/postRegister';
+import { submitRegister } from '@/lib/actions/auth/post-register';
 import { RegisterFormState } from '@/lib/actions/definitions';
 import React, { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
