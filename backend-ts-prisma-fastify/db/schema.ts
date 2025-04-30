@@ -5,7 +5,6 @@ import {
 	text,
 	integer,
 	timestamp,
-	real,
 	decimal,
 } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
@@ -27,7 +26,7 @@ export const users = pgTable('User', {
 
 export const products = pgTable('Product', {
 	id: uuid('id').primaryKey().defaultRandom(),
-	name: text('name').notNull(),
+	productName: text('productName').notNull(),
 	category: text('category').notNull(),
 	price: decimal('price', { precision: 10, scale: 2 }).notNull(),
 	discount: decimal('discount', { precision: 5, scale: 2 }),
