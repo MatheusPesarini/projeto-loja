@@ -6,6 +6,7 @@ import {
 	integer,
 	timestamp,
 	real,
+	decimal,
 } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
@@ -21,14 +22,15 @@ export const users = pgTable('User', {
 	id: uuid('id').primaryKey().defaultRandom(),
 	email: text('email').notNull().unique(),
 	password: text('password').notNull(),
-	name: text('name'), 
+	name: text('name'),
 });
 
 export const products = pgTable('Product', {
 	id: uuid('id').primaryKey().defaultRandom(),
 	name: text('name').notNull(),
 	category: text('category').notNull(),
-	price: real('price').notNull(), 
+	price: decimal('price', { precision: 10, scale: 2 }).notNull(),
+	discount: decimal('discount', { precision: 5, scale: 2 }),
 	quantity: integer('quantity').notNull(),
 	description: text('description'),
 	image: text('image').notNull(),
@@ -37,7 +39,7 @@ export const products = pgTable('Product', {
 		.notNull(),
 	updatedAt: timestamp('updatedAt', { withTimezone: true })
 		.defaultNow()
-		.notNull(), 
+		.notNull(),
 	vendorId: uuid('vendorId').references(() => vendors.id, {
 		onDelete: 'set null',
 		onUpdate: 'cascade',
