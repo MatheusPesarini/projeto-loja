@@ -6,6 +6,7 @@ import {
 	integer,
 	timestamp,
 	decimal,
+	primaryKey,
 } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
@@ -27,6 +28,8 @@ export const users = pgTable('User', {
 export const products = pgTable('Product', {
 	id: uuid('id').primaryKey().defaultRandom(),
 	productName: text('productName').notNull(),
+	brand: text('brand').notNull(),
+	model: text('model').notNull(),
 	category: text('category').notNull(),
 	price: decimal('price', { precision: 10, scale: 2 }).notNull(),
 	discount: decimal('discount', { precision: 5, scale: 2 }),
@@ -43,6 +46,21 @@ export const products = pgTable('Product', {
 		onDelete: 'set null',
 		onUpdate: 'cascade',
 	}),
+});
+
+export const sizes = pgTable('Size', {
+	id: uuid('id').primaryKey().defaultRandom(),
+	name: text('name').notNull().unique(),
+})
+
+export const productSizes = pgTable('ProductSize', {
+	productId: uuid('productId').notNull().references(() => products.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
+	sizeId: uuid('sizeId').notNull().references(() => sizes.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
+	quantity: integer('quantity').notNull().default(0),
+}, (table) => {
+	return {
+			pk: primaryKey({ columns: [table.productId, table.sizeId] }),
+	}
 });
 
 export const orders = pgTable('Order', {
