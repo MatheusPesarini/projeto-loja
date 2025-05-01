@@ -25,7 +25,7 @@ export default async function getProductRoutes(fastify: FastifyInstance) {
 			const foundProducts = await db
 				.select()
 				.from(products)
-				.where(ilike(products.name, searchTerm))
+				.where(ilike(products.productName, searchTerm))
 				.limit(99)
 				.execute();
 
