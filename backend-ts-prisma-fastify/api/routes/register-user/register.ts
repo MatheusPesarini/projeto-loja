@@ -28,10 +28,10 @@ export default async function createUserRoutes(fastify: FastifyInstance) {
 
 		try {
 			const existingUsers = await db
-				.select({ id: users.id }) 
+				.select({ id: users.id })
 				.from(users)
 				.where(eq(users.email, email))
-				.limit(1) 
+				.limit(1)
 				.execute();
 
 			const existingUser = existingUsers[0];
