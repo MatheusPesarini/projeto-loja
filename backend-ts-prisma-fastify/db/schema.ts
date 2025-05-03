@@ -34,7 +34,7 @@ export const products = pgTable('Product', {
 	price: decimal('price', { precision: 10, scale: 2 }).notNull(),
 	discount: decimal('discount', { precision: 5, scale: 2 }),
 	quantity: integer('quantity').notNull(),
-	description: text('description'),
+	description: text('description').notNull(),
 	image: text('image').notNull(),
 	createdAt: timestamp('createdAt', { withTimezone: true })
 		.defaultNow()

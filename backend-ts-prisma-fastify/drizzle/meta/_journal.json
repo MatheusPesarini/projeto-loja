@@ -15,6 +15,20 @@
       "when": 1745976585315,
       "tag": "0001_curvy_kinsey_walden",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1746059866311,
+      "tag": "0002_bouncy_turbo",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1746290395150,
+      "tag": "0003_optimal_hobgoblin",
+      "breakpoints": true
     }
   ]
 }
