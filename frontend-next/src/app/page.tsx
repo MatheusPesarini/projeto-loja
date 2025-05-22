@@ -12,22 +12,40 @@ export default function Home() {
 					Navegue por Categoria
 				</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-					<Link href="/men" className="group block relative aspect-square overflow-hidden rounded-md">
+					<Link
+						href="/men"
+						className="group block relative aspect-square overflow-hidden rounded-md"
+					>
 						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
 							<span className="text-white text-xl font-medium">Masculino</span>
 						</div>
 					</Link>
-					<Link href="/women" className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"> {/* Placeholder bg */}
+					<Link
+						href="/women"
+						className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"
+					>
+						{' '}
+						{/* Placeholder bg */}
 						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
 							<span className="text-white text-xl font-medium">Feminino</span>
 						</div>
 					</Link>
-					<Link href="/women" className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"> {/* Placeholder bg */}
+					<Link
+						href="/women"
+						className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"
+					>
+						{' '}
+						{/* Placeholder bg */}
 						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-							<span className="text-white text-xl font-medium">Infatil</span>
+							<span className="text-white text-xl font-medium">Infantil</span>
 						</div>
 					</Link>
-					<Link href="/women" className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"> {/* Placeholder bg */}
+					<Link
+						href="/women"
+						className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"
+					>
+						{' '}
+						{/* Placeholder bg */}
 						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
 							<span className="text-white text-xl font-medium">Acessórios</span>
 						</div>
@@ -84,13 +102,12 @@ export default function Home() {
 					<Button
 						type="submit"
 						variant="secondary"
-						className='rounded-l-none h-10'
+						className="rounded-l-none h-10"
 					>
 						Inscrever
 					</Button>
 				</div>
-			</section >
-
-		</div >
+			</section>
+		</div>
 	);
 }

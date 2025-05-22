@@ -69,6 +69,25 @@ export type RegisterFormState = {
 	success: boolean;
 };
 
+export type ProductFormState = {
+	errors?: {
+		productName?: string[];
+		brand?: string[];
+		model?: string[];
+		category?: string[];
+		quantity?: string[];
+		originalPrice?: string[];
+		discountedPrice?: string[];
+		discount?: string[];
+		description?: string[];
+		image?: string[];
+		_form?: string[];
+	};
+	message?: string;
+	success: boolean;
+	products?: Product[];
+};
+
 export type SessionPayload = {
 	userId: string;
 	expiresAt: Date;
@@ -82,4 +101,4 @@ export type SearchProductState = {
 	message?: string;
 	success?: boolean;
 	data?: Product[];
-}
+};

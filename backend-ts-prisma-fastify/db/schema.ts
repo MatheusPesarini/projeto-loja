@@ -31,7 +31,8 @@ export const products = pgTable('Product', {
 	brand: text('brand').notNull(),
 	model: text('model').notNull(),
 	category: text('category').notNull(),
-	price: decimal('price', { precision: 10, scale: 2 }).notNull(),
+	originalPrice: decimal('originalPrice', { precision: 10, scale: 2 }).notNull(),
+	discountedPrice: decimal('discountedPrice', { precision: 10, scale: 2 }),
 	discount: decimal('discount', { precision: 5, scale: 2 }),
 	quantity: integer('quantity').notNull(),
 	description: text('description').notNull(),
@@ -59,7 +60,7 @@ export const productSizes = pgTable('ProductSize', {
 	quantity: integer('quantity').notNull().default(0),
 }, (table) => {
 	return {
-			pk: primaryKey({ columns: [table.productId, table.sizeId] }),
+		pk: primaryKey({ columns: [table.productId, table.sizeId] }),
 	}
 });
 

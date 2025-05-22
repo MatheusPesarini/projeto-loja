@@ -1,0 +1,1 @@
+ALTER TABLE "Product" ADD COLUMN "discountedPrice" numeric(10, 2);

@@ -1,38 +1,54 @@
-'use server';
+import type { Product, ProductFormState } from '../definitions';
 
-import { ProductSchema } from '../definitions';
-import { z } from 'zod';
+export async function getProduct(): Promise<ProductFormState> {
+	try {
+		const productsResponse = await fetch(`http://localhost:3001/products`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
 
-const ProductArraySchema = z.array(ProductSchema);
+		if (!productsResponse.ok) {
+			console.error(
+				'Erro ao obter produtos:',
+				productsResponse.status,
+				productsResponse.statusText,
+			);
+			const errorDetails = await productsResponse.text();
+			console.error('Detalhes do erro:', errorDetails);
 
-export async function getProduct() {
-	const result = await fetch('http://localhost:3001/products', {
-		method: 'GET',
-		cache: 'no-cache',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
+			return {
+				errors: {
+					_form: [
+						`Erro ${productsResponse.status}: ${productsResponse.statusText || 'Erro desconhecido do servidor'}`,
+					],
+				},
+				message: 'Erro ao buscar produtos no servidor.',
+				success: false,
+			};
+		}
 
-	if (!result.ok) {
+		const productsResult = await productsResponse.json();
+
+		console.log('Produtos obtidos com sucesso:', productsResult);
+
+		const products: Product[] = Array.isArray(productsResult)
+			? productsResult
+			: productsResult.data || [];
+
 		return {
-			message: 'Falha ao buscar produtos',
+			message: 'Produtos obtidos com sucesso.',
+			success: true,
 			errors: {},
+			products: products,
 		};
-	}
-
-	const responseData = await result.json();
-	const validatedFields = ProductArraySchema.safeParse(responseData);
-
-	if (!validatedFields.success) {
+	} catch (error) {
+		console.error('Erro ao obter produtos:', error);
 		return {
-			message: 'Falha ao validar produtos',
-			errors: validatedFields.error.flatten().fieldErrors,
+			errors: { _form: ['Erro ao obter produtos.'] },
+			message: 'Erro de validação. Relogue novamente.',
+			success: false,
 		};
 	}
-
-	return {
-		message: 'Produtos buscados com sucesso',
-		data: validatedFields.data,
-	};
 }

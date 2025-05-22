@@ -29,6 +29,20 @@
       "when": 1746290395150,
       "tag": "0003_optimal_hobgoblin",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1747853375305,
+      "tag": "0004_good_dorian_gray",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1747853463339,
+      "tag": "0005_dry_ego",
+      "breakpoints": true
     }
   ]
 }

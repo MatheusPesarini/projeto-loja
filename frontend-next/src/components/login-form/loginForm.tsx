@@ -140,7 +140,10 @@ export default function LoginForm({
 						</Button>
 						<div className="mt-4 text-center text-sm">
 							Não tem uma conta?{' '}
-							<Link href={'/register'} className="underline underline-offset-4 cursor-pointer">
+							<Link
+								href={'/register'}
+								className="underline underline-offset-4 cursor-pointer"
+							>
 								Registrar-se
 							</Link>
 						</div>

@@ -145,7 +145,10 @@ export default function RegisterForm({
 						</Button>
 						<div className="mt-4 text-center text-sm">
 							Já tem uma conta?{' '}
-							<Link href={'/login'} className="underline underline-offset-4 cursor-pointer">
+							<Link
+								href={'/login'}
+								className="underline underline-offset-4 cursor-pointer"
+							>
 								Logar-se
 							</Link>
 						</div>

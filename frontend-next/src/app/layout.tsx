@@ -3,14 +3,14 @@ import './globals.css';
 import { isAuthenticated } from '@/lib/session/dal';
 import Navbar from '@/components/header-component/header';
 import { Footer } from '@/components/footer-component/footer';
-import { ThemeProvider } from "next-themes"
-import { Inter } from 'next/font/google'
+import { ThemeProvider } from 'next-themes';
+import { Inter } from 'next/font/google';
 import { AuthProvider } from '@/context/AuthContext';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'PatoLoja',
+	title: 'Loja',
 	description: 'Sua loja online',
 };
 

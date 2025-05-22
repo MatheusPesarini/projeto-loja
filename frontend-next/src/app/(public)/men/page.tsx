@@ -1,7 +1,5 @@
-import StandardPage from "@/components/standardPage";
+import StandardPage from '@/components/standardPage';
 
 export default function MenPage() {
-  return (
-    <StandardPage />
-  )
+	return <StandardPage />;
 }

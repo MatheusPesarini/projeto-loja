@@ -1,0 +1,1 @@
+ALTER TABLE "Product" RENAME COLUMN "price" TO "originalPrice";
