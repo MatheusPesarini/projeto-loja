@@ -177,7 +177,7 @@ export default function Navbar({
 
 					<div className="flex items-center justify-self-end gap-2">
 						<InputSearch
-							className="w-48 h-8 bg-neutral-100"
+							className="w-48 h-8"
 							placeholder="Procurar"
 						/>
 						{isAuthenticated ? (

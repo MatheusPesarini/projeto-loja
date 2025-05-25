@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function StandardPage() {
 	return (
-		<div className="flex flex-col items-center justify-center min-h-screen p-4 dark:bg-gray-900">
+		<div className="flex flex-col items-center justify-center min-h-screen p-4">
 			<h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
 				Nova Página
 			</h1>

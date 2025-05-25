@@ -43,6 +43,13 @@
       "when": 1747853463339,
       "tag": "0005_dry_ego",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1748016126244,
+      "tag": "0006_known_rockslide",
+      "breakpoints": true
     }
   ]
 }
