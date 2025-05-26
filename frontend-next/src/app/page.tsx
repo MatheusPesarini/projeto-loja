@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -46,7 +46,10 @@ export default function Home() {
 						className="group block relative aspect-square overflow-hidden border-2 transition-all duration-300 ease-in-out hover:shadow-lg"
 					>
 						<div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
-							<div className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out">
+							<div
+								className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
+								style={{ willChange: 'transform' }}
+							>
 								<Image
 									src={images[0]?.src || '/placeholder-image.jpg'}
 									alt={images[0]?.alt || 'Categoria Masculino'}
@@ -57,7 +60,9 @@ export default function Home() {
 									priority
 								/>
 							</div>
-							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">Masculino</span>
+							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">
+								Masculino
+							</span>
 						</div>
 					</Link>
 					<Link
@@ -65,7 +70,10 @@ export default function Home() {
 						className="group block relative overflow-hidden border-2 transition-all duration-300 ease-in-out hover:shadow-lg"
 					>
 						<div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
-							<div className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out">
+							<div
+								className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
+								style={{ willChange: 'transform' }}
+							>
 								<Image
 									src={images[1]?.src || '/placeholder-image.jpg'}
 									alt={images[1]?.alt || 'Categoria Feminino'}
@@ -75,7 +83,9 @@ export default function Home() {
 									quality={100}
 								/>
 							</div>
-							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">Feminino</span>
+							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">
+								Feminino
+							</span>
 						</div>
 					</Link>
 					<Link
@@ -83,7 +93,10 @@ export default function Home() {
 						className="group block relative overflow-hidden border-2 transition-all duration-300 ease-in-out hover:shadow-lg"
 					>
 						<div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
-							<div className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out">
+							<div
+								className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
+								style={{ willChange: 'transform' }}
+							>
 								<Image
 									src={images[2]?.src || '/placeholder-image.jpg'}
 									alt={images[2]?.alt || 'Categoria Infantil'}
@@ -93,7 +106,9 @@ export default function Home() {
 									quality={100}
 								/>
 							</div>
-							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">Infantil</span>
+							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">
+								Infantil
+							</span>
 						</div>
 					</Link>
 					<Link
@@ -101,7 +116,10 @@ export default function Home() {
 						className="group block relative overflow-hidden border-2 transition-all duration-300 ease-in-out hover:shadow-lg"
 					>
 						<div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
-							<div className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out">
+							<div
+								className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
+								style={{ willChange: 'transform' }}
+							>
 								<Image
 									src={images[3]?.src || '/placeholder-image.jpg'}
 									alt={images[3]?.alt || 'Categoria Acessórios'}
@@ -111,7 +129,9 @@ export default function Home() {
 									quality={100}
 								/>
 							</div>
-							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">Acessórios</span>
+							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">
+								Acessórios
+							</span>
 						</div>
 					</Link>
 				</div>

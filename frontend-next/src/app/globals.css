@@ -79,82 +79,82 @@
 }
 
 .dark {
-  /* --- Base do Tema --- */
-  /* Fundo principal, mais escuro. Um índigo profundo e ligeiramente mais saturado. */
-  --background: oklch(0.20 0.015 275);
-  /* Cor de texto principal, quase branco puro para máximo contraste e legibilidade. */
-  --foreground: oklch(0.99 0 0);
+	/* --- Base do Tema --- */
+	/* Fundo principal, mais escuro. Um índigo profundo e ligeiramente mais saturado. */
+	--background: oklch(0.2 0.015 275);
+	/* Cor de texto principal, quase branco puro para máximo contraste e legibilidade. */
+	--foreground: oklch(0.99 0 0);
 
-  /* --- Elementos de Cartão e Pop-up --- */
-  /* Fundo para cartões, ligeiramente mais claro que o background principal. */
-  --card: oklch(0.20 0.02 275);
-  /* Texto dentro dos cartões. */
-  --card-foreground: oklch(0.95 0 0);
-  /* Fundo para pop-ups e modais, similar aos cartões. */
-  --popover: oklch(0.20 0.02 275);
-  /* Texto dentro de pop-ups. */
-  --popover-foreground: oklch(0.99 0 0);
+	/* --- Elementos de Cartão e Pop-up --- */
+	/* Fundo para cartões, ligeiramente mais claro que o background principal. */
+	--card: oklch(0.2 0.02 275);
+	/* Texto dentro dos cartões. */
+	--card-foreground: oklch(0.95 0 0);
+	/* Fundo para pop-ups e modais, similar aos cartões. */
+	--popover: oklch(0.2 0.02 275);
+	/* Texto dentro de pop-ups. */
+	--popover-foreground: oklch(0.99 0 0);
 
-  /* --- Cores Primárias (Chamadas para Ação Principais) --- */
-  /* Cor primária principal, usada para botões importantes, links de destaque. Um rosa/magenta elétrico. */
-  --primary: oklch(0.6 0.118 184.704);
-  /* Texto sobre elementos com cor primária, garantindo bom contraste. Um rosa bem escuro e dessaturado. */
-  --primary-foreground: oklch(0.12 0.04 325);
+	/* --- Cores Primárias (Chamadas para Ação Principais) --- */
+	/* Cor primária principal, usada para botões importantes, links de destaque. Um rosa/magenta elétrico. */
+	--primary: oklch(0.6 0.118 184.704);
+	/* Texto sobre elementos com cor primária, garantindo bom contraste. Um rosa bem escuro e dessaturado. */
+	--primary-foreground: oklch(0.12 0.04 325);
 
-  /* --- Cores Secundárias e Suaves (Muted) --- */
-  /* Cor secundária, para elementos interativos menos proeminentes. Um tom mais claro do índigo base. */
-  --secondary: oklch(0.26 0.02 275);
-  /* Texto sobre elementos secundários. */
-  --secondary-foreground: oklch(0.95 0 0);
-  /* Cor para textos e elementos suaves, discretos. */
-  --muted: oklch(0.26 0.02 275);
-  /* Texto para elementos suaves. Um índigo mais claro e dessaturado. */
-  --muted-foreground: oklch(0.65 0.015 275);
+	/* --- Cores Secundárias e Suaves (Muted) --- */
+	/* Cor secundária, para elementos interativos menos proeminentes. Um tom mais claro do índigo base. */
+	--secondary: oklch(0.26 0.02 275);
+	/* Texto sobre elementos secundários. */
+	--secondary-foreground: oklch(0.95 0 0);
+	/* Cor para textos e elementos suaves, discretos. */
+	--muted: oklch(0.26 0.02 275);
+	/* Texto para elementos suaves. Um índigo mais claro e dessaturado. */
+	--muted-foreground: oklch(0.65 0.015 275);
 
-  /* --- Cor de Destaque (Accent) --- */
-  /* Cor de destaque para ícones, destaques secundários, ou chamadas para ação alternativas. Um ciano vibrante. */
-  --accent: oklch(0.60 0.20 190);
-  /* Texto sobre elementos com cor de destaque. Um ciano bem escuro. */
-  --accent-foreground: oklch(0.99 0 0);
+	/* --- Cor de Destaque (Accent) --- */
+	/* Cor de destaque para ícones, destaques secundários, ou chamadas para ação alternativas. Um ciano vibrante. */
+	--accent: oklch(0.6 0.2 190);
+	/* Texto sobre elementos com cor de destaque. Um ciano bem escuro. */
+	--accent-foreground: oklch(0.99 0 0);
 
-  /* --- Ações Destrutivas --- */
-  /* Cor para ações destrutivas (ex: excluir). Um laranja-avermelhado brilhante. */
-  --destructive: oklch(0.65 0.22 25);
-  /* Texto sobre elementos destrutivos. Branco para clareza. */
-  --destructive-foreground: oklch(0.99 0 0);
+	/* --- Ações Destrutivas --- */
+	/* Cor para ações destrutivas (ex: excluir). Um laranja-avermelhado brilhante. */
+	--destructive: oklch(0.65 0.22 25);
+	/* Texto sobre elementos destrutivos. Branco para clareza. */
+	--destructive-foreground: oklch(0.99 0 0);
 
-  /* --- Bordas, Entradas (Inputs) e Anéis de Foco (Ring) --- */
-  /* Cor para bordas gerais. Uma borda opaca e definida, do tom base. */
-  --border: oklch(0.30 0.025 275);
-  /* Cor de fundo para campos de entrada (input). Um tom de índigo mais escuro para diferenciação. */
-  --input: oklch(0.37 0.018 275); /* Assumindo que --input é o background do campo */
-  /* Cor para anéis de foco, usando a cor de destaque (ciano) com transparência. */
-  --ring: oklch(0.70 0.20 190 / 0.7);
+	/* --- Bordas, Entradas (Inputs) e Anéis de Foco (Ring) --- */
+	/* Cor para bordas gerais. Uma borda opaca e definida, do tom base. */
+	--border: oklch(0.3 0.025 275);
+	/* Cor de fundo para campos de entrada (input). Um tom de índigo mais escuro para diferenciação. */
+	--input: oklch(0.37 0.018 275); /* Assumindo que --input é o background do campo */
+	/* Cor para anéis de foco, usando a cor de destaque (ciano) com transparência. */
+	--ring: oklch(0.7 0.2 190 / 0.7);
 
-  /* --- Cores para Gráficos --- */
-  /* Cores distintas e vibrantes para gráficos, harmonizando com o tema. */
-  --chart-1: oklch(0.72 0.24 325); /* Rosa/Magenta Primário */
-  --chart-2: oklch(0.70 0.20 190); /* Ciano de Destaque */
-  --chart-3: oklch(0.80 0.18 100); /* Verde Lima Brilhante */
-  --chart-4: oklch(0.75 0.22 50);  /* Amarelo/Laranja Vibrante */
-  --chart-5: oklch(0.60 0.20 250); /* Violeta/Roxo Distinto */
+	/* --- Cores para Gráficos --- */
+	/* Cores distintas e vibrantes para gráficos, harmonizando com o tema. */
+	--chart-1: oklch(0.72 0.24 325); /* Rosa/Magenta Primário */
+	--chart-2: oklch(0.7 0.2 190); /* Ciano de Destaque */
+	--chart-3: oklch(0.8 0.18 100); /* Verde Lima Brilhante */
+	--chart-4: oklch(0.75 0.22 50); /* Amarelo/Laranja Vibrante */
+	--chart-5: oklch(0.6 0.2 250); /* Violeta/Roxo Distinto */
 
-  /* --- Barra Lateral (Sidebar) --- */
-  /* Fundo da barra lateral, pode ser ligeiramente diferente para criar profundidade. */
-  --sidebar: oklch(0.17 0.018 275); /* Mesmo que --input para consistência em áreas de "painel" */
-  --sidebar-foreground: oklch(0.95 0 0);
-  /* Cor primária na barra lateral. */
-  --sidebar-primary: oklch(0.72 0.24 325);
-  /* Texto sobre elementos primários na barra lateral. */
-  --sidebar-primary-foreground: oklch(0.12 0.04 325);
-  /* Cor de destaque na barra lateral. */
-  --sidebar-accent: oklch(0.70 0.20 190);
-  /* Texto sobre elementos de destaque na barra lateral. */
-  --sidebar-accent-foreground: oklch(0.10 0.03 190);
-  /* Bordas dentro da barra lateral, sutis. */
-  --sidebar-border: oklch(0.30 0.02 275 / 0.7);
-  /* Anel de foco na barra lateral. */
-  --sidebar-ring: oklch(0.70 0.20 190 / 0.7);
+	/* --- Barra Lateral (Sidebar) --- */
+	/* Fundo da barra lateral, pode ser ligeiramente diferente para criar profundidade. */
+	--sidebar: oklch(0.17 0.018 275); /* Mesmo que --input para consistência em áreas de "painel" */
+	--sidebar-foreground: oklch(0.95 0 0);
+	/* Cor primária na barra lateral. */
+	--sidebar-primary: oklch(0.72 0.24 325);
+	/* Texto sobre elementos primários na barra lateral. */
+	--sidebar-primary-foreground: oklch(0.12 0.04 325);
+	/* Cor de destaque na barra lateral. */
+	--sidebar-accent: oklch(0.7 0.2 190);
+	/* Texto sobre elementos de destaque na barra lateral. */
+	--sidebar-accent-foreground: oklch(0.1 0.03 190);
+	/* Bordas dentro da barra lateral, sutis. */
+	--sidebar-border: oklch(0.3 0.02 275 / 0.7);
+	/* Anel de foco na barra lateral. */
+	--sidebar-ring: oklch(0.7 0.2 190 / 0.7);
 }
 
 @layer base {
