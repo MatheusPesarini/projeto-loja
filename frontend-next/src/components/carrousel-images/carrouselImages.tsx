@@ -13,7 +13,7 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from '@/components/ui/carousel';
-import { fetchImages } from '@/lib/actions/images/get-home-image';
+import { fetchHomeImages } from '@/lib/actions/images/get-home-image';
 
 type Images = {
 	src: string;
@@ -28,7 +28,7 @@ export function ImageCarousel({ autoplay = true, autoplayDelay = 3500 }) {
 		async function loadImages() {
 			try {
 				setLoading(true);
-				const fetchedImages = await fetchImages();
+				const fetchedImages = await fetchHomeImages();
 				setImages(fetchedImages);
 			} catch (error) {
 				console.error('Erro ao carregar imagens:', error);

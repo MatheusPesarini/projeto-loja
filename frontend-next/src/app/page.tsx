@@ -1,8 +1,37 @@
+"use client";
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ImageCarousel } from '@/components/carrousel-images/carrouselImages';
+import { fetchSectionImages } from '@/lib/actions/images/get-section-image';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+
+type Images = {
+	src: string;
+	alt: string;
+};
 
 export default function Home() {
+	const [images, setImages] = useState<Images[]>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		async function loadImages() {
+			try {
+				setLoading(true);
+				const fetchedImages = await fetchSectionImages();
+				setImages(fetchedImages);
+			} catch (error) {
+				console.error('Erro ao carregar imagens:', error);
+			} finally {
+				setLoading(false);
+			}
+		}
+
+		loadImages();
+	}, []);
+
 	return (
 		<div className="flex flex-col">
 			<ImageCarousel />
@@ -14,40 +43,75 @@ export default function Home() {
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 					<Link
 						href="/men"
-						className="group block relative aspect-square overflow-hidden rounded-md"
+						className="group block relative aspect-square overflow-hidden border-2 transition-all duration-300 ease-in-out hover:shadow-lg"
 					>
-						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-							<span className="text-white text-xl font-medium">Masculino</span>
+						<div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+							<div className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out">
+								<Image
+									src={images[0]?.src || '/placeholder-image.jpg'}
+									alt={images[0]?.alt || 'Categoria Masculino'}
+									fill
+									style={{ objectFit: 'cover' }}
+									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
+									quality={100}
+									priority
+								/>
+							</div>
+							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">Masculino</span>
 						</div>
 					</Link>
 					<Link
 						href="/women"
-						className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"
+						className="group block relative overflow-hidden border-2 transition-all duration-300 ease-in-out hover:shadow-lg"
 					>
-						{' '}
-						{/* Placeholder bg */}
-						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-							<span className="text-white text-xl font-medium">Feminino</span>
+						<div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+							<div className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out">
+								<Image
+									src={images[1]?.src || '/placeholder-image.jpg'}
+									alt={images[1]?.alt || 'Categoria Feminino'}
+									fill
+									style={{ objectFit: 'cover' }}
+									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
+									quality={100}
+								/>
+							</div>
+							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">Feminino</span>
 						</div>
 					</Link>
 					<Link
-						href="/women"
-						className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"
+						href="/kids"
+						className="group block relative overflow-hidden border-2 transition-all duration-300 ease-in-out hover:shadow-lg"
 					>
-						{' '}
-						{/* Placeholder bg */}
-						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-							<span className="text-white text-xl font-medium">Infantil</span>
+						<div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+							<div className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out">
+								<Image
+									src={images[2]?.src || '/placeholder-image.jpg'}
+									alt={images[2]?.alt || 'Categoria Infantil'}
+									fill
+									style={{ objectFit: 'cover' }}
+									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
+									quality={100}
+								/>
+							</div>
+							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">Infantil</span>
 						</div>
 					</Link>
 					<Link
-						href="/women"
-						className="group block relative aspect-square overflow-hidden rounded-md bg-gray-300"
+						href="/accessories"
+						className="group block relative overflow-hidden border-2 transition-all duration-300 ease-in-out hover:shadow-lg"
 					>
-						{' '}
-						{/* Placeholder bg */}
-						<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-							<span className="text-white text-xl font-medium">Acessórios</span>
+						<div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+							<div className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out">
+								<Image
+									src={images[3]?.src || '/placeholder-image.jpg'}
+									alt={images[3]?.alt || 'Categoria Acessórios'}
+									fill
+									style={{ objectFit: 'cover' }}
+									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
+									quality={100}
+								/>
+							</div>
+							<span className="text-white text-2xl bg-black/20 font-medium z-10 p-2">Acessórios</span>
 						</div>
 					</Link>
 				</div>

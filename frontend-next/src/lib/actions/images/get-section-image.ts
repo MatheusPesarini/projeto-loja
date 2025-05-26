@@ -7,7 +7,7 @@ type Images = {
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function fetchHomeImages(): Promise<Images[]> {
+export async function fetchSectionImages(): Promise<Images[]> {
 	if (!API_URL) {
 		console.error(
 			'Erro Crítico: API_URL não está configurada no ambiente do servidor.',
@@ -15,11 +15,11 @@ export async function fetchHomeImages(): Promise<Images[]> {
 		return [];
 	}
 
-	console.log(`Fetching images from: ${API_URL}/images/home`);
+	console.log(`Fetching images from: ${API_URL}/images/sections`);
 
 	try {
-		const res = await fetch(`${API_URL}/images/home`, {
-			next: { revalidate: 3600 },
+		const res = await fetch(`${API_URL}/images/sections`, {
+			next: { revalidate: 1 },
 		});
 
 		if (!res.ok) {
