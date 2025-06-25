@@ -2,6 +2,12 @@
 
 Uma aplicação completa de e-commerce desenvolvida com tecnologias modernas, oferecendo uma experiência de compra intuitiva e sistema de gerenciamento robusto integrado com plataforma administrativa.
 
+## 📸 Demonstração
+
+![Demonstração do projeto](./frontend-next/public/projeto_1.png)
+![Demonstração do projeto](./frontend-next/public/projeto_2.png)
+![Demonstração do projeto](./frontend-next/public/projeto_3.png)
+
 ## 🚀 Tecnologias Utilizadas
 
 ### Frontend
@@ -132,13 +138,6 @@ O projeto implementa um sistema completo de autenticação com:
 // Verifica automaticamente a autenticação
 const isAuth = await isAuthenticated();
 ```
-
-## 📸 Demonstração
-
-![Demonstração do projeto](./frontend-next/public/projeto_1.png)
-![Demonstração do projeto](./frontend-next/public/projeto_2.png)
-![Demonstração do projeto](./frontend-next/public/projeto_3.png)
-
 ## 🔗 Integração com Painel Admin
 
 Este projeto está integrado com o [Painel Administrativo](https://github.com/MatheusPesarini/projeto-loja-admin) que oferece:
