@@ -41,11 +41,13 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
+	--color-navbar: var(--navbar);
 }
 
 :root {
 	--radius: 0.5rem;
 	--background: oklch(1 0 0);
+	--navbar: oklch(1 0 0);
 	--foreground: oklch(0.141 0.005 285.823);
 	--card: oklch(1 0 0);
 	--card-foreground: oklch(0.141 0.005 285.823);
@@ -127,21 +129,28 @@
 	/* Cor para bordas gerais. Uma borda opaca e definida, do tom base. */
 	--border: oklch(0.3 0.025 275);
 	/* Cor de fundo para campos de entrada (input). Um tom de índigo mais escuro para diferenciação. */
-	--input: oklch(0.37 0.018 275); /* Assumindo que --input é o background do campo */
+	--input: oklch(0.37 0.018 275);
+	/* Assumindo que --input é o background do campo */
 	/* Cor para anéis de foco, usando a cor de destaque (ciano) com transparência. */
 	--ring: oklch(0.7 0.2 190 / 0.7);
 
 	/* --- Cores para Gráficos --- */
 	/* Cores distintas e vibrantes para gráficos, harmonizando com o tema. */
-	--chart-1: oklch(0.72 0.24 325); /* Rosa/Magenta Primário */
-	--chart-2: oklch(0.7 0.2 190); /* Ciano de Destaque */
-	--chart-3: oklch(0.8 0.18 100); /* Verde Lima Brilhante */
-	--chart-4: oklch(0.75 0.22 50); /* Amarelo/Laranja Vibrante */
-	--chart-5: oklch(0.6 0.2 250); /* Violeta/Roxo Distinto */
+	--chart-1: oklch(0.72 0.24 325);
+	/* Rosa/Magenta Primário */
+	--chart-2: oklch(0.7 0.2 190);
+	/* Ciano de Destaque */
+	--chart-3: oklch(0.8 0.18 100);
+	/* Verde Lima Brilhante */
+	--chart-4: oklch(0.75 0.22 50);
+	/* Amarelo/Laranja Vibrante */
+	--chart-5: oklch(0.6 0.2 250);
+	/* Violeta/Roxo Distinto */
 
 	/* --- Barra Lateral (Sidebar) --- */
 	/* Fundo da barra lateral, pode ser ligeiramente diferente para criar profundidade. */
-	--sidebar: oklch(0.17 0.018 275); /* Mesmo que --input para consistência em áreas de "painel" */
+	--sidebar: oklch(0.17 0.018 275);
+	/* Mesmo que --input para consistência em áreas de "painel" */
 	--sidebar-foreground: oklch(0.95 0 0);
 	/* Cor primária na barra lateral. */
 	--sidebar-primary: oklch(0.72 0.24 325);
@@ -155,6 +164,7 @@
 	--sidebar-border: oklch(0.3 0.02 275 / 0.7);
 	/* Anel de foco na barra lateral. */
 	--sidebar-ring: oklch(0.7 0.2 190 / 0.7);
+	--navbar: oklch(0.2099 0.0341 263.44);
 }
 
 @layer base {

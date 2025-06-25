@@ -35,9 +35,15 @@ export const RegisterFormSchema = z.object({
 
 export const ProductSchema = z.object({
 	id: z.string(),
-	name: z.string(),
-	price: z.number(),
+	productName: z.string(),
+	originalPrice: z.number(),
+	discountedPrice: z.number(), // Pode não ser nulo, alterar depois
+	discount: z.string().optional(),
+	genre: z.string(),
+	warranty: z.string(),
 	description: z.string(),
+	weight: z.string(),
+	brand: z.string(),
 	category: z.string(),
 	quantity: z.number(),
 	createdAt: z.string(),
@@ -46,6 +52,21 @@ export const ProductSchema = z.object({
 });
 
 export type Product = z.infer<typeof ProductSchema>;
+
+export interface CategoryPageProps {
+	category: string;
+	displayName?: string;
+	showFilters?: boolean;
+	gridCols?: {
+		sm?: number;
+		md?: number;
+		lg?: number;
+	};
+	customMetadata?: {
+		title?: string;
+		description?: string;
+	};
+}
 
 export type LoginFormState = {
 	errors?: {
@@ -86,6 +107,25 @@ export type ProductFormState = {
 	message?: string;
 	success: boolean;
 	products?: Product[];
+};
+
+export type SingleProductFormState = {
+	errors?: {
+		productName?: string[];
+		brand?: string[];
+		model?: string[];
+		category?: string[];
+		quantity?: string[];
+		originalPrice?: string[];
+		discountedPrice?: string[];
+		discount?: string[];
+		description?: string[];
+		image?: string[];
+		_form?: string[];
+	};
+	message?: string;
+	success: boolean;
+	product?: Product;
 };
 
 export type SessionPayload = {

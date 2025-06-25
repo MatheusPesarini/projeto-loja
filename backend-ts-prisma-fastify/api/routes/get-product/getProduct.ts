@@ -19,6 +19,33 @@ export default async function getProductRoutes(fastify: FastifyInstance) {
 		}
 	});
 
+	fastify.get('/products/:category', async (request, reply) => {
+		const { category } = request.params as { category: string };
+
+		if (!category) {
+			return reply.status(400).send({ error: 'Categoria não fornecida' });
+		}
+
+		try {
+			const foundProducts = await db
+				.select()
+				.from(products)
+				.where(eq(products.category, category))
+				.execute();
+
+			const productsList = foundProducts;
+
+			if (productsList.length > 0) {
+				reply.send(productsList);
+			} else {
+				reply.status(404).send({ error: 'Nenhum produto encontrado para esta categoria' });
+			}
+		} catch (error) {
+			fastify.log.error(error, `Erro ao buscar produtos na categoria: ${category}`);
+			reply.status(500).send({ error: 'Erro interno ao buscar produtos na categoria' });
+		}
+	});
+
 	fastify.get('/product/:id', async (request, reply) => {
 		const paramsValidation = paramsSchema.safeParse(request.params);
 		if (!paramsValidation.success) {

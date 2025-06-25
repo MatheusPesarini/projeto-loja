@@ -2,11 +2,11 @@ import CategoryPageComponent, {
 	generateCategoryMetadata,
 } from '@/components/category-page/categoryPage';
 
-export default function MenUnderwearPage() {
+export default function KidsToysPage() {
 	return (
 		<CategoryPageComponent
-			category="cuecas_masculinas"
-			displayName="Cuecas Masculinas"
+			category="brinquedos_kids"
+			displayName="Brinquedos Infantis"
 			showFilters={true}
 			gridCols={{ sm: 1, md: 2, lg: 3 }}
 		/>
@@ -14,5 +14,5 @@ export default function MenUnderwearPage() {
 }
 
 export async function generateMetadata() {
-	return generateCategoryMetadata('cuecas_masculinas');
+	return generateCategoryMetadata('brinquedos_kids', {});
 }

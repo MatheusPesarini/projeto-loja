@@ -29,7 +29,8 @@ export default async function RootLayout({
 						attribute="class"
 						defaultTheme="light"
 						enableSystem
-						disableTransitionOnChange
+						disableTransitionOnChange={false}
+						storageKey="theme"
 					>
 						<Navbar isAuthenticated={auth} />
 

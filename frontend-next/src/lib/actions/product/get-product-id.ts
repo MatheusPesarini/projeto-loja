@@ -1,34 +1,44 @@
-import type { Product, ProductFormState } from '../definitions';
+import type { Product, SingleProductFormState } from '../definitions';
 
 export async function getProductId(
-	category?: string,
-): Promise<ProductFormState> {
+	id?: string,
+): Promise<SingleProductFormState> {
 	try {
-		let url = `http://localhost:3001/products`;
-		if (category) {
-			url += `?category=${category}`;
-		}
+		const url = `http://localhost:3001/product/${id}`;
 
-		const productsResponse = await fetch(url, {
+		console.log(`[getProductCategory] Fetching URL: ${url}`);
+
+		const productResponse = await fetch(url, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 		});
 
-		if (!productsResponse.ok) {
+		if (!productResponse.ok) {
 			console.error(
 				'Erro ao obter produtos:',
-				productsResponse.status,
-				productsResponse.statusText,
+				productResponse.status,
+				productResponse.statusText,
 			);
-			const errorDetails = await productsResponse.text();
+
+			if (productResponse.status === 404) {
+				return {
+					errors: {
+						_form: ['Produto não encontrado'],
+					},
+					message: 'Produto não encontrado.',
+					success: false,
+				};
+			}
+
+			const errorDetails = await productResponse.text();
 			console.error('Detalhes do erro:', errorDetails);
 
 			return {
 				errors: {
 					_form: [
-						`Erro ${productsResponse.status}: ${productsResponse.statusText || 'Erro desconhecido do servidor'}`,
+						`Erro ${productResponse.status}: ${productResponse.statusText || 'Erro desconhecido do servidor'}`,
 					],
 				},
 				message: 'Erro ao buscar produtos no servidor.',
@@ -36,19 +46,15 @@ export async function getProductId(
 			};
 		}
 
-		const productsResult = await productsResponse.json();
+		const product = await productResponse.json();
 
-		console.log('Produtos obtidos com sucesso:', productsResult);
-
-		const products: Product[] = Array.isArray(productsResult)
-			? productsResult
-			: productsResult.data || [];
+		console.log('Produtos obtidos com sucesso:', product);
 
 		return {
 			message: 'Produtos obtidos com sucesso.',
 			success: true,
 			errors: {},
-			products: products,
+			product: product,
 		};
 	} catch (error) {
 		console.error('Erro ao obter produtos:', error);

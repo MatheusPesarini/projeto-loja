@@ -14,9 +14,13 @@ export default function ThemeButton() {
 	}, []);
 
 	const toggleTheme = () => {
-		const newTheme = (resolvedTheme === 'dark' ? 'light' : 'dark');
+		const newTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
 		setTheme(newTheme);
 	};
+
+	if (!mounted) {
+		return <div className="w-8 h-8" />;
+	}
 
 	const currentTheme = theme === 'system' ? resolvedTheme : theme;
 
@@ -25,8 +29,8 @@ export default function ThemeButton() {
 			{currentTheme === 'dark' ? (
 				<MoonIcon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
 			) : (
-				<SunIcon className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />)
-			}
+				<SunIcon className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+			)}
 		</Button>
 	);
 }
