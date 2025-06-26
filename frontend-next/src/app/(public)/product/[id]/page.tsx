@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import * as React from 'react'; // Necessário se for usar hooks como useState
+import * as React from 'react';
 
 import {
 	Card,
@@ -28,6 +28,8 @@ import {
 } from '@/components/ui/carousel';
 import { getProductId } from '@/lib/actions/product/get-product-id';
 import Link from 'next/link';
+import { getCategoryDisplayName, getCategoryUrl } from '@/lib/utils';
+import ExpandableDescription from '@/components/expandable-description.tsx/expandableDescription';
 
 const formatPrice = (price: string | number | null | undefined): string => {
 	if (!price || price === null || price === undefined) {
@@ -80,7 +82,6 @@ export default async function ProductDisplayPage({
 
 	return (
 		<div className="container mx-auto px-4 py-8 lg:py-12">
-			{/* Breadcrumb */}
 			<nav className="mb-6">
 				<div className="flex items-center space-x-2 text-sm text-muted-foreground">
 					<Link href="/" className="hover:text-foreground">
@@ -88,10 +89,10 @@ export default async function ProductDisplayPage({
 					</Link>
 					<span>/</span>
 					<Link
-						href={`/${product.category}`}
-						className="hover:text-foreground capitalize"
+						href={getCategoryUrl(product.category)}
+						className="hover:text-foreground"
 					>
-						{product.category?.replace('_', ' ')}
+						{getCategoryDisplayName(product.category)}
 					</Link>
 					<span>/</span>
 					<span className="text-foreground">{product.productName}</span>
@@ -99,7 +100,6 @@ export default async function ProductDisplayPage({
 			</nav>
 
 			<div className="grid md:grid-cols-2 gap-8 lg:gap-16">
-				{/* Coluna de Imagens */}
 				<div className="space-y-4">
 					<Card className="overflow-hidden">
 						<CardContent className="p-0 aspect-square relative">
@@ -108,20 +108,17 @@ export default async function ProductDisplayPage({
 								alt={product.productName}
 								fill
 								style={{ objectFit: 'cover' }}
-								className="hover:scale-105 transition-transform duration-300"
 								priority
 								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
 							/>
-							{/* Badge de desconto */}
 							{product.discount && (
 								<Badge
 									variant="destructive"
 									className="absolute top-4 right-4 z-10"
 								>
-									{product.discount} OFF
+									{product.discount}% OFF
 								</Badge>
 							)}
-							{/* Badge de disponibilidade */}
 							{product.quantity === 0 && (
 								<div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
 									<Badge variant="secondary" className="text-lg">
@@ -133,7 +130,6 @@ export default async function ProductDisplayPage({
 					</Card>
 				</div>
 
-				{/* Coluna de Informações do Produto */}
 				<div>
 					<Card>
 						<CardHeader className="pb-4">
@@ -146,7 +142,9 @@ export default async function ProductDisplayPage({
 								{product.productName}
 							</CardTitle>
 							<div className="flex items-center gap-2 mt-2 flex-wrap">
-								<Badge variant="outline">ID: {product.id.slice(0, 8)}...</Badge>
+								{product.discountedPrice != product.originalPrice && (
+									<Badge variant="destructive">Promoção</Badge>
+								)}
 								<Badge
 									variant={product.quantity > 0 ? 'default' : 'destructive'}
 								>
@@ -161,24 +159,23 @@ export default async function ProductDisplayPage({
 						</CardHeader>
 
 						<CardContent className="space-y-5">
-							{/* Preços */}
 							<div>
 								{product.discountedPrice &&
-								parseFloat(product.discountedPrice.toString()) > 0 ? (
+									parseFloat(product.discountedPrice.toString()) > 0 ? (
 									<>
 										<p className="text-3xl font-semibold text-primary">
 											R$ {formatPrice(product.discountedPrice)}
 										</p>
 										{product.originalPrice &&
 											parseFloat(product.originalPrice.toString()) >
-												parseFloat(product.discountedPrice.toString()) && (
+											parseFloat(product.discountedPrice.toString()) && (
 												<div className="flex items-baseline gap-2 mt-1">
 													<p className="text-lg text-muted-foreground line-through">
 														R$ {formatPrice(product.originalPrice)}
 													</p>
 													{product.discount && (
 														<Badge variant="secondary" className="text-sm">
-															{product.discount} OFF
+															{product.discount}% OFF
 														</Badge>
 													)}
 												</div>
@@ -193,14 +190,13 @@ export default async function ProductDisplayPage({
 
 							<Separator />
 
-							{/* Descrição */}
 							<div>
 								<h3 className="text-lg font-semibold mb-2">Descrição</h3>
-								<CardDescription className="text-sm leading-relaxed">
-									{product.description || 'Descrição não disponível.'}
-								</CardDescription>
+								<ExpandableDescription
+									description={product.description || 'Descrição não disponível.'}
+									maxLength={200} 
+								/>
 							</div>
-
 							{/* Informações adicionais */}
 							{(product.genre || product.warranty || product.weight) && (
 								<>
