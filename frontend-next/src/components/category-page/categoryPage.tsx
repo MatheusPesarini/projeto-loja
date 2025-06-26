@@ -13,20 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { getProductCategory } from '@/lib/actions/product/get-product-category';
 import { CategoryPageProps, Product } from '@/lib/actions/definitions';
-
-const formatPrice = (price: string | number | null | undefined): string => {
-	if (!price || price === null || price === undefined) {
-		return '0,00';
-	}
-
-	const numPrice = typeof price === 'string' ? parseFloat(price) : price;
-
-	if (isNaN(numPrice)) {
-		return '0,00';
-	}
-
-	return numPrice.toFixed(2).replace('.', ',');
-};
+import { formatPrice } from '@/lib/utils';
 
 export default async function CategoryPageComponent({
 	category,

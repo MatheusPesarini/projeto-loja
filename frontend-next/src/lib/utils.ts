@@ -34,3 +34,17 @@ export const getCategoryDisplayName = (category: string): string => {
 
 	return displayNames[category] || category.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
 };
+
+export const formatPrice = (price: string | number | null | undefined): string => {
+	if (!price || price === null || price === undefined) {
+		return '0,00';
+	}
+
+	const numPrice = typeof price === 'string' ? parseFloat(price) : price;
+
+	if (isNaN(numPrice)) {
+		return '0,00';
+	}
+
+	return numPrice.toFixed(2).replace('.', ',');
+};

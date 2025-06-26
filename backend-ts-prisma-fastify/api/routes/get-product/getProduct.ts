@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import { db } from '../../../db/database-connection';
 import { products } from '../../../db/schema';
-import { eq } from 'drizzle-orm';
+import { and, eq, ne } from 'drizzle-orm';
 import { z } from 'zod';
 
 const paramsSchema = z.object({
@@ -38,11 +38,18 @@ export default async function getProductRoutes(fastify: FastifyInstance) {
 			if (productsList.length > 0) {
 				reply.send(productsList);
 			} else {
-				reply.status(404).send({ error: 'Nenhum produto encontrado para esta categoria' });
+				reply
+					.status(404)
+					.send({ error: 'Nenhum produto encontrado para esta categoria' });
 			}
 		} catch (error) {
-			fastify.log.error(error, `Erro ao buscar produtos na categoria: ${category}`);
-			reply.status(500).send({ error: 'Erro interno ao buscar produtos na categoria' });
+			fastify.log.error(
+				error,
+				`Erro ao buscar produtos na categoria: ${category}`,
+			);
+			reply
+				.status(500)
+				.send({ error: 'Erro interno ao buscar produtos na categoria' });
 		}
 	});
 
@@ -74,6 +81,47 @@ export default async function getProductRoutes(fastify: FastifyInstance) {
 		} catch (error) {
 			fastify.log.error(error, `Erro ao buscar produto com ID: ${id}`);
 			reply.status(500).send({ error: 'Erro interno ao buscar produto' });
+		}
+	});
+
+	fastify.get('/products/:category/related', async (request, reply) => {
+		const { category } = request.params as { category: string };
+		const { exclude, limit } = request.query as {
+			exclude?: string;
+			limit?: string;
+		};
+
+		if (!category) {
+			return reply.status(400).send({ error: 'Categoria não fornecida' });
+		}
+
+		try {
+			const whereCondition = exclude
+				? and(eq(products.category, category), ne(products.id, exclude))
+				: eq(products.category, category);
+
+			const relatedProducts = await db
+				.select()
+				.from(products)
+				.where(whereCondition)
+				.limit(limit ? parseInt(limit) : 5)
+				.execute();
+
+			fastify.log.info(
+				`Buscando produtos relacionados para a categoria: ${category}, excluindo ID: ${exclude}, limit: ${limit}`,
+			);
+			if (relatedProducts.length > 0) {
+				reply.send(relatedProducts);
+			} else {
+				reply
+					.status(404)
+					.send({ error: 'Nenhum produto relacionado encontrado' });
+			}
+		} catch (error) {
+			fastify.log.error(error, `Erro ao buscar produtos relacionados`);
+			reply
+				.status(500)
+				.send({ error: 'Erro interno ao buscar produtos relacionados' });
 		}
 	});
 }

@@ -28,22 +28,9 @@ import {
 } from '@/components/ui/carousel';
 import { getProductId } from '@/lib/actions/product/get-product-id';
 import Link from 'next/link';
-import { getCategoryDisplayName, getCategoryUrl } from '@/lib/utils';
+import { formatPrice, getCategoryDisplayName, getCategoryUrl } from '@/lib/utils';
 import ExpandableDescription from '@/components/expandable-description.tsx/expandableDescription';
-
-const formatPrice = (price: string | number | null | undefined): string => {
-	if (!price || price === null || price === undefined) {
-		return '0,00';
-	}
-
-	const numPrice = typeof price === 'string' ? parseFloat(price) : price;
-
-	if (isNaN(numPrice)) {
-		return '0,00';
-	}
-
-	return numPrice.toFixed(2).replace('.', ',');
-};
+import RelatedProductsWrapper from '@/components/product-carrousel/relatedProductsWrapper';
 
 export default async function ProductDisplayPage({
 	params,
@@ -194,10 +181,10 @@ export default async function ProductDisplayPage({
 								<h3 className="text-lg font-semibold mb-2">Descrição</h3>
 								<ExpandableDescription
 									description={product.description || 'Descrição não disponível.'}
-									maxLength={200} 
+									maxLength={200}
+									className='capitalize'
 								/>
 							</div>
-							{/* Informações adicionais */}
 							{(product.genre || product.warranty || product.weight) && (
 								<>
 									<Separator />
@@ -208,25 +195,25 @@ export default async function ProductDisplayPage({
 										{product.genre && (
 											<div className="flex justify-between">
 												<span className="text-muted-foreground">Gênero:</span>
-												<span className="font-medium">{product.genre}</span>
+												<span className="font-medium capitalize">{product.genre}</span>
 											</div>
 										)}
 										{product.warranty && (
 											<div className="flex justify-between">
 												<span className="text-muted-foreground">Garantia:</span>
-												<span className="font-medium">{product.warranty}</span>
+												<span className="font-medium">{parseInt(product.warranty) + 3} (3 meses de garantia legal + ALTERAR SIST DE GARANTIA)</span>
 											</div>
 										)}
 										{product.weight && (
 											<div className="flex justify-between">
 												<span className="text-muted-foreground">Peso:</span>
-												<span className="font-medium">{product.weight}</span>
+												<span className="font-medium">{product.weight}KG</span>
 											</div>
 										)}
 										<div className="flex justify-between">
 											<span className="text-muted-foreground">Categoria:</span>
 											<span className="font-medium capitalize">
-												{product.category?.replace('_', ' ')}
+												{getCategoryDisplayName(product.category)}
 											</span>
 										</div>
 									</div>
@@ -237,7 +224,7 @@ export default async function ProductDisplayPage({
 						<CardFooter className="flex-col items-stretch space-y-3 pt-5">
 							<Button
 								size="lg"
-								className="w-full text-base"
+								className="w-full text-base cursor-pointer"
 								disabled={product.quantity === 0}
 							>
 								{product.quantity === 0
@@ -247,7 +234,7 @@ export default async function ProductDisplayPage({
 							<Button
 								size="lg"
 								variant="outline"
-								className="w-full text-base"
+								className="w-full text-base cursor-pointer"
 								disabled={product.quantity === 0}
 							>
 								{product.quantity === 0 ? 'Indisponível' : 'Comprar Agora'}
@@ -257,67 +244,79 @@ export default async function ProductDisplayPage({
 				</div>
 			</div>
 
-			{/* Informações Adicionais */}
 			<div className="mt-10 lg:mt-16">
 				<Card>
-					<CardHeader>
-						<CardTitle>Informações do Produto</CardTitle>
-					</CardHeader>
-					<CardContent className="space-y-6">
-						<div className="grid md:grid-cols-2 gap-6">
-							<div>
-								<h4 className="font-semibold mb-2">Detalhes</h4>
-								<div className="space-y-1 text-sm">
-									<div className="flex justify-between">
-										<span className="text-muted-foreground">Marca:</span>
-										<span>{product.brand || 'Não informado'}</span>
+					<CardContent>
+						<div className="flex flex-col lg:flex-row gap-8">
+							<div className="flex-1 space-y-6">
+								<div>
+									<h4 className="font-semibold mb-3">Detalhes</h4>
+									<div className="space-y-2 text-sm">
+										<div className="flex justify-between">
+											<span className="text-muted-foreground">Marca:</span>
+											<span className="font-medium">{product.brand || 'Não informado'}</span>
+										</div>
+										<div className="flex justify-between">
+											<span className="text-muted-foreground">Categoria:</span>
+											<span className="font-medium capitalize">
+												{getCategoryDisplayName(product.category)}
+											</span>
+										</div>
+										<div className="flex justify-between">
+											<span className="text-muted-foreground">Criado em:</span>
+											<span className="font-medium">
+												{new Date(product.createdAt).toLocaleDateString('pt-BR')}
+											</span>
+										</div>
+										<div className="flex justify-between">
+											<span className="text-muted-foreground">Atualizado em:</span>
+											<span className="font-medium">
+												{new Date(product.updatedAt).toLocaleDateString('pt-BR')}
+											</span>
+										</div>
 									</div>
-									<div className="flex justify-between">
-										<span className="text-muted-foreground">Categoria:</span>
-										<span className="capitalize">
-											{product.category?.replace('_', ' ')}
-										</span>
-									</div>
-									<div className="flex justify-between">
-										<span className="text-muted-foreground">Criado em:</span>
-										<span>
-											{new Date(product.createdAt).toLocaleDateString('pt-BR')}
-										</span>
-									</div>
-									<div className="flex justify-between">
-										<span className="text-muted-foreground">
-											Atualizado em:
-										</span>
-										<span>
-											{new Date(product.updatedAt).toLocaleDateString('pt-BR')}
-										</span>
+								</div>
+
+								<Separator />
+
+								<div>
+									<h4 className="font-semibold mb-3">Disponibilidade</h4>
+									<div className="space-y-2 text-sm">
+										<div className="flex justify-between">
+											<span className="text-muted-foreground">Estoque:</span>
+											<span
+												className={
+													product.quantity > 0 ? 'text-green-600' : 'text-red-600'
+												}
+											>
+												{product.quantity > 0
+													? `${product.quantity} unidades`
+													: 'Esgotado'}
+											</span>
+										</div>
+										<div className="flex justify-between">
+											<span className="text-muted-foreground">Status:</span>
+											<Badge
+												variant={product.quantity > 0 ? 'default' : 'destructive'}
+											>
+												{product.quantity > 0 ? 'Disponível' : 'Indisponível'}
+											</Badge>
+										</div>
 									</div>
 								</div>
 							</div>
 
-							<div>
-								<h4 className="font-semibold mb-2">Disponibilidade</h4>
-								<div className="space-y-1 text-sm">
-									<div className="flex justify-between">
-										<span className="text-muted-foreground">Estoque:</span>
-										<span
-											className={
-												product.quantity > 0 ? 'text-green-600' : 'text-red-600'
-											}
-										>
-											{product.quantity > 0
-												? `${product.quantity} unidades`
-												: 'Esgotado'}
-										</span>
-									</div>
-									<div className="flex justify-between">
-										<span className="text-muted-foreground">Status:</span>
-										<Badge
-											variant={product.quantity > 0 ? 'default' : 'destructive'}
-										>
-											{product.quantity > 0 ? 'Disponível' : 'Indisponível'}
-										</Badge>
-									</div>
+							<div className="hidden lg:flex items-stretch">
+								<Separator orientation="vertical" className="h-auto" />
+							</div>
+
+							<Separator className="lg:hidden" />
+
+							<div className="flex-1">
+								<h4 className="font-semibold mb-3">Produtos Relacionados</h4>
+
+								<div className="text-center py-8 text-muted-foreground">
+									<RelatedProductsWrapper productId={product.id} category={product.category} limit={8} />
 								</div>
 							</div>
 						</div>
@@ -325,11 +324,10 @@ export default async function ProductDisplayPage({
 				</Card>
 			</div>
 
-			{/* Botão Voltar */}
 			<div className="mt-8 text-center">
 				<Button variant="outline" asChild>
 					<Link href={`/${product.category}`}>
-						← Voltar para {product.category?.replace('_', ' ')}
+						← Voltar para {getCategoryDisplayName(product.category)}
 					</Link>
 				</Button>
 			</div>
@@ -337,7 +335,6 @@ export default async function ProductDisplayPage({
 	);
 }
 
-// Metadata dinâmica
 export async function generateMetadata({ params }: { params: { id: string } }) {
 	const result = await getProductId(params.id);
 
