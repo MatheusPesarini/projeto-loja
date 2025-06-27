@@ -4,28 +4,13 @@ import * as React from 'react';
 import {
 	Card,
 	CardContent,
-	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import {
-	Carousel,
-	CarouselContent,
-	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
-} from '@/components/ui/carousel';
 import { getProductId } from '@/lib/actions/product/get-product-id';
 import Link from 'next/link';
 import { formatPrice, getCategoryDisplayName, getCategoryUrl } from '@/lib/utils';
@@ -315,7 +300,7 @@ export default async function ProductDisplayPage({
 							<div className="flex-1">
 								<h4 className="font-semibold mb-3">Produtos Relacionados</h4>
 
-								<div className="text-center py-8 text-muted-foreground">
+								<div className="text-center text-muted-foreground">
 									<RelatedProductsWrapper productId={product.id} category={product.category} limit={8} />
 								</div>
 							</div>

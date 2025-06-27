@@ -38,10 +38,10 @@ export function RelatedProductsCarousel({ products }: RelatedProductsCarouselPro
         }}
         className="w-full"
       >
-        <CarouselContent className="-ml-2 md:-ml-4">
+        <CarouselContent className="-ml-1 md:-ml-2">
           {products.map((product) => (
-            <CarouselItem key={product.id} className="pl-2 md:pl-4 basis-full md:basis-1/2">
-              <Card className="overflow-hidden">
+            <CarouselItem key={product.id} className="pl-1 md:pl-2 basis-1/2 md:basis-1/3">
+              <Card className="overflow-hidden h-full">
                 <CardContent className="p-0">
                   <Link
                     href={`/product/${product.id}`}
@@ -57,30 +57,30 @@ export function RelatedProductsCarousel({ products }: RelatedProductsCarouselPro
                           alt={product.productName}
                           fill
                           style={{ objectFit: 'cover' }}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
+                          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33, 200px"
                           quality={100}
                         />
                       </div>
 
-                      <div className="absolute bottom-4 left-4 right-4 z-10">
-                        <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3 text-white">
-                          <h3 className="font-medium text-sm mb-1 line-clamp-1">
+                      <div className="absolute bottom-2 left-2 right-2 z-10">
+                        <div className="bg-black/80 backdrop-blur-sm rounded-md p-2 text-white">
+                          <h3 className="font-medium text-xs mb-1 line-clamp-1 leading-tight">
                             {product.productName}
                           </h3>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1">
                             {product.discountedPrice && product.discountedPrice > 0 ? (
                               <>
-                                <span className="font-bold text-lg">
+                                <span className="font-bold text-sm">
                                   R$ {formatPrice(product.discountedPrice)}
                                 </span>
                                 {product.originalPrice && parseFloat(product.originalPrice.toString()) > parseFloat(product.discountedPrice.toString()) && (
-                                  <span className="text-sm line-through text-gray-300">
+                                  <span className="text-xs line-through text-gray-300">
                                     R$ {formatPrice(product.originalPrice)}
                                   </span>
                                 )}
                               </>
                             ) : (
-                              <span className="font-bold text-lg">
+                              <span className="font-bold text-sm">
                                 R$ {formatPrice(product.originalPrice)}
                               </span>
                             )}
@@ -89,8 +89,8 @@ export function RelatedProductsCarousel({ products }: RelatedProductsCarouselPro
                       </div>
 
                       {product.discount && (
-                        <div className="absolute top-4 right-4 z-10">
-                          <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                        <div className="absolute top-2 right-2 z-10">
+                          <span className="bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
                             {product.discount}% OFF
                           </span>
                         </div>
@@ -98,7 +98,7 @@ export function RelatedProductsCarousel({ products }: RelatedProductsCarouselPro
 
                       {product.quantity <= 0 && (
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20">
-                          <span className="bg-gray-800 text-white text-sm font-medium px-3 py-1 rounded">
+                          <span className="bg-gray-800 text-white text-xs font-medium px-2 py-1 rounded">
                             Esgotado
                           </span>
                         </div>
@@ -113,8 +113,8 @@ export function RelatedProductsCarousel({ products }: RelatedProductsCarouselPro
 
         {products.length > 1 && (
           <>
-            <CarouselPrevious className="left-2" />
-            <CarouselNext className="right-2" />
+            <CarouselPrevious className="left-1 h-8 w-8" />
+            <CarouselNext className="right-1 h-8 w-8" />
           </>
         )}
       </Carousel>
