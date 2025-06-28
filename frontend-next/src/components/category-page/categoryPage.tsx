@@ -125,7 +125,7 @@ export default async function CategoryPageComponent({
 							<div className="mb-3 w-full">
 								{product.discountedPrice && product.discountedPrice > 0 ? (
 									<>
-										<p className="text-lg font-bold text-primary">
+										<p className="text-lg font-bold dark:text-white">
 											R$ {formatPrice(product.discountedPrice)}
 										</p>
 										{product.originalPrice &&

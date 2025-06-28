@@ -118,7 +118,7 @@ export default async function ProductDisplayPage({
 									<Badge variant="destructive">Promoção</Badge>
 								)}
 								<Badge
-									variant={product.quantity > 0 ? 'default' : 'destructive'}
+									variant={product.quantity > 0 ? 'success' : 'destructive'}
 								>
 									{product.quantity > 0 ? 'Em estoque' : 'Esgotado'}
 								</Badge>
@@ -135,7 +135,7 @@ export default async function ProductDisplayPage({
 								{product.discountedPrice &&
 									parseFloat(product.discountedPrice.toString()) > 0 ? (
 									<>
-										<p className="text-3xl font-semibold text-primary">
+										<p className="text-3xl font-semibold text-white">
 											R$ {formatPrice(product.discountedPrice)}
 										</p>
 										{product.originalPrice &&
@@ -210,6 +210,7 @@ export default async function ProductDisplayPage({
 							<Button
 								size="lg"
 								className="w-full text-base cursor-pointer"
+								variant="outline"
 								disabled={product.quantity === 0}
 							>
 								{product.quantity === 0
@@ -282,7 +283,7 @@ export default async function ProductDisplayPage({
 										<div className="flex justify-between">
 											<span className="text-muted-foreground">Status:</span>
 											<Badge
-												variant={product.quantity > 0 ? 'default' : 'destructive'}
+												variant={product.quantity > 0 ? 'success' : 'destructive'}
 											>
 												{product.quantity > 0 ? 'Disponível' : 'Indisponível'}
 											</Badge>

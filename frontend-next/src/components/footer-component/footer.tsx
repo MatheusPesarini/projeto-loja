@@ -69,7 +69,7 @@ const Footer = ({
 	],
 }: FooterProps) => {
 	return (
-		<section className="pt-6 pb-2 bg-gray-100 dark:bg-gray-900">
+		<section className="pt-6 pb-2 bg-footer">
 			<footer>
 				<div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
 					<div className="col-span-2 mb-10 lg:mb-0">

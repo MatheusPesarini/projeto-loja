@@ -159,7 +159,7 @@ export default function Navbar({
 		<section className="pt-4 dark:bg-navbar">
 			<div className="px-10">
 				<nav className="hidden items-center lg:grid lg:grid-cols-3">
-					<Link href={logo.url} className="flex items-center gap-2">
+					<Link href={logo.url} className="flex items-center gap-2 justify-self-start">
 						{/* <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} /> */}
 						<Store className="size-8" />
 						<span className="text-lg font-semibold tracking-tighter">
@@ -195,7 +195,7 @@ export default function Navbar({
 								<Button asChild variant="outline" size="sm">
 									<Link href={auth.login.url}>{auth.login.title}</Link>
 								</Button>
-								<Button asChild size="sm">
+								<Button asChild variant="outline" size="sm">
 									<Link href={auth.signup.url}>{auth.signup.title}</Link>
 								</Button>
 							</>
@@ -257,7 +257,7 @@ export default function Navbar({
 					</div>
 				</div>
 			</div>
-			<div className="bg-gray-200 h-[1px] mt-2"> </div>
+			<div className="h-[1px] mt-2"> </div>
 		</section>
 	);
 }

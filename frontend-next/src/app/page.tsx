@@ -137,7 +137,7 @@ export default function Home() {
 				</div>
 			</section>
 
-			<section className="py-12 md:py-16 px-4 md:px-8 bg-gray-50 dark:bg-gray-900">
+			<section className="py-12 md:py-16 px-4 md:px-8">
 				<h2 className="text-2xl md:text-3xl font-semibold text-center mb-8">
 					Produtos em Destaque
 				</h2>
