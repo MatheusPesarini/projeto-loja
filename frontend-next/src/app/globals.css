@@ -103,7 +103,7 @@
 	/* Cor primária principal, usada para botões importantes, links de destaque. Um rosa/magenta elétrico. */
 	--primary: oklch(0.2232 0.004 247.9);
 	/* Texto sobre elementos com cor primária, garantindo bom contraste. Um rosa bem escuro e dessaturado. */
-	--primary-foreground: oklch(0.0 0.04 325);
+	--primary-foreground: oklch(0 0.04 325);
 
 	/* --- Cores Secundárias e Suaves (Muted) --- */
 	/* Cor secundária, para elementos interativos menos proeminentes. Um tom mais claro do índigo base. */
@@ -148,7 +148,7 @@
 	/* Mesmo que --input para consistência em áreas de "painel" */
 	--sidebar-foreground: oklch(0.985 0 0);
 	/* Cor primária na barra lateral. */
-	--primary: oklch(42.4% 0.199 265.638/ 0.8);
+	--primary: oklch(42.4% 0.199 265.638 / 0.8);
 	/* Texto sobre elementos primários na barra lateral. */
 	--sidebar-primary-foreground: oklch(0.22 0.04 325);
 	/* Cor de destaque na barra lateral. */

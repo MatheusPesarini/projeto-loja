@@ -1,4 +1,4 @@
-import { Menu, Store } from 'lucide-react';
+import { LogOut, Menu, Store, User } from 'lucide-react';
 
 import {
 	Accordion,
@@ -28,6 +28,15 @@ import Image from 'next/image';
 import LogoutButton from '../logout-button/logoutButton';
 import ThemeButton from './themeSwitchButton';
 import { InputSearch } from '../ui/inputSearch';
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuGroup,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
 
 interface MenuItem {
 	title: string;
@@ -159,7 +168,10 @@ export default function Navbar({
 		<section className="pt-4 dark:bg-navbar">
 			<div className="px-10">
 				<nav className="hidden items-center lg:grid lg:grid-cols-3">
-					<Link href={logo.url} className="flex items-center gap-2 justify-self-start">
+					<Link
+						href={logo.url}
+						className="flex items-center gap-2 justify-self-start"
+					>
 						{/* <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} /> */}
 						<Store className="size-8" />
 						<span className="text-lg font-semibold tracking-tighter">
@@ -179,16 +191,40 @@ export default function Navbar({
 						<InputSearch className="w-48 h-8" placeholder="Procurar" />
 						{isAuthenticated ? (
 							<>
-								<LogoutButton />
-								<Link href="/profile" className="flex items-center">
-									<Image
-										src="https://avatar.vercel.sh/default"
-										alt="Avatar"
-										width={36}
-										height={36}
-										className="rounded-full"
-									/>
-								</Link>
+								<DropdownMenu>
+									<DropdownMenuTrigger asChild>
+										<Image
+											src="https://avatar.vercel.sh/default"
+											alt="Avatar"
+											width={36}
+											height={36}
+											className="rounded-full cursor-pointer"
+										/>
+									</DropdownMenuTrigger>
+									<DropdownMenuContent className='w-48' align="end" sideOffset={5} avoidCollisions={true} side="bottom" sticky="always">
+										<DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
+										<DropdownMenuSeparator />
+										<DropdownMenuGroup>
+											<DropdownMenuItem asChild>
+												<Link href="/profile" className="flex items-center cursor-pointer">
+													<User className="mr-2 h-4 w-4" />
+													<span>Perfil</span>
+												</Link>
+											</DropdownMenuItem>
+											<DropdownMenuItem asChild>
+												<Link href="/orders" className="flex items-center cursor-pointer">
+													<Store className="mr-2 h-4 w-4" />
+													<span>Meus Pedidos</span>
+												</Link>
+											</DropdownMenuItem>
+											<DropdownMenuSeparator />
+											<DropdownMenuItem className="cursor-pointer ">
+												<LogOut className="mr-2 h-4 w-4" />
+												<LogoutButton />
+											</DropdownMenuItem>
+										</DropdownMenuGroup>
+									</DropdownMenuContent>
+								</DropdownMenu>
 							</>
 						) : (
 							<>

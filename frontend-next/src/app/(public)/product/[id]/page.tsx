@@ -13,7 +13,11 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { getProductId } from '@/lib/actions/product/get-product-id';
 import Link from 'next/link';
-import { formatPrice, getCategoryDisplayName, getCategoryUrl } from '@/lib/utils';
+import {
+	formatPrice,
+	getCategoryDisplayName,
+	getCategoryUrl,
+} from '@/lib/utils';
 import ExpandableDescription from '@/components/expandable-description.tsx/expandableDescription';
 import RelatedProductsWrapper from '@/components/product-carrousel/relatedProductsWrapper';
 
@@ -133,14 +137,14 @@ export default async function ProductDisplayPage({
 						<CardContent className="space-y-5">
 							<div>
 								{product.discountedPrice &&
-									parseFloat(product.discountedPrice.toString()) > 0 ? (
+								parseFloat(product.discountedPrice.toString()) > 0 ? (
 									<>
 										<p className="text-3xl font-semibold text-white">
 											R$ {formatPrice(product.discountedPrice)}
 										</p>
 										{product.originalPrice &&
 											parseFloat(product.originalPrice.toString()) >
-											parseFloat(product.discountedPrice.toString()) && (
+												parseFloat(product.discountedPrice.toString()) && (
 												<div className="flex items-baseline gap-2 mt-1">
 													<p className="text-lg text-muted-foreground line-through">
 														R$ {formatPrice(product.originalPrice)}
@@ -165,9 +169,11 @@ export default async function ProductDisplayPage({
 							<div>
 								<h3 className="text-lg font-semibold mb-2">Descrição</h3>
 								<ExpandableDescription
-									description={product.description || 'Descrição não disponível.'}
+									description={
+										product.description || 'Descrição não disponível.'
+									}
 									maxLength={200}
-									className='capitalize'
+									className="capitalize"
 								/>
 							</div>
 							{(product.genre || product.warranty || product.weight) && (
@@ -180,13 +186,18 @@ export default async function ProductDisplayPage({
 										{product.genre && (
 											<div className="flex justify-between">
 												<span className="text-muted-foreground">Gênero:</span>
-												<span className="font-medium capitalize">{product.genre}</span>
+												<span className="font-medium capitalize">
+													{product.genre}
+												</span>
 											</div>
 										)}
 										{product.warranty && (
 											<div className="flex justify-between">
 												<span className="text-muted-foreground">Garantia:</span>
-												<span className="font-medium">{parseInt(product.warranty) + 3} (3 meses de garantia legal + ALTERAR SIST DE GARANTIA)</span>
+												<span className="font-medium">
+													{parseInt(product.warranty) + 3} (3 meses de garantia
+													legal + ALTERAR SIST DE GARANTIA)
+												</span>
 											</div>
 										)}
 										{product.weight && (
@@ -240,7 +251,9 @@ export default async function ProductDisplayPage({
 									<div className="space-y-2 text-sm">
 										<div className="flex justify-between">
 											<span className="text-muted-foreground">Marca:</span>
-											<span className="font-medium">{product.brand || 'Não informado'}</span>
+											<span className="font-medium">
+												{product.brand || 'Não informado'}
+											</span>
 										</div>
 										<div className="flex justify-between">
 											<span className="text-muted-foreground">Categoria:</span>
@@ -251,13 +264,19 @@ export default async function ProductDisplayPage({
 										<div className="flex justify-between">
 											<span className="text-muted-foreground">Criado em:</span>
 											<span className="font-medium">
-												{new Date(product.createdAt).toLocaleDateString('pt-BR')}
+												{new Date(product.createdAt).toLocaleDateString(
+													'pt-BR',
+												)}
 											</span>
 										</div>
 										<div className="flex justify-between">
-											<span className="text-muted-foreground">Atualizado em:</span>
+											<span className="text-muted-foreground">
+												Atualizado em:
+											</span>
 											<span className="font-medium">
-												{new Date(product.updatedAt).toLocaleDateString('pt-BR')}
+												{new Date(product.updatedAt).toLocaleDateString(
+													'pt-BR',
+												)}
 											</span>
 										</div>
 									</div>
@@ -272,7 +291,9 @@ export default async function ProductDisplayPage({
 											<span className="text-muted-foreground">Estoque:</span>
 											<span
 												className={
-													product.quantity > 0 ? 'text-green-600' : 'text-red-600'
+													product.quantity > 0
+														? 'text-green-600'
+														: 'text-red-600'
 												}
 											>
 												{product.quantity > 0
@@ -283,7 +304,9 @@ export default async function ProductDisplayPage({
 										<div className="flex justify-between">
 											<span className="text-muted-foreground">Status:</span>
 											<Badge
-												variant={product.quantity > 0 ? 'success' : 'destructive'}
+												variant={
+													product.quantity > 0 ? 'success' : 'destructive'
+												}
 											>
 												{product.quantity > 0 ? 'Disponível' : 'Indisponível'}
 											</Badge>
@@ -302,7 +325,11 @@ export default async function ProductDisplayPage({
 								<h4 className="font-semibold mb-3">Produtos Relacionados</h4>
 
 								<div className="text-center text-muted-foreground">
-									<RelatedProductsWrapper productId={product.id} category={product.category} limit={8} />
+									<RelatedProductsWrapper
+										productId={product.id}
+										category={product.category}
+										limit={8}
+									/>
 								</div>
 							</div>
 						</div>
