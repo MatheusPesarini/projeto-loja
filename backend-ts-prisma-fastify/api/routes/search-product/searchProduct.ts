@@ -2,11 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import { db } from '../../../db/database-connection';
 import { products } from '../../../db/schema';
 import { ilike } from 'drizzle-orm';
-import { z } from 'zod';
-
-const searchQuerySchema = z.object({
-	name: z.string().min(1, { message: 'Termo de busca não pode ser vazio' }),
-});
+import { searchQuerySchema } from '../../lib/definition';
 
 export default async function getProductRoutes(fastify: FastifyInstance) {
 	fastify.get('/product/search/:id', async (request, reply) => {

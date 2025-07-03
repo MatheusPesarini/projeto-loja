@@ -1,23 +1,10 @@
 import type { FastifyInstance } from 'fastify';
 import { users } from '../../../db/schema';
 import { db } from '../../../db/database-connection';
-import { z } from 'zod';
 import argon2 from 'argon2';
 import { eq } from 'drizzle-orm';
 import { verifySession } from '../../middleware/session';
-
-const paramsSchema = z.object({
-	id: z.string().uuid({ message: 'ID de usuário inválido' }),
-});
-
-const updateProfileSchema = z.object({
-	name: z.string().min(1, 'Nome não pode ser vazio').optional(),
-	email: z.string().email('Email inválido').optional(),
-	password: z
-		.string()
-		.min(6, 'Nova senha deve ter no mínimo 6 caracteres')
-		.optional(),
-});
+import { paramsSchema, updateProfileSchema } from '../../lib/definition';
 
 export default async function updateProfileRoutes(fastify: FastifyInstance) {
 	fastify.patch('/updateProfile/:id', async (request, reply) => {

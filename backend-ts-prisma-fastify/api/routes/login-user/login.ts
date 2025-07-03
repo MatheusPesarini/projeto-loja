@@ -5,11 +5,7 @@ import { users } from '../../../db/schema';
 import { eq } from 'drizzle-orm';
 import { db } from '../../../db/database-connection';
 import { createSession } from '../../middleware/session';
-
-const loginUserSchema = z.object({
-	email: z.string().email({ message: 'Email inválido' }),
-	password: z.string().min(1, { message: 'Senha não pode estar vazia' }),
-});
+import { loginUserSchema } from '../../lib/definition';
 
 export default async function loginUserRoutes(fastify: FastifyInstance) {
 	fastify.post('/login', async (request, reply) => {

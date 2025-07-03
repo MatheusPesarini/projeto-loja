@@ -1,17 +1,9 @@
 import type { FastifyInstance } from 'fastify';
-import { z } from 'zod';
 import argon2 from 'argon2';
 import { users } from '../../../db/schema';
 import { eq } from 'drizzle-orm';
 import { db } from '../../../db/database-connection';
-
-const createUserSchema = z.object({
-	name: z.string().optional(),
-	email: z.string().email({ message: 'Email inválido' }),
-	password: z
-		.string()
-		.min(6, { message: 'Senha deve ter no mínimo 6 caracteres' }),
-});
+import { createUserSchema } from '../../lib/definition';
 
 export default async function createUserRoutes(fastify: FastifyInstance) {
 	fastify.post('/register', async (request, reply) => {
