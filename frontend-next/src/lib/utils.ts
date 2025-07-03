@@ -21,7 +21,11 @@ export const getCategoryUrl = (category: string): string => {
 	return categoryToUrlMap[category] || `/${category}`;
 };
 
-export const getCategoryDisplayName = (category: string): string => {
+export const getCategoryDisplayName = (category: string | undefined): string => {
+	if (!category) {
+		return 'Categoria não especificada';
+	}
+
 	const displayNames: { [key: string]: string } = {
 		tenis_masculinos: 'Tênis Masculinos',
 		tenis_femininos: 'Tênis Femininos',
@@ -29,8 +33,7 @@ export const getCategoryDisplayName = (category: string): string => {
 		calcas_femininas: 'Calças Femininas',
 		camisetas_masculinas: 'Camisetas Masculinas',
 		camisetas_femininas: 'Camisetas Femininas',
-		acessorios: 'Acessórios',
-		tenis_kids: 'Tênis Infantis',
+		bolsas_femininas: 'Bolsas Femininas',
 	};
 
 	return (

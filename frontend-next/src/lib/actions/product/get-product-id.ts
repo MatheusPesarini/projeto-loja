@@ -1,8 +1,6 @@
 import type { Product, SingleProductFormState } from '../definitions';
 
-export async function getProductId(
-	id?: string,
-): Promise<SingleProductFormState> {
+export async function getProductId(id?: string): Promise<SingleProductFormState> {
 	try {
 		const url = `http://localhost:3001/product/${id}`;
 
@@ -46,16 +44,25 @@ export async function getProductId(
 			};
 		}
 
-		const product = await productResponse.json();
+		const response = await productResponse.json();
+		console.log('Resposta do backend:', response);
 
-		console.log('Produtos obtidos com sucesso:', product);
+		if (response.success && response.data) {
+			const product = Array.isArray(response.data) ? response.data[0] : response.data;
 
-		return {
-			message: 'Produtos obtidos com sucesso.',
-			success: true,
-			errors: {},
-			product: product,
-		};
+			return {
+				message: 'Produto obtido com sucesso.',
+				success: true,
+				errors: {},
+				product: product,
+			};
+		} else {
+			return {
+				errors: { _form: ['Produto não encontrado'] },
+				message: 'Produto não encontrado.',
+				success: false,
+			};
+		}
 	} catch (error) {
 		console.error('Erro ao obter produtos:', error);
 		return {

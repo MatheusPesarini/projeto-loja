@@ -24,9 +24,9 @@ import RelatedProductsWrapper from '@/components/product-carrousel/relatedProduc
 export default async function ProductDisplayPage({
 	params,
 }: {
-	params: { id: string };
+	params: Promise<{ id: string }>;
 }) {
-	const result = await getProductId(params.id);
+	const result = await getProductId((await params).id);
 
 	if (!result.success) {
 		return (
@@ -137,14 +137,14 @@ export default async function ProductDisplayPage({
 						<CardContent className="space-y-5">
 							<div>
 								{product.discountedPrice &&
-								parseFloat(product.discountedPrice.toString()) > 0 ? (
+									parseFloat(product.discountedPrice.toString()) > 0 ? (
 									<>
 										<p className="text-3xl font-semibold text-white">
 											R$ {formatPrice(product.discountedPrice)}
 										</p>
 										{product.originalPrice &&
 											parseFloat(product.originalPrice.toString()) >
-												parseFloat(product.discountedPrice.toString()) && (
+											parseFloat(product.discountedPrice.toString()) && (
 												<div className="flex items-baseline gap-2 mt-1">
 													<p className="text-lg text-muted-foreground line-through">
 														R$ {formatPrice(product.originalPrice)}
@@ -348,22 +348,18 @@ export default async function ProductDisplayPage({
 	);
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-	const result = await getProductId(params.id);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+	const resolvedParams = await params;
+	const result = await getProductId(resolvedParams.id);
 
 	if (!result.success || !result.product) {
 		return {
-			title: 'Produto não encontrado - Loja',
-			description: 'O produto solicitado não foi encontrado.',
+			title: 'Produto não encontrado',
 		};
 	}
 
-	const product = result.product;
-
 	return {
-		title: `${product.productName} - ${product.brand || 'Loja'}`,
-		description:
-			product.description ||
-			`${product.productName} - ${product.brand || 'Produto'} disponível em nossa loja online.`,
+		title: result.product.productName,
+		description: result.product.description,
 	};
 }
