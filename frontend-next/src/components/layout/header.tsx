@@ -25,8 +25,8 @@ import {
 import { JSX } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import LogoutButton from '../forms/logoutButton';
-import ThemeButton from './themeSwitchButton';
+import LogoutButton from '../forms/LogoutButton';
+import ThemeButton from './ThemeSwitchButton';
 import { InputSearch } from '../ui/inputSearch';
 import {
 	DropdownMenu,

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { isAuthenticated } from '@/lib/session/dal';
-import Navbar from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
+import Navbar from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 import { ThemeProvider } from 'next-themes';
 import { Inter } from 'next/font/google';
 import { AuthProvider } from '@/context/AuthContext';

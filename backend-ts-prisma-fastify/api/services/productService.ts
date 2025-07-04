@@ -27,10 +27,11 @@ export class ProductService {
     return await db.select().from(products).where(ilike(products.productName, term)).limit(99).execute();
   }
 
-  static async getRelatedProducts(category: string, excludeId?: string, limit = 5) {
-    const whereCondition = excludeId
-      ? and(eq(products.category, category), ne(products.id, excludeId))
-      : eq(products.category, category);
+  static async getRelatedProducts(category: string, excludeId: string, limit: number = 5) {
+    const whereCondition = and(
+      eq(products.category, category),
+      ne(products.id, excludeId)
+    );
 
     return await db
       .select()

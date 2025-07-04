@@ -43,8 +43,8 @@ export const relatedProductsParamsSchema = z.object({
 });
 
 export const relatedProductsQuerySchema = z.object({
-  exclude: z.string().uuid().optional(),
-  limit: z.number().optional(),
+  exclude: z.string().uuid({ message: 'ID para exclusão deve ser um UUID válido' }),
+  limit: z.string().regex(/^\d+$/, { message: 'Limit deve ser um número' }).optional(),
 });
 
 export const searchQuerySchema = z.object({

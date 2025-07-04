@@ -38,9 +38,9 @@ export async function getRelatedProducts(
 
 		const productsResult = await productsResponse.json();
 
-		const products: Product[] = Array.isArray(productsResult)
-			? productsResult
-			: productsResult.data || [];
+		const products: Product[] = productsResult.success
+			? productsResult.data || []
+			: [];
 
 		return {
 			message: 'Produtos relacionados obtidos com sucesso.',

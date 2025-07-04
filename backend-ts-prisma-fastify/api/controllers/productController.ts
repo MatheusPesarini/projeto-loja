@@ -73,9 +73,14 @@ export class ProductController {
   }
 
   static async getRelatedProducts(request: FastifyRequest, reply: FastifyReply) {
+    console.log('=== DEBUG RELATED PRODUCTS ===');
+    console.log('request.params:', request.params);
+    console.log('request.query:', request.query);
+
     const paramsValidation = relatedProductsParamsSchema.safeParse(request.params);
 
     if (!paramsValidation.success) {
+      console.log('❌ Erro na validação dos params:', paramsValidation.error);
       return reply.status(400).send(errorResponse(
         'Parâmetros inválidos',
         paramsValidation.error.flatten()
@@ -85,34 +90,29 @@ export class ProductController {
     const queryValidation = relatedProductsQuerySchema.safeParse(request.query);
 
     if (!queryValidation.success) {
+      console.log('❌ Erro na validação da query:', queryValidation.error);
       return reply.status(400).send(errorResponse(
         'Query parameters inválidos',
         queryValidation.error.flatten()
       ));
     }
 
+    console.log('✅ Query validada:', queryValidation.data);
+
     const { category } = paramsValidation.data;
     const { exclude, limit } = queryValidation.data;
 
-    if (!category || !exclude) {
-      request.log.warn("Categoria ou categoria do produto atual não fornecida");
-      return reply.status(400).send({ error: "Categoria ou categoria do produto atual não fornecida" });
-    }
-
     try {
-      const products = await ProductService.getRelatedProducts(category, exclude, limit ? limit : 5);
+      const products = await ProductService.getRelatedProducts(category, exclude, limit ? Number(limit) : undefined);
 
       if (products.length > 0) {
-        reply.send(successResponse(products));
+        reply.send(successResponse(products, "Produtos relacionados encontrados"));
       } else {
-        reply.status(404).send({ error: "Nenhum produto relacionado encontrado" });
+        reply.status(404).send(errorResponse("Nenhum produto relacionado encontrado"));
       }
     } catch (error) {
       request.log.error(error, `Erro ao buscar produtos relacionados para a categoria: ${category}`);
-      reply.status(500).send({
-        success: false,
-        message: "Erro interno ao buscar produtos relacionados",
-      });
+      reply.status(500).send(errorResponse("Erro interno ao buscar produtos relacionados"));
     }
   }
 

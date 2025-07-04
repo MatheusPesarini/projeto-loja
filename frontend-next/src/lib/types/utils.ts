@@ -6,7 +6,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 const categoryToUrlMap: { [key: string]: string } = {
-	// Alterar
 	tenis_masculinos: '/men/sneakers',
 	tenis_femininos: '/women/sneakers',
 	calcas_masculinas: '/men/pants',

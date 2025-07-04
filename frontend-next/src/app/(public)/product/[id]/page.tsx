@@ -18,8 +18,8 @@ import {
 	getCategoryDisplayName,
 	getCategoryUrl,
 } from '@/lib/types/utils';
-import ExpandableDescription from '@/components/common/expandableDescription';
-import RelatedProductsWrapper from '@/components/product/relatedProductsWrapper';
+import ExpandableDescription from '@/components/common/ExpandableDescription';
+import RelatedProductsWrapper from '@/components/product/RelatedProductsWrapper';
 
 export default async function ProductDisplayPage({
 	params,
@@ -339,7 +339,7 @@ export default async function ProductDisplayPage({
 
 			<div className="mt-8 text-center">
 				<Button variant="outline" asChild>
-					<Link href={`/${product.category}`}>
+					<Link href={getCategoryUrl(product.category)}>
 						← Voltar para {getCategoryDisplayName(product.category)}
 					</Link>
 				</Button>

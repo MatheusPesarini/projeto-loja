@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ImageCarousel } from '@/components/common/carrouselImages';
+import { ImageCarousel } from '@/components/common/CarrouselImages';
 import { fetchSectionImages } from '@/lib/actions/images/get-section-image';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
