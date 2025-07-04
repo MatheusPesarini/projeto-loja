@@ -1,4 +1,4 @@
-import type { Product, SingleProductFormState } from '../definitions';
+import type { Product, SingleProductFormState } from '../../types/definitions';
 
 export async function getProductId(id?: string): Promise<SingleProductFormState> {
 	try {

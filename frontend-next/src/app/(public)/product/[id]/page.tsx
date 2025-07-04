@@ -17,9 +17,9 @@ import {
 	formatPrice,
 	getCategoryDisplayName,
 	getCategoryUrl,
-} from '@/lib/utils';
-import ExpandableDescription from '@/components/expandable-description.tsx/expandableDescription';
-import RelatedProductsWrapper from '@/components/product-carrousel/relatedProductsWrapper';
+} from '@/lib/types/utils';
+import ExpandableDescription from '@/components/common/expandableDescription';
+import RelatedProductsWrapper from '@/components/product/relatedProductsWrapper';
 
 export default async function ProductDisplayPage({
 	params,

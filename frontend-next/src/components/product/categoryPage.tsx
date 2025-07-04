@@ -12,8 +12,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { getProductCategory } from '@/lib/actions/product/get-product-category';
-import { CategoryPageProps, Product } from '@/lib/actions/definitions';
-import { formatPrice } from '@/lib/utils';
+import { CategoryPageProps, Product } from '@/lib/types/definitions';
+import { formatPrice } from '@/lib/types/utils';
 
 export default async function CategoryPageComponent({
 	category,
@@ -130,7 +130,7 @@ export default async function CategoryPageComponent({
 										</p>
 										{product.originalPrice &&
 											parseFloat(product.originalPrice.toString()) >
-												parseFloat(product.discountedPrice.toString()) && (
+											parseFloat(product.discountedPrice.toString()) && (
 												<p className="text-sm text-muted-foreground line-through">
 													R$ {formatPrice(product.originalPrice)}
 												</p>

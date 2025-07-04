@@ -1,9 +1,11 @@
 'use client';
 
-import { submitRegister } from '@/lib/actions/auth/post-register';
-import { RegisterFormState } from '@/lib/actions/definitions';
-import React, { useActionState } from 'react';
+import { submitLogin } from '@/lib/actions/auth/post-login';
+import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import type { LoginFormState } from '@/lib/types/definitions';
 import {
 	Card,
 	CardContent,
@@ -12,29 +14,36 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/types/utils';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import Link from 'next/link';
 
-const initialState: RegisterFormState = {
+const initialState: LoginFormState = {
 	errors: {},
 	message: '',
 	success: false,
 };
 
-export default function RegisterForm({
+export default function LoginForm({
 	className,
 	...props
 }: React.ComponentPropsWithoutRef<'div'>) {
 	const router = useRouter();
+	const { setIsAuthenticated } = useAuth();
 	const [state, formAction, isPending] = useActionState(
-		submitRegister,
+		submitLogin,
 		initialState,
 	);
 
-	const nameErrors = state?.errors?.name;
+	useEffect(() => {
+		if (state?.success) {
+			setIsAuthenticated(true);
+			router.push('/');
+		}
+	}, [state, router, setIsAuthenticated]);
+
 	const emailErrors = state?.errors?.email;
 	const passwordErrors = state?.errors?.password;
 	const formErrors = state?.errors?._form;
@@ -43,36 +52,14 @@ export default function RegisterForm({
 		<div className={cn('flex flex-col gap-6', className)} {...props}>
 			<Card className="shadow-md">
 				<CardHeader>
-					<CardTitle className="text-2xl">Cadastro</CardTitle>
+					<CardTitle className="text-2xl">Login</CardTitle>
 					<CardDescription>
-						Digite seu dados para cadastro da sua conta.
+						Digite seu e-mail e senha para entrar na sua conta.
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<form action={formAction} className="space-y-4">
 						{' '}
-						<div className="grid gap-2">
-							<Label htmlFor="name">Nome</Label>
-							<Input
-								type="name"
-								id="name"
-								name="name"
-								required
-								aria-describedby="name-error"
-								className={cn(
-									'text-black bg-amber-50 w-full p-2 rounded border',
-									nameErrors ? 'border-red-500' : 'border-gray-300',
-								)}
-							/>
-							<div id="name-error" aria-live="polite" aria-atomic="true">
-								{nameErrors &&
-									nameErrors.map((error: string) => (
-										<p className="mt-1 text-sm text-red-500" key={error}>
-											{error}
-										</p>
-									))}
-							</div>
-						</div>
 						<div className="grid gap-2">
 							<Label htmlFor="email">E-mail</Label>
 							<Input
@@ -97,7 +84,15 @@ export default function RegisterForm({
 							</div>
 						</div>
 						<div className="grid gap-2">
-							<Label htmlFor="password">Senha</Label>
+							<div className="flex items-center">
+								<Label htmlFor="password">Senha</Label>
+								<a
+									href="404"
+									className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+								>
+									Esqueceu a senha?
+								</a>
+							</div>
 							<Input
 								id="password"
 								name="password"
@@ -133,7 +128,7 @@ export default function RegisterForm({
 								className="mt-2 text-sm text-red-500 text-center"
 								aria-live="polite"
 							>
-								{state.message}
+								{/* {state.message} */}
 							</div>
 						)}
 						<Button
@@ -141,15 +136,15 @@ export default function RegisterForm({
 							disabled={isPending}
 							className="w-full cursor-pointer shadow-md"
 						>
-							{isPending ? 'Enviando...' : 'Cadastrar'}
+							{isPending ? 'Enviando...' : 'Entrar'}
 						</Button>
 						<div className="mt-4 text-center text-sm">
-							Já tem uma conta?{' '}
+							Não tem uma conta?{' '}
 							<Link
-								href={'/login'}
+								href={'/register'}
 								className="underline underline-offset-4 cursor-pointer"
 							>
-								Logar-se
+								Registrar-se
 							</Link>
 						</div>
 					</form>

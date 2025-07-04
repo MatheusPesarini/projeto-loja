@@ -3,7 +3,7 @@
 import {
 	LoginFormSchema,
 	type LoginFormState,
-} from '@/lib/actions/definitions';
+} from '@/lib/types/definitions';
 import { cookies } from 'next/headers';
 
 export async function submitLogin(

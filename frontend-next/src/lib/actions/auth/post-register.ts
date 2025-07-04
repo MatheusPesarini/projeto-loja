@@ -3,7 +3,7 @@
 import {
 	RegisterFormSchema,
 	type RegisterFormState,
-} from '@/lib/actions/definitions';
+} from '@/lib/types/definitions';
 import { redirect } from 'next/navigation';
 
 export async function submitRegister(

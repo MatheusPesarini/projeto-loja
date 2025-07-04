@@ -1,4 +1,4 @@
-import type { Product, ProductFormState } from '../definitions';
+import type { Product, ProductFormState } from '../../types/definitions';
 
 export async function getRelatedProducts(
 	category: string,

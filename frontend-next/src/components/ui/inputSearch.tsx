@@ -1,11 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/types/utils';
 import { Search } from 'lucide-react';
-import { SearchProductState } from '@/lib/actions/definitions';
+import { SearchProductState } from '@/lib/types/definitions';
 import { useActionState } from 'react';
-import { searchProduct } from '@/lib/actions/inputSearch/search-product';
+import { searchProduct } from '@/lib/actions/product/search-product';
 
 const initialState: SearchProductState = { message: '', errors: {} };
 

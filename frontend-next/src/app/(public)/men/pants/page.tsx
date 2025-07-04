@@ -1,6 +1,6 @@
 import CategoryPageComponent, {
 	generateCategoryMetadata,
-} from '@/components/category-page/categoryPage';
+} from '@/components/product/categoryPage';
 
 export default function MenPantsPage() {
 	return (
