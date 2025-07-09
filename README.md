@@ -7,6 +7,7 @@ Uma aplicação completa de e-commerce desenvolvida com tecnologias modernas, of
 ![Demonstração do projeto](./frontend-next/public/projeto_1.png)
 ![Demonstração do projeto](./frontend-next/public/projeto_2.png)
 ![Demonstração do projeto](./frontend-next/public/projeto_3.png)
+![Demonstração do projeto](./frontend-next/public/projeto_4.png)
 
 ## 🚀 Tecnologias Utilizadas
 

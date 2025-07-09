@@ -20,7 +20,9 @@ export const getCategoryUrl = (category: string): string => {
 	return categoryToUrlMap[category] || `/${category}`;
 };
 
-export const getCategoryDisplayName = (category: string | undefined): string => {
+export const getCategoryDisplayName = (
+	category: string | undefined,
+): string => {
 	if (!category) {
 		return 'Categoria não especificada';
 	}

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Store } from 'lucide-react';
+import { Separator } from '../ui/separator';
 
 interface MenuItem {
 	title: string;
@@ -24,93 +25,107 @@ type FooterProps = {
 	}[];
 };
 
-const Footer = ({
+export const Footer = ({
 	logo = {
 		url: '/',
-		title: 'Loja',
+		title: 'Loja Online',
 	},
 	menuItems = [
 		{
 			title: 'Produtos',
 			links: [
-				{ text: 'Masculino', url: '/men' },
-				{ text: 'Feminino', url: '/women' },
+				{ text: 'Tênis Masculinos', url: '/men/sneakers' },
+				{ text: 'Tênis Femininos', url: '/women/sneakers' },
+				{ text: 'Calças Masculinas', url: '/men/pants' },
+				{ text: 'Calças Femininas', url: '/women/pants' },
 			],
 		},
 		{
 			title: 'Empresa',
 			links: [
-				{ text: 'Sobre', url: '/about' },
+				{ text: 'Sobre Nós', url: '/about' },
 				{ text: 'Contato', url: '/contact' },
+				{ text: 'Trabalhe Conosco', url: '/careers' },
 			],
 		},
 		{
-			title: 'Outros',
+			title: 'Suporte',
 			links: [
-				{ text: 'Ajuda', url: '/help' },
-				{ text: 'Perfil', url: '/profile' },
-			],
-		},
-		{
-			title: 'Social',
-			links: [
-				{ text: 'Instagram', url: 'https://www.instagram.com/math_pesarini/' },
-				{
-					text: 'LinkedIn',
-					url: 'https://www.linkedin.com/in/matheus-rogerio-pesarini/',
-				},
+				{ text: 'Central de Ajuda', url: '/help' },
+				{ text: 'Política de Troca', url: '/returns' },
+				{ text: 'Rastreamento', url: '/tracking' },
 			],
 		},
 	],
-	copyright = '© 2025 loja.com. Todos direitos reservados.',
+	copyright = '© 2025 Loja Online. Todos os direitos reservados.',
 	bottomLinks = [
-		{ text: 'Terms and Conditions', url: '#' },
-		{ text: 'Privacy Policy', url: '#' },
+		{ text: 'Termos de Uso', url: '/terms' },
+		{ text: 'Política de Privacidade', url: '/privacy' },
 	],
 }: FooterProps) => {
 	return (
-		<section className="pt-6 pb-2 bg-footer">
-			<footer>
-				<div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
-					<div className="col-span-2 mb-10 lg:mb-0">
-						<div className="flex items-center gap-2 lg:justify-start">
-							{/* <Link href={logo.url} className="flex items-center gap-2"> */}
-							{/* <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} /> */}
-							{/* <Store className="size-8" /> */}
-							{/* <span className="text-lg font-semibold tracking-tighter"> */}
-							{/* {logo.title} */}
-							{/* </span> */}
-							{/* </Link> */}
-						</div>
+		<footer className="bg-footer border-t">
+			<div className="container mx-auto px-6 py-12">
+				{/* Seção Principal */}
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+					{/* Logo e Descrição */}
+					<div className="lg:col-span-2">
+						<Link href={logo.url} className="flex items-center gap-3 mb-4">
+							<Store className="size-8 text-primary" />
+							<span className="text-xl font-bold tracking-tight">
+								{logo.title}
+							</span>
+						</Link>
+						<p className="text-sm text-muted-foreground max-w-md">
+							Sua loja online de confiança com os melhores produtos
+							de moda e calçados. Qualidade garantida e entrega rápida.
+						</p>
 					</div>
-					{menuItems.map((section, sectionIdx) => (
-						<div key={sectionIdx}>
-							<h3 className="mb-4 font-bold">{section.title}</h3>
-							<ul className="space-y-4 text-muted-foreground">
-								{section.links.map((link, linkIdx) => (
-									<li key={linkIdx} className="font-medium hover:text-primary">
-										<Link href={link.url}>{link.text}</Link>
+
+					{/* Menu Items */}
+					{menuItems.map((section, index) => (
+						<div key={index}>
+							<h3 className="font-semibold mb-4 text-foreground">
+								{section.title}
+							</h3>
+							<ul className="space-y-3">
+								{section.links.map((link, linkIndex) => (
+									<li key={linkIndex}>
+										<Link
+											href={link.url}
+											className="text-sm text-muted-foreground hover:text-primary transition-colors"
+										>
+											{link.text}
+										</Link>
 									</li>
 								))}
 							</ul>
 						</div>
 					))}
 				</div>
-				<div className="px-4 mt-10 border-t pt-4">
-					<div className="flex flex-col justify-between gap-4 text-sm font-medium text-muted-foreground md:flex-row md:items-center">
-						<p>{copyright}</p>
-						<ul className="flex gap-4">
-							{bottomLinks.map((link, linkIdx) => (
-								<li key={linkIdx} className="underline hover:text-primary">
-									<Link href={link.url}>{link.text}</Link>
-								</li>
-							))}
-						</ul>
+
+				{/* Separador */}
+				<Separator className="my-8" />
+
+				{/* Rodapé */}
+				<div className="flex flex-col md:flex-row justify-between items-center gap-4">
+					<p className="text-sm text-muted-foreground">
+						{copyright}
+					</p>
+
+					<div className="flex gap-6">
+						{bottomLinks.map((link, index) => (
+							<Link
+								key={index}
+								href={link.url}
+								className="text-sm text-muted-foreground hover:text-primary transition-colors"
+							>
+								{link.text}
+							</Link>
+						))}
 					</div>
 				</div>
-			</footer>
-		</section>
+			</div>
+		</footer>
 	);
 };
-
-export { Footer };

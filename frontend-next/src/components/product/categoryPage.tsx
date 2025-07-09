@@ -81,7 +81,7 @@ export default async function CategoryPageComponent({
 
 			<div className={gridClasses}>
 				{products.map((product: Product) => (
-					<Card key={product.id} className="group overflow-hidden">
+					<Card key={product.id} className="group overflow-hidden hover:shadow-2xl transition-shadow">
 						<Link href={`/product/${product.id}`} className="block">
 							<CardContent className="p-0 aspect-[1/1] relative">
 								<Image
@@ -89,7 +89,6 @@ export default async function CategoryPageComponent({
 									alt={product.productName}
 									fill
 									style={{ objectFit: 'cover' }}
-									className="group-hover:scale-105 transition-transform duration-300"
 									sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
 								/>
 								{product.discount && (
@@ -130,7 +129,7 @@ export default async function CategoryPageComponent({
 										</p>
 										{product.originalPrice &&
 											parseFloat(product.originalPrice.toString()) >
-											parseFloat(product.discountedPrice.toString()) && (
+												parseFloat(product.discountedPrice.toString()) && (
 												<p className="text-sm text-muted-foreground line-through">
 													R$ {formatPrice(product.originalPrice)}
 												</p>

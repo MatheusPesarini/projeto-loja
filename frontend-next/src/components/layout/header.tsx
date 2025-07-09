@@ -165,7 +165,7 @@ export default function Navbar({
 	isAuthenticated,
 }: NavbarProps): JSX.Element {
 	return (
-		<section className="pt-4 dark:bg-navbar">
+		<section className="pt-4 dark:bg-navbar border-b">
 			<div className="px-10">
 				<nav className="hidden items-center lg:grid lg:grid-cols-3">
 					<Link
@@ -201,18 +201,31 @@ export default function Navbar({
 											className="rounded-full cursor-pointer"
 										/>
 									</DropdownMenuTrigger>
-									<DropdownMenuContent className='w-48' align="end" sideOffset={5} avoidCollisions={true} side="bottom" sticky="always">
+									<DropdownMenuContent
+										className="w-48"
+										align="end"
+										sideOffset={5}
+										avoidCollisions={true}
+										side="bottom"
+										sticky="always"
+									>
 										<DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
 										<DropdownMenuSeparator />
 										<DropdownMenuGroup>
 											<DropdownMenuItem asChild>
-												<Link href="/profile" className="flex items-center cursor-pointer">
+												<Link
+													href="/profile"
+													className="flex items-center cursor-pointer"
+												>
 													<User className="mr-2 h-4 w-4" />
 													<span>Perfil</span>
 												</Link>
 											</DropdownMenuItem>
 											<DropdownMenuItem asChild>
-												<Link href="/orders" className="flex items-center cursor-pointer">
+												<Link
+													href="/orders"
+													className="flex items-center cursor-pointer"
+												>
 													<Store className="mr-2 h-4 w-4" />
 													<span>Meus Pedidos</span>
 												</Link>

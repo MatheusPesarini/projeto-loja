@@ -74,16 +74,16 @@ export function RelatedProductsCarousel({
 													</h3>
 													<div className="flex items-center gap-1">
 														{product.discountedPrice &&
-															product.discountedPrice > 0 ? (
+														product.discountedPrice > 0 ? (
 															<>
 																<span className="font-bold text-sm">
 																	R$ {formatPrice(product.discountedPrice)}
 																</span>
 																{product.originalPrice &&
 																	parseFloat(product.originalPrice.toString()) >
-																	parseFloat(
-																		product.discountedPrice.toString(),
-																	) && (
+																		parseFloat(
+																			product.discountedPrice.toString(),
+																		) && (
 																		<span className="text-xs line-through text-gray-300">
 																			R$ {formatPrice(product.originalPrice)}
 																		</span>

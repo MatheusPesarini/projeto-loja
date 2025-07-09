@@ -137,14 +137,14 @@ export default async function ProductDisplayPage({
 						<CardContent className="space-y-5">
 							<div>
 								{product.discountedPrice &&
-									parseFloat(product.discountedPrice.toString()) > 0 ? (
+								parseFloat(product.discountedPrice.toString()) > 0 ? (
 									<>
 										<p className="text-3xl font-semibold text-white">
 											R$ {formatPrice(product.discountedPrice)}
 										</p>
 										{product.originalPrice &&
 											parseFloat(product.originalPrice.toString()) >
-											parseFloat(product.discountedPrice.toString()) && (
+												parseFloat(product.discountedPrice.toString()) && (
 												<div className="flex items-baseline gap-2 mt-1">
 													<p className="text-lg text-muted-foreground line-through">
 														R$ {formatPrice(product.originalPrice)}
@@ -348,7 +348,11 @@ export default async function ProductDisplayPage({
 	);
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ id: string }>;
+}) {
 	const resolvedParams = await params;
 	const result = await getProductId(resolvedParams.id);
 

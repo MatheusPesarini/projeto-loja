@@ -1,9 +1,6 @@
 'use server';
 
-import {
-	LoginFormSchema,
-	type LoginFormState,
-} from '@/lib/types/definitions';
+import { LoginFormSchema, type LoginFormState } from '@/lib/types/definitions';
 import { cookies } from 'next/headers';
 
 export async function submitLogin(

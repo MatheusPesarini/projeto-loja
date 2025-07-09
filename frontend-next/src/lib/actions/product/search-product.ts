@@ -1,6 +1,9 @@
 'use server';
 
-import { ProductSchema, type SearchProductState } from '../../types/definitions';
+import {
+	ProductSchema,
+	type SearchProductState,
+} from '../../types/definitions';
 import { z } from 'zod';
 
 const SearchQuerySchema = z
@@ -42,7 +45,7 @@ export async function searchProduct(
 			try {
 				const errorData = await result.json();
 				errorMessage = errorData.message || errorData.error || errorMessage;
-			} catch (e) { }
+			} catch (e) {}
 			console.error(
 				`[searchProduct] API Error (${result.status}): ${errorMessage}`,
 			);
