@@ -1,17 +1,17 @@
 import z from 'zod';
 
 export const paramsSchema = z.object({
-	id: z.string().uuid({ message: 'ID de usuário inválido' }),
+	id: z.uuid({ message: 'ID de usuário inválido' }),
 });
 
 export const loginUserSchema = z.object({
-	email: z.string().email({ message: 'Email inválido' }),
+	email: z.email({ message: 'Email inválido' }),
 	password: z.string().min(6, { message: 'Senha não pode estar vazia' }),
 });
 
 export const createUserSchema = z.object({
 	name: z.string().optional(),
-	email: z.string().email({ message: 'Email inválido' }),
+	email: z.email({ message: 'Email inválido' }),
 	password: z
 		.string()
 		.min(6, { message: 'Senha deve ter no mínimo 6 caracteres' }),
@@ -19,7 +19,7 @@ export const createUserSchema = z.object({
 
 export const updateProfileSchema = z.object({
 	name: z.string().min(1, 'Nome não pode ser vazio').optional(),
-	email: z.string().email('Email inválido').optional(),
+	email: z.email('Email inválido').optional(),
 	password: z
 		.string()
 		.min(6, 'Nova senha deve ter no mínimo 6 caracteres')
@@ -27,7 +27,7 @@ export const updateProfileSchema = z.object({
 });
 
 export const productParamsSchema = z.object({
-	id: z.string().uuid({ message: 'ID do produto inválido' }),
+	id: z.uuid({ message: 'ID do produto inválido' }),
 });
 
 export const categoryParamsSchema = z.object({
@@ -46,7 +46,6 @@ export const relatedProductsParamsSchema = z.object({
 
 export const relatedProductsQuerySchema = z.object({
 	exclude: z
-		.string()
 		.uuid({ message: 'ID para exclusão deve ser um UUID válido' }),
 	limit: z
 		.string()
