@@ -6,7 +6,7 @@ export const paramsSchema = z.object({
 
 export const loginUserSchema = z.object({
 	email: z.string().email({ message: 'Email inválido' }),
-	password: z.string().min(1, { message: 'Senha não pode estar vazia' }),
+	password: z.string().min(6, { message: 'Senha não pode estar vazia' }),
 });
 
 export const createUserSchema = z.object({

@@ -1,30 +1,40 @@
 # 🛍️ Projeto Loja - E-commerce Full Stack
 
-Uma aplicação completa de e-commerce desenvolvida com tecnologias modernas, oferecendo uma experiência de compra intuitiva e sistema de gerenciamento robusto integrado com plataforma administrativa.
+![Project Banner](./frontend-next/public/projeto_1.png)
+
+> **Plataforma completa de e-commerce** desenvolvida com tecnologias modernas, oferecendo experiência de compra intuitiva, sistema de gerenciamento robusto e painel administrativo integrado.
+
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Fastify](https://img.shields.io/badge/Fastify-4.0-green?logo=fastify)](https://www.fastify.io/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14+-blue?logo=postgresql)](https://www.postgresql.org/)
+[![Drizzle](https://img.shields.io/badge/Drizzle-ORM-brightgreen)](https://orm.drizzle.team/)
+[![Swagger](https://img.shields.io/badge/Swagger-Documentation-brightgreen)](http://localhost:3001/docs)
 
 ## 📸 Demonstração
 
-![Demonstração do projeto](./frontend-next/public/projeto_1.png)
-![Demonstração do projeto](./frontend-next/public/projeto_2.png)
-![Demonstração do projeto](./frontend-next/public/projeto_3.png)
-![Demonstração do projeto](./frontend-next/public/projeto_4.png)
+<div align="center">
+  <img src="./frontend-next/public/projeto_1.png" alt="Homepage" width="45%" />
+  <img src="./frontend-next/public/projeto_2.png" alt="Produtos" width="45%" />
+  <img src="./frontend-next/public/projeto_3.png" alt="Produto Individual" width="45%" />
+  <img src="./frontend-next/public/projeto_4.png" alt="Autenticação" width="45%" />
+</div>
 
-## 🚀 Tecnologias Utilizadas
+### 🛒 **E-commerce Frontend**
+- 🏪 **Catálogo completo** com navegação por categorias
+- 🔍 **Sistema de busca** avançado e filtros
+- 📱 **Design responsivo** para todos os dispositivos
+- 🎨 **Tema claro/escuro** personalizável
+- 🔐 **Autenticação segura** com JWT
+- 🛡️ **Rotas protegidas** com middleware
 
-### Frontend
-- **Next.js 15** - Framework React com App Router
-- **TypeScript** - Tipagem estática para maior segurança
-- **Tailwind 4** - Estilização utilitária e responsiva
-- **Shadcn/ui** - Componentes UI modernos e acessíveis
-- **next-themes** - Sistema de temas claro/escuro
-
-### Backend
-- **Node.js** com **TypeScript**
-- **Fastify** - Framework web rápido e eficiente
-- **Drizzle ORM** - ORM type-safe e performático
-- **PostgreSQL** - Banco de dados relacional
-- **José JWT** - Autenticação segura com tokens JWT
-- **Argon2** - Hash de senhas seguro
+### ⚡ **API REST Robusta**
+- 📚 **Documentação Swagger** automática
+- 🔒 **Autenticação JWT** com cookies httpOnly
+- 🏗️ **Arquitetura modular** e escalável
+- ✅ **Validação automática** de dados
+- 🚀 **Alta performance** com Fastify
+- 🗄️ **ORM type-safe** com Drizzle
 
 ## ✨ Funcionalidades
 
@@ -35,6 +45,7 @@ Uma aplicação completa de e-commerce desenvolvida com tecnologias modernas, of
 - **Tema Personalizado**: Alternância entre modo claro e escuro
 - **Design Responsivo**: Experiência otimizada em todos os dispositivos
 - **Rotas Dinâmicas**: URLs amigáveis para categorias e produtos
+
 
 ### 🔐 Sistema de Autenticação
 - **Registro/Login** seguro com validação completa
