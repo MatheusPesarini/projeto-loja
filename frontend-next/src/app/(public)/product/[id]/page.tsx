@@ -118,7 +118,7 @@ export default async function ProductDisplayPage({
 								{product.productName}
 							</CardTitle>
 							<div className="flex items-center gap-2 mt-2 flex-wrap">
-								{product.discountedPrice != product.originalPrice && (
+								{product.discountedPrice !== product.originalPrice && (
 									<Badge variant="destructive">Promoção</Badge>
 								)}
 								<Badge
@@ -137,14 +137,14 @@ export default async function ProductDisplayPage({
 						<CardContent className="space-y-5">
 							<div>
 								{product.discountedPrice &&
-								parseFloat(product.discountedPrice.toString()) > 0 ? (
+								Number.parseFloat(product.discountedPrice.toString()) > 0 ? (
 									<>
 										<p className="text-3xl font-semibold text-white">
 											R$ {formatPrice(product.discountedPrice)}
 										</p>
 										{product.originalPrice &&
-											parseFloat(product.originalPrice.toString()) >
-												parseFloat(product.discountedPrice.toString()) && (
+											Number.parseFloat(product.originalPrice.toString()) >
+												Number.parseFloat(product.discountedPrice.toString()) && (
 												<div className="flex items-baseline gap-2 mt-1">
 													<p className="text-lg text-muted-foreground line-through">
 														R$ {formatPrice(product.originalPrice)}
@@ -195,7 +195,7 @@ export default async function ProductDisplayPage({
 											<div className="flex justify-between">
 												<span className="text-muted-foreground">Garantia:</span>
 												<span className="font-medium">
-													{parseInt(product.warranty) + 3} (3 meses de garantia
+													{Number.parseInt(product.warranty) + 3} (3 meses de garantia
 													legal + ALTERAR SIST DE GARANTIA)
 												</span>
 											</div>

@@ -81,7 +81,10 @@ export default async function CategoryPageComponent({
 
 			<div className={gridClasses}>
 				{products.map((product: Product) => (
-					<Card key={product.id} className="group overflow-hidden hover:shadow-2xl transition-shadow">
+					<Card
+						key={product.id}
+						className="group overflow-hidden hover:shadow-2xl transition-shadow"
+					>
 						<Link href={`/product/${product.id}`} className="block">
 							<CardContent className="p-0 aspect-[1/1] relative">
 								<Image
@@ -128,8 +131,10 @@ export default async function CategoryPageComponent({
 											R$ {formatPrice(product.discountedPrice)}
 										</p>
 										{product.originalPrice &&
-											parseFloat(product.originalPrice.toString()) >
-												parseFloat(product.discountedPrice.toString()) && (
+											Number.parseFloat(product.originalPrice.toString()) >
+												Number.parseFloat(
+													product.discountedPrice.toString(),
+												) && (
 												<p className="text-sm text-muted-foreground line-through">
 													R$ {formatPrice(product.originalPrice)}
 												</p>

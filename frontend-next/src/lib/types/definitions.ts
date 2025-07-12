@@ -2,7 +2,6 @@ import { z } from 'zod';
 
 export const LoginFormSchema = z.object({
 	email: z
-		.string()
 		.email({ message: 'Por favor digite um e-mail válido.' })
 		.trim(),
 	password: z
@@ -19,7 +18,6 @@ export const LoginFormSchema = z.object({
 export const RegisterFormSchema = z.object({
 	name: z.string().min(1, { message: 'Precisa ter 1 caractér no minímo' }),
 	email: z
-		.string()
 		.email({ message: 'Por favor digite um e-mail válido.' })
 		.trim(),
 	password: z

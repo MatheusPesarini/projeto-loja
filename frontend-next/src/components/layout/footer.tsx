@@ -77,8 +77,8 @@ export const Footer = ({
 							</span>
 						</Link>
 						<p className="text-sm text-muted-foreground max-w-md">
-							Sua loja online de confiança com os melhores produtos
-							de moda e calçados. Qualidade garantida e entrega rápida.
+							Sua loja online de confiança com os melhores produtos de moda e
+							calçados. Qualidade garantida e entrega rápida.
 						</p>
 					</div>
 
@@ -109,9 +109,7 @@ export const Footer = ({
 
 				{/* Rodapé */}
 				<div className="flex flex-col md:flex-row justify-between items-center gap-4">
-					<p className="text-sm text-muted-foreground">
-						{copyright}
-					</p>
+					<p className="text-sm text-muted-foreground">{copyright}</p>
 
 					<div className="flex gap-6">
 						{bottomLinks.map((link, index) => (
