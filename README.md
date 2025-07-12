@@ -1,6 +1,6 @@
 # 🛍️ Projeto Loja - E-commerce Full Stack
 
-![Project Banner](./frontend-next/public/projeto_1.png)
+![Project Banner](./frontend-marketplace/public/projeto_1.png)
 
 > **Plataforma completa de e-commerce** desenvolvida com tecnologias modernas, oferecendo experiência de compra intuitiva, sistema de gerenciamento robusto e painel administrativo integrado.
 
@@ -14,10 +14,10 @@
 ## 📸 Demonstração
 
 <div align="center">
-  <img src="./frontend-next/public/projeto_1.png" alt="Homepage" width="45%" />
-  <img src="./frontend-next/public/projeto_2.png" alt="Produtos" width="45%" />
-  <img src="./frontend-next/public/projeto_3.png" alt="Produto Individual" width="45%" />
-  <img src="./frontend-next/public/projeto_4.png" alt="Autenticação" width="45%" />
+  <img src="./frontend-marketplace/public/projeto_1.png" alt="Homepage" width="45%" />
+  <img src="./frontend-marketplace/public/projeto_2.png" alt="Produtos" width="45%" />
+  <img src="./frontend-marketplace/public/projeto_3.png" alt="Produto Individual" width="45%" />
+  <img src="./frontend-marketplace/public/projeto_4.png" alt="Autenticação" width="45%" />
 </div>
 
 ### 🛒 **E-commerce Frontend**

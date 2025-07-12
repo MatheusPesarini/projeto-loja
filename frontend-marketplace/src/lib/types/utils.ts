@@ -50,11 +50,28 @@ export const formatPrice = (
 		return '0,00';
 	}
 
-	const numPrice = typeof price === 'string' ? parseFloat(price) : price;
+	const numPrice = typeof price === 'string' ? Number.parseFloat(price) : price;
 
-	if (isNaN(numPrice)) {
+	if (Number.isNaN(numPrice)) {
 		return '0,00';
 	}
 
 	return numPrice.toFixed(2).replace('.', ',');
 };
+
+export const ROUTES = {
+	HOME: '/',
+	LOGIN: '/login',
+	REGISTER: '/register',
+	DASHBOARD: '/dashboard',
+	SHOP_PRODUCTS: '/shopProducts',
+} as const;
+
+export const PROTECTED_ROUTES = [ROUTES.DASHBOARD];
+
+export const PUBLIC_ROUTES = [
+	{ path: ROUTES.HOME, whenAuthenticated: 'allow' },
+	{ path: ROUTES.SHOP_PRODUCTS, whenAuthenticated: 'allow' },
+	{ path: ROUTES.LOGIN, whenAuthenticated: 'redirect' },
+	{ path: ROUTES.REGISTER, whenAuthenticated: 'redirect' },
+] as const;

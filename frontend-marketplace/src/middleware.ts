@@ -1,38 +1,15 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { isAuthenticated } from './lib/session/dal';
-
-const protectedRoutes = ['/dashboard'];
-const publicRoutes = [
-	{ path: '/', whenAuthenticated: 'allow' },
-	{ path: '/shopProducts', whenAuthenticated: 'allow' },
-	{ path: '/login', whenAuthenticated: 'redirect' },
-	{ path: '/register', whenAuthenticated: 'redirect' },
-];
-
-const LOGIN_ROUTE = '/login';
-const DASHBOARD_ROUTE = '/dashboard';
+import { handleProtectedRoute, handlePublicRoute } from './lib/middleware/route-guards';
 
 export async function middleware(request: NextRequest) {
 	const path = request.nextUrl.pathname;
 
-	const isProtectedRoute = protectedRoutes.some(
-		(route) => path === route || path.startsWith(`${route}/`),
-	);
+	const protectedRouteResponse = await handleProtectedRoute(request, path);
+	if (protectedRouteResponse) return protectedRouteResponse;
 
-	if (isProtectedRoute) {
-		const auth = await isAuthenticated();
-		if (!auth) {
-			return NextResponse.redirect(new URL(LOGIN_ROUTE, request.url));
-		}
-	}
-
-	const publicRoute = publicRoutes.find((route) => route.path === path);
-	if (publicRoute?.whenAuthenticated === 'redirect') {
-		const auth = await isAuthenticated();
-		if (auth) {
-			return NextResponse.redirect(new URL(DASHBOARD_ROUTE, request.url));
-		}
-	}
+	const publicRouteResponse = await handlePublicRoute(request, path);
+	if (publicRouteResponse) return publicRouteResponse;
 
 	return NextResponse.next();
 }
