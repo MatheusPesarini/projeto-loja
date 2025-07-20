@@ -68,22 +68,22 @@ export function RelatedProductsCarousel({
 											</div>
 
 											<div className="absolute bottom-2 left-2 right-2 z-10">
-												<div className="bg-black/80 backdrop-blur-sm rounded-md p-2 text-white">
+												<div className="bg-black/30 backdrop-blur-sm rounded-md p-2 text-white">
 													<h3 className="font-medium text-xs mb-1 line-clamp-1 leading-tight">
 														{product.productName}
 													</h3>
 													<div className="flex items-center gap-1">
 														{product.discountedPrice &&
-														product.discountedPrice > 0 ? (
+															product.discountedPrice > 0 ? (
 															<>
 																<span className="font-bold text-sm">
 																	R$ {formatPrice(product.discountedPrice)}
 																</span>
 																{product.originalPrice &&
-																	parseFloat(product.originalPrice.toString()) >
-																		parseFloat(
-																			product.discountedPrice.toString(),
-																		) && (
+																	Number.parseFloat(product.originalPrice.toString()) >
+																	Number.parseFloat(
+																		product.discountedPrice.toString(),
+																	) && (
 																		<span className="text-xs line-through text-gray-300">
 																			R$ {formatPrice(product.originalPrice)}
 																		</span>
@@ -97,14 +97,6 @@ export function RelatedProductsCarousel({
 													</div>
 												</div>
 											</div>
-
-											{product.discount && (
-												<div className="absolute top-2 right-2 z-10">
-													<span className="bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
-														{product.discount}% OFF
-													</span>
-												</div>
-											)}
 
 											{product.quantity <= 0 && (
 												<div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20">
@@ -120,13 +112,6 @@ export function RelatedProductsCarousel({
 						</CarouselItem>
 					))}
 				</CarouselContent>
-
-				{products.length > 1 && (
-					<>
-						<CarouselPrevious className="left-1 h-8 w-8" />
-						<CarouselNext className="right-1 h-8 w-8" />
-					</>
-				)}
 			</Carousel>
 		</div>
 	);

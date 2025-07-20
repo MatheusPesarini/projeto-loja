@@ -75,12 +75,11 @@ export default function LoginForm({
 								)}
 							/>
 							<div id="email-error" aria-live="polite" aria-atomic="true">
-								{emailErrors &&
-									emailErrors.map((error: string) => (
-										<p className="mt-1 text-sm text-red-500" key={error}>
-											{error}
-										</p>
-									))}
+								{emailErrors?.map((error: string) => (
+									<p className="mt-1 text-sm text-red-500" key={error}>
+										{error}
+									</p>
+								))}
 							</div>
 						</div>
 						<div className="grid gap-2">
@@ -105,12 +104,11 @@ export default function LoginForm({
 								)}
 							/>
 							<div id="password-error" aria-live="polite" aria-atomic="true">
-								{passwordErrors &&
-									passwordErrors.map((error: string) => (
-										<p className="mt-1 text-sm text-red-500" key={error}>
-											{error}
-										</p>
-									))}
+								{passwordErrors?.map((error: string) => (
+									<p className="mt-1 text-sm text-red-500" key={error}>
+										{error}
+									</p>
+								))}
 							</div>
 						</div>
 						{formErrors && (
@@ -128,10 +126,11 @@ export default function LoginForm({
 								className="mt-2 text-sm text-red-500 text-center"
 								aria-live="polite"
 							>
-								{/* {state.message} */}
+								{state.message}
 							</div>
 						)}
 						<Button
+							variant='outline'
 							type="submit"
 							disabled={isPending}
 							className="w-full cursor-pointer shadow-md"

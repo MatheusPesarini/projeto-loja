@@ -139,7 +139,7 @@ export default async function ProductDisplayPage({
 								{product.discountedPrice &&
 								Number.parseFloat(product.discountedPrice.toString()) > 0 ? (
 									<>
-										<p className="text-3xl font-semibold text-white">
+										<p className="text-3xl font-semibold">
 											R$ {formatPrice(product.discountedPrice)}
 										</p>
 										{product.originalPrice &&
@@ -324,7 +324,7 @@ export default async function ProductDisplayPage({
 							<div className="flex-1">
 								<h4 className="font-semibold mb-3">Produtos Relacionados</h4>
 
-								<div className="text-center text-muted-foreground">
+								<div>
 									<RelatedProductsWrapper
 										productId={product.id}
 										category={product.category}

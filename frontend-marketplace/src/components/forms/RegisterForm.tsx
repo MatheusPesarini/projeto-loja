@@ -1,9 +1,9 @@
 'use client';
 
 import { submitRegister } from '@/lib/actions/auth/post-register';
-import { RegisterFormState } from '@/lib/types/definitions';
-import React, { useActionState } from 'react';
-import { useRouter } from 'next/navigation';
+import type { RegisterFormState } from '@/lib/types/definitions';
+import type React from 'react';
+import { useActionState } from 'react';
 import {
 	Card,
 	CardContent,
@@ -28,7 +28,6 @@ export default function RegisterForm({
 	className,
 	...props
 }: React.ComponentPropsWithoutRef<'div'>) {
-	const router = useRouter();
 	const [state, formAction, isPending] = useActionState(
 		submitRegister,
 		initialState,
@@ -137,6 +136,7 @@ export default function RegisterForm({
 							</div>
 						)}
 						<Button
+							variant='outline'
 							type="submit"
 							disabled={isPending}
 							className="w-full cursor-pointer shadow-md"
