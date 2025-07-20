@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,11 +7,9 @@ import {
 	Carousel,
 	CarouselContent,
 	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
 } from '@/components/ui/carousel';
-import { formatPrice } from '@/lib/types/utils';
-import { Product } from '@/lib/types/definitions';
+import { formatPrice } from '@/lib/types/product';
+import type { Product } from '@/lib/types/definitions';
 
 interface RelatedProductsCarouselProps {
 	products: Product[];

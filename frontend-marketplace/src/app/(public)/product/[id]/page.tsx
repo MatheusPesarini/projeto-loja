@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import * as React from 'react';
 
 import {
 	Card,
@@ -17,7 +16,7 @@ import {
 	formatPrice,
 	getCategoryDisplayName,
 	getCategoryUrl,
-} from '@/lib/types/utils';
+} from '@/lib/types/product';
 import ExpandableDescription from '@/components/common/ExpandableDescription';
 import RelatedProductsWrapper from '@/components/product/RelatedProductsWrapper';
 
@@ -137,14 +136,14 @@ export default async function ProductDisplayPage({
 						<CardContent className="space-y-5">
 							<div>
 								{product.discountedPrice &&
-								Number.parseFloat(product.discountedPrice.toString()) > 0 ? (
+									Number.parseFloat(product.discountedPrice.toString()) > 0 ? (
 									<>
 										<p className="text-3xl font-semibold">
 											R$ {formatPrice(product.discountedPrice)}
 										</p>
 										{product.originalPrice &&
 											Number.parseFloat(product.originalPrice.toString()) >
-												Number.parseFloat(product.discountedPrice.toString()) && (
+											Number.parseFloat(product.discountedPrice.toString()) && (
 												<div className="flex items-baseline gap-2 mt-1">
 													<p className="text-lg text-muted-foreground line-through">
 														R$ {formatPrice(product.originalPrice)}
