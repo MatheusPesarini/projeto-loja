@@ -28,6 +28,46 @@ export default async function productRoutes(fastify: FastifyInstance) {
 	);
 
 	fastify.get(
+		'/products/search/:searchTerm',
+		{
+			schema: {
+				tags: ['Products'],
+				summary: 'Buscar produtos por termo',
+				description: 'Pesquisa produtos por nome ou descrição',
+				params: searchParamSchema,
+				response: {
+					200: productsListResponseSchema,
+					400: errorResponseSchema,
+					404: errorResponseSchema,
+					500: errorResponseSchema,
+				},
+			},
+		},
+		ProductController.searchProducts,
+	);
+
+	fastify.get(
+		'/products/:category/related',
+		{
+			schema: {
+				tags: ['Products'],
+				summary: 'Buscar produtos relacionados',
+				description:
+					'Retorna produtos da mesma categoria (excluindo um produto específico)',
+				params: categoryParamSchema,
+				querystring: relatedProductsQuerySchema,
+				response: {
+					200: productsListResponseSchema,
+					400: errorResponseSchema,
+					404: errorResponseSchema,
+					500: errorResponseSchema,
+				},
+			},
+		},
+		ProductController.getRelatedProducts,
+	);
+	
+	fastify.get(
 		'/products/:category',
 		{
 			schema: {
@@ -36,7 +76,7 @@ export default async function productRoutes(fastify: FastifyInstance) {
 				description: 'Retorna produtos filtrados por categoria',
 				params: categoryParamSchema,
 				response: {
-					200: productResponseSchema,
+					200: productsListResponseSchema,
 					400: errorResponseSchema,
 					404: errorResponseSchema,
 					500: errorResponseSchema,
@@ -63,45 +103,5 @@ export default async function productRoutes(fastify: FastifyInstance) {
 			},
 		},
 		ProductController.getProductById,
-	);
-
-	fastify.get(
-		'/products/:category/related',
-		{
-			schema: {
-				tags: ['Products'],
-				summary: 'Buscar produtos relacionados',
-				description:
-					'Retorna produtos da mesma categoria (excluindo um produto específico)',
-				params: categoryParamSchema,
-				querystring: relatedProductsQuerySchema,
-				response: {
-					200: productsListResponseSchema,
-					400: errorResponseSchema,
-					404: errorResponseSchema,
-					500: errorResponseSchema,
-				},
-			},
-		},
-		ProductController.getRelatedProducts,
-	);
-
-	fastify.get(
-		'/products/search/:searchTerm',
-		{
-			schema: {
-				tags: ['Products'],
-				summary: 'Buscar produtos por termo',
-				description: 'Pesquisa produtos por nome ou descrição',
-				params: searchParamSchema,
-				response: {
-					200: productsListResponseSchema,
-					400: errorResponseSchema,
-					404: errorResponseSchema,
-					500: errorResponseSchema,
-				},
-			},
-		},
-		ProductController.searchProducts,
 	);
 }

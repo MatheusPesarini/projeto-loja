@@ -165,7 +165,7 @@ export default function Navbar({
 	isAuthenticated,
 }: NavbarProps): JSX.Element {
 	return (
-		<section className="pt-4 dark:bg-navbar border-b">
+		<section className="pt-4 bg-navbar dark:bg-navbar border-b">
 			<div className="px-10">
 				<nav className="hidden items-center lg:grid lg:grid-cols-3">
 					<Link

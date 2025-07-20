@@ -6,6 +6,8 @@ export async function getProductCategory(
 	try {
 		const url = `http://localhost:3001/products/${category || ''}`;
 
+		// console.log('Fetching products from URL:', url);
+
 		const productsResponse = await fetch(url, {
 			method: 'GET',
 			headers: {
@@ -35,11 +37,19 @@ export async function getProductCategory(
 
 		const productsResult = await productsResponse.json();
 
-		console.log('Produtos obtidos com sucesso:', productsResult);
+		if (!productsResult.success) {
+			return {
+				errors: { _form: ['Erro na resposta do servidor'] },
+				message: productsResult.message || 'Erro desconhecido',
+				success: false,
+			};
+		}
 
-		const products: Product[] = Array.isArray(productsResult)
-			? productsResult
-			: productsResult.data || [];
+		const products: Product[] = Array.isArray(productsResult.data)
+			? productsResult.data
+			: [];
+
+		console.log('Produtos extraídos:', products);
 
 		return {
 			message: 'Produtos obtidos com sucesso.',

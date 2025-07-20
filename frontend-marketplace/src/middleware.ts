@@ -1,5 +1,4 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { isAuthenticated } from './lib/session/dal';
 import { handleProtectedRoute, handlePublicRoute } from './lib/middleware/route-guards';
 
 export async function middleware(request: NextRequest) {

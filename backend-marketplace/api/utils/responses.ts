@@ -1,7 +1,7 @@
 export const successResponse = (data: any, message?: string) => ({
 	success: true,
-	data,
-	message: message || 'Operação realizada com successo',
+	data: data,
+	message: message || 'Operação realizada com sucesso',
 });
 
 export const errorResponse = (message: string, errors?: any) => ({

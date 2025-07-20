@@ -144,12 +144,12 @@ export default function Home() {
 				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
 					{/* Exemplo de Placeholder de Card */}
 					<div className="border rounded-md p-4 bg-background">
-						<div className="aspect-square bg-gray-200 dark:bg-gray-700 mb-2 rounded"></div>
+						<div className="aspect-square bg-gray-200 dark:bg-gray-700 mb-2 rounded" />
 						<h3 className="font-medium">Nome do Produto</h3>
 						<p className="text-sm text-muted-foreground">R$ 99,90</p>
 					</div>
 					<div className="border rounded-md p-4 bg-background">
-						<div className="aspect-square bg-gray-200 dark:bg-gray-700 mb-2 rounded"></div>
+						<div className="aspect-square bg-gray-200 dark:bg-gray-700 mb-2 rounded" />
 						<h3 className="font-medium">Outro Produto</h3>
 						<p className="text-sm text-muted-foreground">R$ 129,90</p>
 					</div>

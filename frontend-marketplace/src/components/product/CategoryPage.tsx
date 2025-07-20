@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { getProductCategory } from '@/lib/actions/product/get-product-category';
-import { CategoryPageProps, Product } from '@/lib/types/definitions';
+import type { CategoryPageProps, Product } from '@/lib/types/definitions';
 import { formatPrice } from '@/lib/types/utils';
 
 export default async function CategoryPageComponent({
