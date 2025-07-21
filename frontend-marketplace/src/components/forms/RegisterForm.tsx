@@ -136,7 +136,7 @@ export default function RegisterForm({
 							</div>
 						)}
 						<Button
-							variant='outline'
+							variant="outline"
 							type="submit"
 							disabled={isPending}
 							className="w-full cursor-pointer shadow-md"

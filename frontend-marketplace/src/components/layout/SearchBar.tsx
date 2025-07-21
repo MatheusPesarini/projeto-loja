@@ -3,13 +3,13 @@
 import * as React from 'react';
 import { cn } from '@/lib/types/utils';
 import { Search } from 'lucide-react';
-import { SearchProductState } from '@/lib/types/definitions';
+import type { SearchProductState } from '@/lib/types/definitions';
 import { useActionState } from 'react';
 import { searchProduct } from '@/lib/actions/product/search-product';
 
 const initialState: SearchProductState = { message: '', errors: {} };
 
-const InputSearch = React.forwardRef<
+const SearchBar = React.forwardRef<
 	HTMLInputElement,
 	React.InputHTMLAttributes<HTMLInputElement>
 >(({ className, type, ...props }, ref) => {
@@ -41,6 +41,6 @@ const InputSearch = React.forwardRef<
 		</div>
 	);
 });
-InputSearch.displayName = 'InputSearch';
+SearchBar.displayName = 'SearchBar';
 
-export { InputSearch };
+export { SearchBar };

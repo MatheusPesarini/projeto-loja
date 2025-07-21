@@ -1,5 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { handleProtectedRoute, handlePublicRoute } from './lib/middleware/route-guards';
+import {
+	handleProtectedRoute,
+	handlePublicRoute,
+} from './lib/middleware/route-guards';
 
 export async function middleware(request: NextRequest) {
 	const path = request.nextUrl.pathname;

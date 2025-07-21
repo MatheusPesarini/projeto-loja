@@ -130,7 +130,7 @@ export default function LoginForm({
 							</div>
 						)}
 						<Button
-							variant='outline'
+							variant="outline"
 							type="submit"
 							disabled={isPending}
 							className="w-full cursor-pointer shadow-md"

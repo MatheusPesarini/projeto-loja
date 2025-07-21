@@ -1,28 +1,35 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import Link from "next/link";
-import Image from "next/image";
-import { Badge } from "../ui/badge";
-import { formatPrice, type ProductCardProps } from "@/lib/types/product";
-import { Button } from "../ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '../ui/card';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Badge } from '../ui/badge';
+import { formatPrice, type ProductCardProps } from '@/lib/types/product';
+import { Button } from '../ui/button';
 
-export default function ProductCardComponent({ product,
+export default function ProductCardComponent({
+  product,
   variant = 'default',
   className = '',
-  showStock = true }: ProductCardProps) {
+}: ProductCardProps) {
   const isOutOfStock = product.quantity <= 0;
   const hadDiscount = product.discountedPrice && Number(product.discountedPrice) > 0;
 
   const cardVariants = {
-    default: "group overflow-hidden hover:shadow-lg transition-all duration-300",
-    carousel: "group overflow-hidden hover:shadow-md transition-all duration-200",
-    grid: "group overflow-hidden hover:shadow-2xl transition-all duration-300",
-    featured: "group overflow-hidden hover:shadow-2xl transition-all duration-300"
+    default:
+      'group overflow-hidden hover:shadow-lg transition-all duration-300',
+    carousel:
+      'group overflow-hidden hover:shadow-md transition-all duration-200',
+    grid: 'group overflow-hidden hover:shadow-2xl transition-all duration-300',
+    featured:
+      'group overflow-hidden hover:shadow-2xl transition-all duration-300',
   };
   return (
-    <Card
-      key={product.id}
-      className={`${cardVariants[variant]} ${className}`}
-    >
+    <Card key={product.id} className={`${cardVariants[variant]} ${className}`}>
       <Link href={`/product/${product.id}`} className="block">
         <CardContent className="p-0 aspect-[1/1] relative">
           <Image
@@ -72,9 +79,7 @@ export default function ProductCardComponent({ product,
               </p>
               {product.originalPrice &&
                 Number.parseFloat(product.originalPrice.toString()) >
-                Number.parseFloat(
-                  product.discountedPrice.toString(),
-                ) && (
+                Number.parseFloat(product.discountedPrice.toString()) && (
                   <p className="text-sm text-muted-foreground line-through">
                     R$ {formatPrice(product.originalPrice)}
                   </p>
@@ -86,13 +91,11 @@ export default function ProductCardComponent({ product,
             </p>
           )}
         </div>
-        <div className="w-full space-y-2">
-          <Link href={`/product/${product.id}`} className="w-full block">
-            <Button variant="outline" className="w-full cursor-pointer">
-              Ver Detalhes
-            </Button>
-          </Link>
-        </div>
+        <Link href={`/product/${product.id}`} className="w-full block">
+          <Button variant="outline" className="w-full cursor-pointer" disabled={isOutOfStock}>
+            {isOutOfStock ? 'Indisponível' : 'Ver Produto'}
+          </Button>
+        </Link>
 
         {product.quantity && product.quantity > 0 ? (
           <Badge variant="outline" className="mt-2 text-xs">
@@ -105,5 +108,5 @@ export default function ProductCardComponent({ product,
         )}
       </CardFooter>
     </Card>
-  )
+  );
 }

@@ -49,7 +49,8 @@ export default async function CategoryPageComponent({
 					{displayName}
 				</h1>
 				<p className="text-center text-muted-foreground">
-					{products.length} produto{products.length !== 1 ? 's' : ''} encontrado{products.length !== 1 ? 's' : ''}
+					{products.length} produto{products.length !== 1 ? 's' : ''} encontrado
+					{products.length !== 1 ? 's' : ''}
 				</p>
 
 				{showFilters && (
