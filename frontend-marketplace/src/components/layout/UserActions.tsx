@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { LogOut, User, Store } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import Image from "next/image";
+import { LogOut, User, Store } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,16 +12,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import LogoutButton from '../forms/LogoutButton';
+} from "@/components/ui/dropdown-menu";
+import LogoutButton from "../forms/LogoutButton";
 
 interface UserActionsProps {
   isAuthenticated: boolean;
 }
 
 const auth = {
-  login: { url: '/login', title: 'Entrar' },
-  signup: { url: '/signup', title: 'Registrar' },
+  login: { url: "/login", title: "Entrar" },
+  signup: { url: "/signup", title: "Registrar" },
 };
 
 export function UserActions({ isAuthenticated }: UserActionsProps) {
@@ -48,10 +48,7 @@ export function UserActions({ isAuthenticated }: UserActionsProps) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link
-              href="/profile"
-              className="flex items-center cursor-pointer"
-            >
+            <Link href="/profile" className="flex items-center cursor-pointer">
               <User className="mr-2 h-4 w-4" />
               <span>Perfil</span>
             </Link>
@@ -79,5 +76,5 @@ export function UserActions({ isAuthenticated }: UserActionsProps) {
         <Link href={auth.signup.url}>{auth.signup.title}</Link>
       </Button>
     </>
-  )
+  );
 }

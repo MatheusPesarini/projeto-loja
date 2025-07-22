@@ -20,7 +20,6 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
   );
 };
 
-
 export const renderMobileMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (

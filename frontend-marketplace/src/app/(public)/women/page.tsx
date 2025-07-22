@@ -1,5 +1,5 @@
-import StandardPage from '@/components/common/StandardPage';
+import StandardPage from "@/components/common/StandardPage";
 
 export default function WomenPage() {
-	return <StandardPage />;
+  return <StandardPage />;
 }

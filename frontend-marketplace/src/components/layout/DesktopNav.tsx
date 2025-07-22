@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -6,9 +6,9 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@/components/ui/navigationMenu';
-import { Store } from 'lucide-react';
-import { MENU_ITEMS } from '@/lib/types/product';
+} from "@/components/ui/navigationMenu";
+import { Store } from "lucide-react";
+import { MENU_ITEMS } from "@/lib/types/product";
 
 export function DesktopNav({ logo }: { logo: { url: string; title: string } }) {
   return (
@@ -34,7 +34,11 @@ export function DesktopNav({ logo }: { logo: { url: string; title: string } }) {
                     <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
                     <NavigationMenuContent className="bg-popover text-popover-foreground z-50">
                       {item.items.map((subItem) => (
-                        <NavigationMenuLink asChild key={subItem.title} className="w-80">
+                        <NavigationMenuLink
+                          asChild
+                          key={subItem.title}
+                          className="w-80"
+                        >
                           <SubMenuLink item={subItem} />
                         </NavigationMenuLink>
                       ))}
@@ -43,7 +47,7 @@ export function DesktopNav({ logo }: { logo: { url: string; title: string } }) {
                 ) : (
                   <NavigationMenuLink asChild>
                     <Link
-                      href={item.url || '#'}
+                      href={item.items || "#"}
                       className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
                     >
                       {item.title}
@@ -54,7 +58,7 @@ export function DesktopNav({ logo }: { logo: { url: string; title: string } }) {
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-      </div >
+      </div>
     </>
   );
 }

@@ -2,7 +2,10 @@
     "biome.enabled": true,
     "biome.requireConfigFile": true,
     "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "file",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports.biome": "explicit",
+        "source.fixAll.biome": "explicit"
+    },
     "editor.defaultFormatter": "biomejs.biome",
     "files.associations": {
         "*.tsx": "typescriptreact"
