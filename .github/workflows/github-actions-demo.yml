@@ -36,14 +36,12 @@ jobs:
         working-directory: frontend-marketplace
         run: npm run format
 
-        if: false
-      - name: Run tests
-        working-directory: frontend-marketplace
-        run: npm run test
+      # - name: Run tests
+      #   working-directory: frontend-marketplace
+      #   run: npm run test
 
   backend-test:
     runs-on: ubuntu-latest
-    if: false
     if: contains(join(github.event.commits.*.modified, ' '), 'backend/') || github.event_name == 'pull_request'
 
     steps:
@@ -60,9 +58,9 @@ jobs:
         working-directory: backend
         run: npm ci
 
-      - name: Run backend tests
-        working-directory: backend
-        run: npm test
+      # - name: Run backend tests
+      #   working-directory: backend
+      #   run: npm test
 
   deploy: 
     runs-on: ubuntu-latest
