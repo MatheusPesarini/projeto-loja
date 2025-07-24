@@ -9,5 +9,5 @@ export const getCachedProducts = unstable_cache(
   {
     revalidate: 3600,
     tags: ["products"],
-  },
+  }
 );

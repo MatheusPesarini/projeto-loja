@@ -1,14 +1,11 @@
 "use server";
 
-import {
-  RegisterFormSchema,
-  type RegisterFormState,
-} from "@/lib/types/definitions";
+import { RegisterFormSchema, type RegisterFormState } from "@/lib/types/definitions";
 import { redirect } from "next/navigation";
 
 export async function submitRegister(
   prevState: RegisterFormState | undefined,
-  data: FormData,
+  data: FormData
 ): Promise<RegisterFormState> {
   const validatedFields = RegisterFormSchema.safeParse({
     name: data.get("name") as string,
@@ -44,10 +41,7 @@ export async function submitRegister(
           errorMessage = errorData.error;
         }
       } catch (error) {
-        console.error(
-          "Falha ao parsear resposta de erro da API de registro:",
-          error,
-        );
+        console.error("Falha ao parsear resposta de erro da API de registro:", error);
       }
 
       if (

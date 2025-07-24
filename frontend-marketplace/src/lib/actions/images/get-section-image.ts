@@ -9,9 +9,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function fetchSectionImages(): Promise<Images[]> {
   if (!API_URL) {
-    console.error(
-      "Erro Crítico: API_URL não está configurada no ambiente do servidor.",
-    );
+    console.error("Erro Crítico: API_URL não está configurada no ambiente do servidor.");
     return [];
   }
 
@@ -23,9 +21,7 @@ export async function fetchSectionImages(): Promise<Images[]> {
     });
 
     if (!res.ok) {
-      console.error(
-        `Falha ao buscar imagens da API: ${res.status} ${res.statusText}`,
-      );
+      console.error(`Falha ao buscar imagens da API: ${res.status} ${res.statusText}`);
       return [];
     }
 
@@ -37,10 +33,7 @@ export async function fetchSectionImages(): Promise<Images[]> {
     }
 
     const validImages = data
-      .filter(
-        (item) =>
-          item && typeof item.src === "string" && typeof item.alt === "string",
-      )
+      .filter((item) => item && typeof item.src === "string" && typeof item.alt === "string")
       .map((item) => ({ src: item.src, alt: item.alt }));
 
     console.log(`Successfully fetched ${validImages.length} images.`);

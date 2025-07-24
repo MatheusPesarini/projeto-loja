@@ -10,9 +10,7 @@ export function ProductGrid({
   if (!products?.length) {
     return (
       <div className="text-center py-12">
-        <p className="text-muted-foreground text-lg">
-          Nenhum produto encontrado.
-        </p>
+        <p className="text-muted-foreground text-lg">Nenhum produto encontrado.</p>
       </div>
     );
   }
@@ -28,11 +26,7 @@ export function ProductGrid({
   return (
     <div className={`grid ${gridCols} ${gapClasses[gap]}`}>
       {products.map((product) => (
-        <ProductCardComponent
-          key={product.id}
-          product={product}
-          variant={variant}
-        />
+        <ProductCardComponent key={product.id} product={product} variant={variant} />
       ))}
     </div>
   );

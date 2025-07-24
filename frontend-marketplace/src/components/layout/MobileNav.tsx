@@ -3,13 +3,7 @@
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Accordion } from "@/components/ui/accordion";
 import LogoutButton from "../forms/LogoutButton";
 import { renderMobileMenuItem } from "../ui/renderMobileMenuItem";
@@ -50,11 +44,7 @@ export function MobileNav({ isAuthenticated, logo }: MobileNavProps) {
               </SheetTitle>
             </SheetHeader>
             <div className="flex flex-col gap-6 p-4">
-              <Accordion
-                type="single"
-                collapsible
-                className="flex w-full flex-col gap-4"
-              >
+              <Accordion type="single" collapsible className="flex w-full flex-col gap-4">
                 {MENU_ITEMS.map((item) => renderMobileMenuItem(item))}
               </Accordion>
 

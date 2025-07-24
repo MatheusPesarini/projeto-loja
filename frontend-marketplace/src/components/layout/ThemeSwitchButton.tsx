@@ -25,11 +25,7 @@ export default function ThemeButton() {
   const currentTheme = theme === "system" ? resolvedTheme : theme;
 
   return (
-    <Button
-      className="w-8 h-8 p-0 cursor-pointer"
-      onClick={toggleTheme}
-      variant="theme"
-    >
+    <Button className="w-8 h-8 p-0 cursor-pointer" onClick={toggleTheme} variant="theme">
       {currentTheme === "dark" ? (
         <MoonIcon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
       ) : (

@@ -1,8 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import {
-  handleProtectedRoute,
-  handlePublicRoute,
-} from "./lib/middleware/route-guards";
+import { handleProtectedRoute, handlePublicRoute } from "./lib/middleware/route-guards";
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
@@ -17,7 +14,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)"],
 };

@@ -6,13 +6,23 @@
     "useIgnoreFile": false
   },
   "files": {
-    "ignoreUnknown": false
+    "ignoreUnknown": false,
+    "experimentalScannerIgnores": [
+      "node_modules",
+      ".next",
+      "coverage",
+      "dist",
+      "jest.setup.ts",
+      "**/*.test.ts",
+      "**/*.test.tsx",
+      "**/__tests__/**"
+    ]
   },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
     "indentStyle": "space",
-    "lineWidth": 80,
+    "lineWidth": 100,
     "indentWidth": 2
   },
   "linter": {
@@ -27,10 +37,19 @@
       }
     }
   },
+  "overrides": [
+    {
+      "includes": ["jest.setup.ts", "**/*.test.{ts,tsx}", "**/__tests__/**"],
+      "linter": {
+        "enabled": false
+      }
+    }
+  ],
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
-      "semicolons": "always"
+      "semicolons": "always",
+      "trailingCommas": "es5"
     }
   },
   "assist": {

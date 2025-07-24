@@ -45,9 +45,7 @@ export default async function CategoryPageComponent({
   return (
     <div className="container mx-auto px-4 py-8 lg:py-12">
       <header className="mb-8 lg:mb-12">
-        <h1 className="text-3xl lg:text-4xl font-bold text-center mb-4">
-          {displayName}
-        </h1>
+        <h1 className="text-3xl lg:text-4xl font-bold text-center mb-4">{displayName}</h1>
         <p className="text-center text-muted-foreground">
           {products.length} produto{products.length !== 1 ? "s" : ""} encontrado
           {products.length !== 1 ? "s" : ""}
@@ -85,10 +83,9 @@ export function generateCategoryMetadata(
   customMetadata?: {
     title?: string;
     description?: string;
-  },
+  }
 ) {
-  const categoryDisplayName =
-    category.charAt(0).toUpperCase() + category.slice(1);
+  const categoryDisplayName = category.charAt(0).toUpperCase() + category.slice(1);
 
   return {
     title: customMetadata?.title || `${categoryDisplayName} - Loja`,

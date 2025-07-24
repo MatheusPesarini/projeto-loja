@@ -4,7 +4,7 @@ import { PROTECTED_ROUTES, PUBLIC_ROUTES, ROUTES } from "../types/utils";
 
 export async function handleProtectedRoute(request: NextRequest, path: string) {
   const isProtectedRoute = PROTECTED_ROUTES.some(
-    (route) => path === route || path.startsWith(`${route}/`),
+    (route) => path === route || path.startsWith(`${route}/`)
   );
 
   if (!isProtectedRoute) return null;

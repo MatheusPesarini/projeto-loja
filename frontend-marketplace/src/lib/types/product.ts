@@ -20,9 +20,7 @@ export interface ProductGridProps {
 }
 
 // === UTILITÁRIOS ===
-export const formatPrice = (
-  price: string | number | null | undefined,
-): string => {
+export const formatPrice = (price: string | number | null | undefined): string => {
   if (!price || price === null || price === undefined) return "0,00";
 
   const numPrice = typeof price === "string" ? Number.parseFloat(price) : price;
@@ -58,9 +56,7 @@ export const getCategoryUrl = (category: string): string => {
   return categoryToUrlMap[category] || `/${category}`;
 };
 
-export const getCategoryDisplayName = (
-  category: string | undefined,
-): string => {
+export const getCategoryDisplayName = (category: string | undefined): string => {
   if (!category) return "Categoria não especificada";
 
   return (

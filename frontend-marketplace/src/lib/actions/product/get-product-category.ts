@@ -1,8 +1,6 @@
 import type { Product, ProductFormState } from "../../types/definitions";
 
-export async function getProductCategory(
-  category?: string,
-): Promise<ProductFormState> {
+export async function getProductCategory(category?: string): Promise<ProductFormState> {
   try {
     const url = `http://localhost:3001/products/${category || ""}`;
 
@@ -19,7 +17,7 @@ export async function getProductCategory(
       console.error(
         "Erro ao obter produtos:",
         productsResponse.status,
-        productsResponse.statusText,
+        productsResponse.statusText
       );
       const errorDetails = await productsResponse.text();
       console.error("Detalhes do erro:", errorDetails);
@@ -45,9 +43,7 @@ export async function getProductCategory(
       };
     }
 
-    const products: Product[] = Array.isArray(productsResult.data)
-      ? productsResult.data
-      : [];
+    const products: Product[] = Array.isArray(productsResult.data) ? productsResult.data : [];
 
     console.log("Produtos extraídos:", products);
 

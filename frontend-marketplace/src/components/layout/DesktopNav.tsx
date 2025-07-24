@@ -13,15 +13,10 @@ import { MENU_ITEMS } from "@/lib/types/product";
 export function DesktopNav({ logo }: { logo: { url: string; title: string } }) {
   return (
     <>
-      <Link
-        href={logo.url}
-        className="flex items-center gap-2 justify-self-start"
-      >
+      <Link href={logo.url} className="flex items-center gap-2 justify-self-start">
         {/* <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} /> */}
         <Store className="size-8" />
-        <span className="text-lg font-semibold tracking-tighter">
-          {logo.title}
-        </span>
+        <span className="text-lg font-semibold tracking-tighter">{logo.title}</span>
       </Link>
 
       <div className="flex items-center justify-self-center">
@@ -34,11 +29,7 @@ export function DesktopNav({ logo }: { logo: { url: string; title: string } }) {
                     <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
                     <NavigationMenuContent className="bg-popover text-popover-foreground z-50">
                       {item.items.map((subItem) => (
-                        <NavigationMenuLink
-                          asChild
-                          key={subItem.title}
-                          className="w-80"
-                        >
+                        <NavigationMenuLink asChild key={subItem.title} className="w-80">
                           <SubMenuLink item={subItem} />
                         </NavigationMenuLink>
                       ))}

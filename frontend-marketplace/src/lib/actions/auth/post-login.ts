@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 export async function submitLogin(
   prevState: LoginFormState | undefined,
-  data: FormData,
+  data: FormData
 ): Promise<LoginFormState> {
   const validatedFields = LoginFormSchema.safeParse({
     email: data.get("email") as string,
@@ -40,10 +40,7 @@ export async function submitLogin(
           errorMessage = errorData.error;
         }
       } catch (parseError) {
-        console.error(
-          "Falha ao parsear resposta de erro da API de login:",
-          parseError,
-        );
+        console.error("Falha ao parsear resposta de erro da API de login:", parseError);
       }
 
       return {

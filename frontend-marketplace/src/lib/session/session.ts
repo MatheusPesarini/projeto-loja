@@ -8,9 +8,7 @@ if (!secretKey) {
 }
 const encodedKey = new TextEncoder().encode(secretKey);
 
-export async function verifySession(
-  session: string | undefined,
-): Promise<SessionPayload | null> {
+export async function verifySession(session: string | undefined): Promise<SessionPayload | null> {
   if (!session) {
     console.log("Nenhum token de sessão fornecido.");
     return null;

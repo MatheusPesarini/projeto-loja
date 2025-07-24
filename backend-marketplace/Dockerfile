@@ -1,21 +1,20 @@
 FROM node:20-alpine
 
-RUN apk add --no-cache \
-    python3 \
-    make \
-    g++ \
-    git
-
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json package-lock.json* ./
 
-RUN npm ci --only=production
+RUN npm ci
 
 COPY . .
 
-RUN npm run build
+RUN npx drizzle-kit generate || echo "No migrations to generate, skipping..."
 
-EXPOSE 3001 
+RUN npm run build || echo "No build script, skipping..."
 
-CMD ["npm", "run", "dev"]
+COPY start.sh ./
+RUN chmod +x start.sh
+
+EXPOSE 3001
+
+CMD ["./start.sh"]

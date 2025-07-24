@@ -3,7 +3,7 @@ import type { Product, ProductFormState } from "../../types/definitions";
 export async function getRelatedProducts(
   category: string,
   currentProductId: string,
-  limit: number = 8,
+  limit: number = 8
 ): Promise<ProductFormState> {
   try {
     const url = `http://localhost:3001/products/${category}/related?exclude=${currentProductId}&limit=${limit}`;
@@ -16,17 +16,10 @@ export async function getRelatedProducts(
     });
 
     if (!productsResponse.ok) {
-      console.error(
-        "Erro ao obter produtos relacionados:",
-        productsResponse.status,
-      );
+      console.error("Erro ao obter produtos relacionados:", productsResponse.status);
 
       if (productsResponse.status === 404) {
-        return await getRelatedProductsFallback(
-          category,
-          currentProductId,
-          limit,
-        );
+        return await getRelatedProductsFallback(category, currentProductId, limit);
       }
 
       return {
@@ -38,9 +31,7 @@ export async function getRelatedProducts(
 
     const productsResult = await productsResponse.json();
 
-    const products: Product[] = productsResult.success
-      ? productsResult.data || []
-      : [];
+    const products: Product[] = productsResult.success ? productsResult.data || [] : [];
 
     return {
       message: "Produtos relacionados obtidos com sucesso.",
@@ -58,7 +49,7 @@ export async function getRelatedProducts(
 async function getRelatedProductsFallback(
   category: string,
   currentProductId: string,
-  limit: number,
+  limit: number
 ): Promise<ProductFormState> {
   try {
     const { getProductCategory } = await import("./get-product-category");

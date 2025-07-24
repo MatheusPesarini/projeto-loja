@@ -3,11 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { formatPrice } from "@/lib/types/product";
 import type { Product } from "@/lib/types/definitions";
 
@@ -15,15 +11,11 @@ interface RelatedProductsCarouselProps {
   products: Product[];
 }
 
-export function RelatedProductsCarousel({
-  products,
-}: RelatedProductsCarouselProps) {
+export function RelatedProductsCarousel({ products }: RelatedProductsCarouselProps) {
   if (!products || products.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-muted-foreground">
-          Nenhum produto relacionado encontrado.
-        </p>
+        <p className="text-muted-foreground">Nenhum produto relacionado encontrado.</p>
       </div>
     );
   }
@@ -39,10 +31,7 @@ export function RelatedProductsCarousel({
       >
         <CarouselContent className="-ml-1 md:-ml-2">
           {products.map((product) => (
-            <CarouselItem
-              key={product.id}
-              className="pl-1 md:pl-2 basis-1/2 md:basis-1/3"
-            >
+            <CarouselItem key={product.id} className="pl-1 md:pl-2 basis-1/2 md:basis-1/3">
               <Card className="overflow-hidden h-full">
                 <CardContent className="p-0">
                   <Link
@@ -70,19 +59,14 @@ export function RelatedProductsCarousel({
                             {product.productName}
                           </h3>
                           <div className="flex items-center gap-1">
-                            {product.discountedPrice &&
-                            product.discountedPrice > 0 ? (
+                            {product.discountedPrice && product.discountedPrice > 0 ? (
                               <>
                                 <span className="font-bold text-sm">
                                   R$ {formatPrice(product.discountedPrice)}
                                 </span>
                                 {product.originalPrice &&
-                                  Number.parseFloat(
-                                    product.originalPrice.toString(),
-                                  ) >
-                                    Number.parseFloat(
-                                      product.discountedPrice.toString(),
-                                    ) && (
+                                  Number.parseFloat(product.originalPrice.toString()) >
+                                    Number.parseFloat(product.discountedPrice.toString()) && (
                                     <span className="text-xs line-through text-gray-300">
                                       R$ {formatPrice(product.originalPrice)}
                                     </span>

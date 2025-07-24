@@ -13,7 +13,7 @@ export async function getProduct(): Promise<ProductFormState> {
       console.error(
         "Erro ao obter produtos:",
         productsResponse.status,
-        productsResponse.statusText,
+        productsResponse.statusText
       );
       const errorDetails = await productsResponse.text();
       console.error("Detalhes do erro:", errorDetails);

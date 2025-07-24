@@ -1,30 +1,16 @@
 import Image from "next/image";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { getProductId } from "@/lib/actions/product/get-product-id";
 import Link from "next/link";
-import {
-  formatPrice,
-  getCategoryDisplayName,
-  getCategoryUrl,
-} from "@/lib/types/product";
+import { formatPrice, getCategoryDisplayName, getCategoryUrl } from "@/lib/types/product";
 import ExpandableDescription from "@/components/common/ExpandableDescription";
 import RelatedProductsWrapper from "@/components/product/RelatedProductsWrapper";
 
-export default async function ProductDisplayPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function ProductDisplayPage({ params }: { params: Promise<{ id: string }> }) {
   const result = await getProductId((await params).id);
 
   if (!result.success) {
@@ -63,10 +49,7 @@ export default async function ProductDisplayPage({
             Home
           </Link>
           <span>/</span>
-          <Link
-            href={getCategoryUrl(product.category)}
-            className="hover:text-foreground"
-          >
+          <Link href={getCategoryUrl(product.category)} className="hover:text-foreground">
             {getCategoryDisplayName(product.category)}
           </Link>
           <span>/</span>
@@ -87,10 +70,7 @@ export default async function ProductDisplayPage({
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
               />
               {product.discount && (
-                <Badge
-                  variant="destructive"
-                  className="absolute top-4 right-4 z-10"
-                >
+                <Badge variant="destructive" className="absolute top-4 right-4 z-10">
                   {product.discount}% OFF
                 </Badge>
               )}
@@ -120,15 +100,11 @@ export default async function ProductDisplayPage({
                 {product.discountedPrice !== product.originalPrice && (
                   <Badge variant="destructive">Promoção</Badge>
                 )}
-                <Badge
-                  variant={product.quantity > 0 ? "success" : "destructive"}
-                >
+                <Badge variant={product.quantity > 0 ? "success" : "destructive"}>
                   {product.quantity > 0 ? "Em estoque" : "Esgotado"}
                 </Badge>
                 {product.quantity > 0 && (
-                  <Badge variant="secondary">
-                    {product.quantity} disponíveis
-                  </Badge>
+                  <Badge variant="secondary">{product.quantity} disponíveis</Badge>
                 )}
               </div>
             </CardHeader>
@@ -143,9 +119,7 @@ export default async function ProductDisplayPage({
                     </p>
                     {product.originalPrice &&
                       Number.parseFloat(product.originalPrice.toString()) >
-                        Number.parseFloat(
-                          product.discountedPrice.toString(),
-                        ) && (
+                        Number.parseFloat(product.discountedPrice.toString()) && (
                         <div className="flex items-baseline gap-2 mt-1">
                           <p className="text-lg text-muted-foreground line-through">
                             R$ {formatPrice(product.originalPrice)}
@@ -170,9 +144,7 @@ export default async function ProductDisplayPage({
               <div>
                 <h3 className="text-lg font-semibold mb-2">Descrição</h3>
                 <ExpandableDescription
-                  description={
-                    product.description || "Descrição não disponível."
-                  }
+                  description={product.description || "Descrição não disponível."}
                   maxLength={200}
                   className="capitalize"
                 />
@@ -181,23 +153,19 @@ export default async function ProductDisplayPage({
                 <>
                   <Separator />
                   <div className="space-y-2">
-                    <h3 className="text-lg font-semibold mb-2">
-                      Especificações
-                    </h3>
+                    <h3 className="text-lg font-semibold mb-2">Especificações</h3>
                     {product.genre && (
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Gênero:</span>
-                        <span className="font-medium capitalize">
-                          {product.genre}
-                        </span>
+                        <span className="font-medium capitalize">{product.genre}</span>
                       </div>
                     )}
                     {product.warranty && (
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Garantia:</span>
                         <span className="font-medium">
-                          {Number.parseInt(product.warranty) + 3} (3 meses de
-                          garantia legal + ALTERAR SIST DE GARANTIA)
+                          {Number.parseInt(product.warranty) + 3} (3 meses de garantia legal +
+                          ALTERAR SIST DE GARANTIA)
                         </span>
                       </div>
                     )}
@@ -225,9 +193,7 @@ export default async function ProductDisplayPage({
                 variant="outline"
                 disabled={product.quantity === 0}
               >
-                {product.quantity === 0
-                  ? "Produto Esgotado"
-                  : "Adicionar ao Carrinho"}
+                {product.quantity === 0 ? "Produto Esgotado" : "Adicionar ao Carrinho"}
               </Button>
               <Button
                 size="lg"
@@ -252,9 +218,7 @@ export default async function ProductDisplayPage({
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Marca:</span>
-                      <span className="font-medium">
-                        {product.brand || "Não informado"}
-                      </span>
+                      <span className="font-medium">{product.brand || "Não informado"}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Categoria:</span>
@@ -265,19 +229,13 @@ export default async function ProductDisplayPage({
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Criado em:</span>
                       <span className="font-medium">
-                        {new Date(product.createdAt).toLocaleDateString(
-                          "pt-BR",
-                        )}
+                        {new Date(product.createdAt).toLocaleDateString("pt-BR")}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">
-                        Atualizado em:
-                      </span>
+                      <span className="text-muted-foreground">Atualizado em:</span>
                       <span className="font-medium">
-                        {new Date(product.updatedAt).toLocaleDateString(
-                          "pt-BR",
-                        )}
+                        {new Date(product.updatedAt).toLocaleDateString("pt-BR")}
                       </span>
                     </div>
                   </div>
@@ -290,25 +248,13 @@ export default async function ProductDisplayPage({
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Estoque:</span>
-                      <span
-                        className={
-                          product.quantity > 0
-                            ? "text-green-600"
-                            : "text-red-600"
-                        }
-                      >
-                        {product.quantity > 0
-                          ? `${product.quantity} unidades`
-                          : "Esgotado"}
+                      <span className={product.quantity > 0 ? "text-green-600" : "text-red-600"}>
+                        {product.quantity > 0 ? `${product.quantity} unidades` : "Esgotado"}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Status:</span>
-                      <Badge
-                        variant={
-                          product.quantity > 0 ? "success" : "destructive"
-                        }
-                      >
+                      <Badge variant={product.quantity > 0 ? "success" : "destructive"}>
                         {product.quantity > 0 ? "Disponível" : "Indisponível"}
                       </Badge>
                     </div>
@@ -349,11 +295,7 @@ export default async function ProductDisplayPage({
   );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
   const result = await getProductId(resolvedParams.id);
 

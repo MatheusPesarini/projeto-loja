@@ -1,18 +1,13 @@
 "use server";
 
-import {
-  ProductSchema,
-  type SearchProductState,
-} from "../../types/definitions";
+import { ProductSchema, type SearchProductState } from "../../types/definitions";
 import { z } from "zod";
 
-const SearchQuerySchema = z
-  .string()
-  .min(1, "O termo de busca não pode estar vazio.");
+const SearchQuerySchema = z.string().min(1, "O termo de busca não pode estar vazio.");
 
 export async function searchProduct(
   prevState: SearchProductState | undefined,
-  data: FormData,
+  data: FormData
 ): Promise<SearchProductState> {
   const query = data.get("query");
 
@@ -46,9 +41,7 @@ export async function searchProduct(
         const errorData = await result.json();
         errorMessage = errorData.message || errorData.error || errorMessage;
       } catch (e) {}
-      console.error(
-        `[searchProduct] API Error (${result.status}): ${errorMessage}`,
-      );
+      console.error(`[searchProduct] API Error (${result.status}): ${errorMessage}`);
       return {
         message: errorMessage,
         errors: { _form: [errorMessage] },
@@ -59,10 +52,7 @@ export async function searchProduct(
     const validatedProducts = z.array(ProductSchema).safeParse(responseData);
 
     if (!validatedProducts.success) {
-      console.error(
-        "[searchProduct] Validation Error:",
-        validatedProducts.error.flatten(),
-      );
+      console.error("[searchProduct] Validation Error:", validatedProducts.error.flatten());
       return {
         message: "Falha ao validar dados dos produtos recebidos.",
         errors: { _form: ["Formato de dados inválido recebido do servidor."] },

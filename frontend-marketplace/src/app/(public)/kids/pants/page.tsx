@@ -1,6 +1,4 @@
-import CategoryPageComponent, {
-  generateCategoryMetadata,
-} from "@/components/product/CategoryPage";
+import CategoryPageComponent, { generateCategoryMetadata } from "@/components/product/CategoryPage";
 
 export default function KidsPantsPage() {
   return (

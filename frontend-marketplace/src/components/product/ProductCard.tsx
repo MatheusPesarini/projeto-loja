@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
@@ -17,17 +11,13 @@ export default function ProductCardComponent({
   className = "",
 }: ProductCardProps) {
   const isOutOfStock = product.quantity <= 0;
-  const hadDiscount =
-    product.discountedPrice && Number(product.discountedPrice) > 0;
+  const hadDiscount = product.discountedPrice && Number(product.discountedPrice) > 0;
 
   const cardVariants = {
-    default:
-      "group overflow-hidden hover:shadow-lg transition-all duration-300",
-    carousel:
-      "group overflow-hidden hover:shadow-md transition-all duration-200",
+    default: "group overflow-hidden hover:shadow-lg transition-all duration-300",
+    carousel: "group overflow-hidden hover:shadow-md transition-all duration-200",
     grid: "group overflow-hidden hover:shadow-2xl transition-all duration-300",
-    featured:
-      "group overflow-hidden hover:shadow-2xl transition-all duration-300",
+    featured: "group overflow-hidden hover:shadow-2xl transition-all duration-300",
   };
   return (
     <Card key={product.id} className={`${cardVariants[variant]} ${className}`}>
@@ -42,10 +32,7 @@ export default function ProductCardComponent({
           />
 
           {hadDiscount && (
-            <Badge
-              variant="destructive"
-              className="absolute top-2 right-2 z-10"
-            >
+            <Badge variant="destructive" className="absolute top-2 right-2 z-10">
               {product.discount}% OFF
             </Badge>
           )}
@@ -93,11 +80,7 @@ export default function ProductCardComponent({
           )}
         </div>
         <Link href={`/product/${product.id}`} className="w-full block">
-          <Button
-            variant="outline"
-            className="w-full cursor-pointer"
-            disabled={isOutOfStock}
-          >
+          <Button variant="outline" className="w-full cursor-pointer" disabled={isOutOfStock}>
             {isOutOfStock ? "Indisponível" : "Ver Produto"}
           </Button>
         </Link>

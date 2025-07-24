@@ -72,22 +72,18 @@ export const Footer = ({
           <div className="lg:col-span-2">
             <Link href={logo.url} className="flex items-center gap-3 mb-4">
               <Store className="size-8 text-primary" />
-              <span className="text-xl font-bold tracking-tight">
-                {logo.title}
-              </span>
+              <span className="text-xl font-bold tracking-tight">{logo.title}</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-md">
-              Sua loja online de confiança com os melhores produtos de moda e
-              calçados. Qualidade garantida e entrega rápida.
+              Sua loja online de confiança com os melhores produtos de moda e calçados. Qualidade
+              garantida e entrega rápida.
             </p>
           </div>
 
           {/* Menu Items */}
           {menuItems.map((section, index) => (
             <div key={index}>
-              <h3 className="font-semibold mb-4 text-foreground">
-                {section.title}
-              </h3>
+              <h3 className="font-semibold mb-4 text-foreground">{section.title}</h3>
               <ul className="space-y-3">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>

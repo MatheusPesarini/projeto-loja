@@ -41,9 +41,7 @@ export function ImageCarousel({ autoplay = true, autoplayDelay = 3500 }) {
   }, []);
 
   const plugin = React.useRef(
-    autoplay
-      ? Autoplay({ delay: autoplayDelay, stopOnInteraction: true })
-      : null,
+    autoplay ? Autoplay({ delay: autoplayDelay, stopOnInteraction: true }) : null
   );
 
   if (loading) {

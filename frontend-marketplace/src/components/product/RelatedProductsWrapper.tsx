@@ -17,9 +17,7 @@ export default async function RelatedProductsWrapper({
   if (!result.success || !result.products || result.products.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-muted-foreground">
-          Nenhum produto relacionado encontrado.
-        </p>
+        <p className="text-muted-foreground">Nenhum produto relacionado encontrado.</p>
       </div>
     );
   }

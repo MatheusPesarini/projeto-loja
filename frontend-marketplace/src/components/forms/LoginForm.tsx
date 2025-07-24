@@ -6,13 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import type { LoginFormState } from "@/lib/types/definitions";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { cn } from "@/lib/types/utils";
 import { Button } from "../ui/button";
@@ -26,16 +20,10 @@ const initialState: LoginFormState = {
   success: false,
 };
 
-export default function LoginForm({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+export default function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
   const router = useRouter();
   const { setIsAuthenticated } = useAuth();
-  const [state, formAction, isPending] = useActionState(
-    submitLogin,
-    initialState,
-  );
+  const [state, formAction, isPending] = useActionState(submitLogin, initialState);
 
   useEffect(() => {
     if (state?.success) {
@@ -53,9 +41,7 @@ export default function LoginForm({
       <Card className="shadow-md">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>
-            Digite seu e-mail e senha para entrar na sua conta.
-          </CardDescription>
+          <CardDescription>Digite seu e-mail e senha para entrar na sua conta.</CardDescription>
         </CardHeader>
         <CardContent>
           <form action={formAction} className="space-y-4">
@@ -71,7 +57,7 @@ export default function LoginForm({
                 aria-describedby="email-error"
                 className={cn(
                   "text-black bg-amber-50 w-full p-2 rounded border",
-                  emailErrors ? "border-red-500" : "border-gray-300",
+                  emailErrors ? "border-red-500" : "border-gray-300"
                 )}
               />
               <div id="email-error" aria-live="polite" aria-atomic="true">
@@ -100,7 +86,7 @@ export default function LoginForm({
                 aria-describedby="password-error"
                 className={cn(
                   "text-black bg-amber-50 w-full p-2 rounded border",
-                  passwordErrors ? "border-red-500" : "border-gray-300",
+                  passwordErrors ? "border-red-500" : "border-gray-300"
                 )}
               />
               <div id="password-error" aria-live="polite" aria-atomic="true">
@@ -112,20 +98,14 @@ export default function LoginForm({
               </div>
             </div>
             {formErrors && (
-              <div
-                className="mt-2 text-sm text-red-500 text-center"
-                aria-live="polite"
-              >
+              <div className="mt-2 text-sm text-red-500 text-center" aria-live="polite">
                 {formErrors.map((error: string) => (
                   <p key={error}>{error}</p>
                 ))}
               </div>
             )}
             {state?.message && !state.success && (
-              <div
-                className="mt-2 text-sm text-red-500 text-center"
-                aria-live="polite"
-              >
+              <div className="mt-2 text-sm text-red-500 text-center" aria-live="polite">
                 {state.message}
               </div>
             )}
@@ -139,10 +119,7 @@ export default function LoginForm({
             </Button>
             <div className="mt-4 text-center text-sm">
               Não tem uma conta?{" "}
-              <Link
-                href={"/register"}
-                className="underline underline-offset-4 cursor-pointer"
-              >
+              <Link href={"/register"} className="underline underline-offset-4 cursor-pointer">
                 Registrar-se
               </Link>
             </div>
