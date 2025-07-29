@@ -1,0 +1,8 @@
+{
+  "name": "projeto-loja",
+  "scripts": {
+    "dev": "docker-compose up",
+    "stop": "docker-compose down",
+    "reset": "docker-compose down -v"
+  }
+}
