@@ -20,7 +20,7 @@
   },
   "formatter": {
     "enabled": true,
-    "formatWithErrors": false,
+    "formatWithErrors": true,
     "indentStyle": "space",
     "lineWidth": 100,
     "indentWidth": 2
