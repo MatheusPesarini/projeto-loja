@@ -5,7 +5,7 @@ type Images = {
   alt: string;
 };
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_IMAGE_API_URL;
 
 export async function fetchSectionImages(): Promise<Images[]> {
   if (!API_URL) {

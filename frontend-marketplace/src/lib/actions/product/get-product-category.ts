@@ -1,8 +1,10 @@
 import type { Product, ProductFormState } from "../../types/definitions";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
 export async function getProductCategory(category?: string): Promise<ProductFormState> {
   try {
-    const url = `http://localhost:3001/products/${category || ""}`;
+    const url = `${API_URL}/products/${category || ""}`;
 
     // console.log('Fetching products from URL:', url);
 

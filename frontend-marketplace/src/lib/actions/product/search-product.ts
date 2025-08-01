@@ -1,14 +1,12 @@
 "use server";
 
-import { ProductSchema, type SearchProductState } from "../../types/definitions";
 import { z } from "zod";
+import { ProductSchema, type SearchProductState } from "../../types/definitions";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 const SearchQuerySchema = z.string().min(1, "O termo de busca não pode estar vazio.");
 
-export async function searchProduct(
-  prevState: SearchProductState | undefined,
-  data: FormData
-): Promise<SearchProductState> {
+export async function searchProduct(data: FormData): Promise<SearchProductState> {
   const query = data.get("query");
 
   const validatedQuery = SearchQuerySchema.safeParse(query);
@@ -23,7 +21,7 @@ export async function searchProduct(
   const searchTerm = validatedQuery.data;
   const encodedSearchTerm = encodeURIComponent(searchTerm);
 
-  const apiUrl = `http://localhost:3001/products/search/${encodedSearchTerm}`;
+  const apiUrl = `${API_URL}/products/search/${encodedSearchTerm}`;
   console.log(`[searchProduct] Fetching URL: ${apiUrl}`);
 
   try {

@@ -1,8 +1,10 @@
 import type { Product, ProductFormState } from "../../types/definitions";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
 export async function getProduct(): Promise<ProductFormState> {
   try {
-    const productsResponse = await fetch(`http://localhost:3001/products`, {
+    const productsResponse = await fetch(`${API_URL}/products`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-jest.mock('next/navigation', () => ({
+jest.mock("next/navigation", () => ({
   useRouter() {
     return {
       push: jest.fn(),
@@ -8,31 +8,36 @@ jest.mock('next/navigation', () => ({
       prefetch: jest.fn(),
       back: jest.fn(),
       forward: jest.fn(),
-      refresh: jest.fn()
+      refresh: jest.fn(),
     };
   },
   useSearchParams() {
     return new URLSearchParams();
   },
   usePathname() {
-    return '/';
+    return "/";
   },
   redirect: jest.fn(),
 }));
 
-jest.mock('next-themes', () => ({
+jest.mock("next-themes", () => ({
   useTheme: () => ({
-    theme: 'light',
+    theme: "light",
     setTheme: jest.fn(),
-    resolvedTheme: 'light',
+    resolvedTheme: "light",
   }),
   ThemeProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 
-jest.mock('next/image', () => ({
+jest.mock("next/image", () => ({
   __esModule: true,
   default: ({ src, alt, ...props }: any) => {
-    return <img src={src} alt={alt} {...props} />;
+    return (<img src = { src });
+    alt = { alt };
+    {
+      ...props
+    }
+    /;;>;
   },
 }));
 
@@ -77,9 +82,9 @@ const originalError = console.error;
 beforeAll(() => {
   console.error = (...args: any[]) => {
     if (
-      typeof args[0] === 'string' &&
-      (args[0].includes('Warning: ReactDOMTestUtils.act is deprecated') ||
-      args[0].includes('Warning: Each child in a list should have a unique "key" prop'))
+      typeof args[0] === "string" &&
+      (args[0].includes("Warning: ReactDOMTestUtils.act is deprecated") ||
+        args[0].includes('Warning: Each child in a list should have a unique "key" prop'))
     ) {
       return;
     }

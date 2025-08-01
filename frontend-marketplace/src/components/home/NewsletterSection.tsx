@@ -17,5 +17,5 @@ export default function NewsletterSection() {
         </Button>
       </div>
     </section>
-  )
+  );
 }

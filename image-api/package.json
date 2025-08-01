@@ -1,0 +1,35 @@
+{
+  "name": "image-api",
+  "version": "1.0.0",
+  "description": "API simples para upload e gerenciamento de imagens",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusPesarini/image-api.git"
+  },
+  "keywords": [ 
+    "express",
+    "api",
+    "image",
+    "upload",
+    "multer"
+  ],
+  "author": "Matheus Pesarini",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MatheusPesarini/image-api/issues"
+  },
+  "homepage": "https://github.com/MatheusPesarini/image-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

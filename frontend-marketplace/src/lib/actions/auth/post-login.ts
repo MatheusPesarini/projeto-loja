@@ -1,12 +1,11 @@
 "use server";
 
-import { LoginFormSchema, type LoginFormState } from "@/lib/types/definitions";
 import { cookies } from "next/headers";
+import { LoginFormSchema, type LoginFormState } from "@/lib/types/definitions";
 
-export async function submitLogin(
-  prevState: LoginFormState | undefined,
-  data: FormData
-): Promise<LoginFormState> {
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
+export async function submitLogin(data: FormData): Promise<LoginFormState> {
   const validatedFields = LoginFormSchema.safeParse({
     email: data.get("email") as string,
     password: data.get("password") as string,
@@ -21,7 +20,7 @@ export async function submitLogin(
   }
 
   try {
-    const result = await fetch("http://localhost:3001/login", {
+    const result = await fetch(`${API_URL}/login`, {
       method: "POST",
       credentials: "include",
       headers: {

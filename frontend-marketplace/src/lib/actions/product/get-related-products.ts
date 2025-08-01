@@ -1,12 +1,14 @@
 import type { Product, ProductFormState } from "../../types/definitions";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
 export async function getRelatedProducts(
   category: string,
   currentProductId: string,
   limit: number = 8
 ): Promise<ProductFormState> {
   try {
-    const url = `http://localhost:3001/products/${category}/related?exclude=${currentProductId}&limit=${limit}`;
+    const url = `${API_URL}/products/${category}/related?exclude=${currentProductId}&limit=${limit}`;
 
     const productsResponse = await fetch(url, {
       method: "GET",

@@ -1,12 +1,11 @@
 "use server";
 
-import { RegisterFormSchema, type RegisterFormState } from "@/lib/types/definitions";
 import { redirect } from "next/navigation";
+import { RegisterFormSchema, type RegisterFormState } from "@/lib/types/definitions";
 
-export async function submitRegister(
-  prevState: RegisterFormState | undefined,
-  data: FormData
-): Promise<RegisterFormState> {
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
+export async function submitRegister(data: FormData): Promise<RegisterFormState> {
   const validatedFields = RegisterFormSchema.safeParse({
     name: data.get("name") as string,
     email: data.get("email") as string,
@@ -22,7 +21,7 @@ export async function submitRegister(
   }
 
   try {
-    const result = await fetch("http://localhost:3001/register", {
+    const result = await fetch(`${API_URL}/register`, {
       method: "POST",
       cache: "no-cache",
       headers: {
