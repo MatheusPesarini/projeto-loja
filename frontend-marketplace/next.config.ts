@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
 				port: '4000',
 				pathname: '/images/**',
 			},
+			{
+				protocol: 'http',
+				hostname: 'image-api',
+				port: '4000',
+				pathname: '/images/**',
+			}
 		],
 	},
 };
