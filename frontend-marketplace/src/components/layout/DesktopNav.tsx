@@ -1,3 +1,4 @@
+import { Store } from 'lucide-react';
 import Link from 'next/link';
 import {
   NavigationMenu,
@@ -7,7 +8,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigationMenu';
-import { Store } from 'lucide-react';
 import { MENU_ITEMS } from '@/lib/types/product';
 
 export function DesktopNav({ logo }: { logo: { url: string; title: string } }) {
@@ -15,7 +15,7 @@ export function DesktopNav({ logo }: { logo: { url: string; title: string } }) {
     <>
       <Link href={logo.url} className="flex items-center gap-2 justify-self-start">
         {/* <Image src="/Pato_pocoyo.webp" alt="Shop picture" width={50} height={50} /> */}
-        <Store className="size-8" />
+        <Store className="size-8" data-testid="store-icon" />
         <span className="text-lg font-semibold tracking-tighter">{logo.title}</span>
       </Link>
 

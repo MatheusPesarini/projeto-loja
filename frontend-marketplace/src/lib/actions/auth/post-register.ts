@@ -5,7 +5,7 @@ import { RegisterFormSchema, type RegisterFormState } from '@/lib/types/definiti
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
-export async function submitRegister(data: FormData): Promise<RegisterFormState> {
+export async function submitRegister(prevState: RegisterFormState, data: FormData): Promise<RegisterFormState> {
   const validatedFields = RegisterFormSchema.safeParse({
     name: data.get('name') as string,
     email: data.get('email') as string,

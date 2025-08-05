@@ -5,7 +5,7 @@ import { LoginFormSchema, type LoginFormState } from '@/lib/types/definitions';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
-export async function submitLogin(data: FormData): Promise<LoginFormState> {
+export async function submitLogin(prevState: LoginFormState, data: FormData): Promise<LoginFormState> {
   const validatedFields = LoginFormSchema.safeParse({
     email: data.get('email') as string,
     password: data.get('password') as string,

@@ -10,8 +10,8 @@
     "lint:check": "npx @biomejs/biome lint ./src --max-diagnostics=1000",
     "lint": "npx @biomejs/biome lint ./src --max-diagnostics=1000 --write",
 
-    "format:check": "npx @biomejs/biome format ./src --max-diagnostics=1000 --indent-width=2 --indent-style=space --javascript-formatter-quote-style=single",
-    "format": "npx @biomejs/biome format ./src --max-diagnostics=1000 --write --indent-width=2 --indent-style=space --javascript-formatter-quote-style=single",
+    "format:check": "npx @biomejs/biome format --max-diagnostics=1000 --indent-width=2 --indent-style=space --javascript-formatter-quote-style=single",
+    "format": "npx @biomejs/biome format --max-diagnostics=1000 --write --indent-width=2 --indent-style=space --javascript-formatter-quote-style=single",
     
     "check:fix": "npx @biomejs/biome check ./src --max-diagnostics=1000 --write --indent-width=2 --indent-style=space --javascript-formatter-quote-style=single",
 
@@ -25,7 +25,6 @@
     "argon2": "^0.43.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "dotenv": "^17.2.1",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "jose": "^6.0.12",

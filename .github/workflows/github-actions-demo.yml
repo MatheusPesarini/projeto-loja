@@ -50,3 +50,7 @@ jobs:
       - name: Install backend dependencies
         working-directory: backend-marketplace
         run: npm ci
+
+      - name: Run Biome format
+        working-directory: backend-marketplace
+        run: npm run format
