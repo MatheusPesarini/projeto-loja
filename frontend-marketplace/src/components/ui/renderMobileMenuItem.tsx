@@ -1,5 +1,5 @@
-import { AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
-import Link from "next/link";
+import { AccordionContent, AccordionItem, AccordionTrigger } from './accordion';
+import Link from 'next/link';
 
 interface MenuItem {
   title: string;
@@ -11,7 +11,7 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
     <Link
       className="flex flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
-      href={item.url || "#"}
+      href={item.url || '#'}
     >
       <div>
         <div className="text-sm font-semibold">{item.title}</div>
@@ -39,7 +39,7 @@ export const renderMobileMenuItem = (item: MenuItem) => {
   return (
     <Link
       key={item.title}
-      href={item.url || "#"}
+      href={item.url || '#'}
       className="block rounded-md px-3 py-2 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground" // Estilo de link móvel
     >
       {item.title}

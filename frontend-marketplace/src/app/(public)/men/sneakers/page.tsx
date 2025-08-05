@@ -1,4 +1,4 @@
-import CategoryPageComponent, { generateCategoryMetadata } from "@/components/product/CategoryPage";
+import CategoryPageComponent, { generateCategoryMetadata } from '@/components/product/CategoryPage';
 
 export default function MenSneakersPage() {
   return (
@@ -12,9 +12,9 @@ export default function MenSneakersPage() {
 }
 
 export async function generateMetadata() {
-  return generateCategoryMetadata("tenis_masculinos", {
-    title: "Tênis Masculinos - Loja Online",
+  return generateCategoryMetadata('tenis_masculinos', {
+    title: 'Tênis Masculinos - Loja Online',
     description:
-      "Explore nossa coleção de tênis masculinos, com estilos variados para todas as ocasiões. Encontre o tênis perfeito para você.",
+      'Explore nossa coleção de tênis masculinos, com estilos variados para todas as ocasiões. Encontre o tênis perfeito para você.',
   });
 }

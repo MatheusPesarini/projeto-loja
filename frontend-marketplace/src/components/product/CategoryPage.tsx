@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { Button } from "@/components/ui/button";
-import { getProductCategory } from "@/lib/actions/product/get-product-category";
-import type { CategoryPageProps } from "@/lib/types/definitions";
-import { ProductGrid } from "./ProductGrid";
+import { Button } from '@/components/ui/button';
+import { getProductCategory } from '@/lib/actions/product/get-product-category';
+import type { CategoryPageProps } from '@/lib/types/definitions';
+import { ProductGrid } from './ProductGrid';
 
 export default async function CategoryPageComponent({
   category,
@@ -17,7 +17,7 @@ export default async function CategoryPageComponent({
       <div className="container mx-auto px-4 py-8 lg:py-12 text-center">
         <h1 className="text-3xl font-semibold mb-8">Ops! Algo deu errado</h1>
         <p className="text-muted-foreground mb-4">
-          {result.message || "Erro ao carregar produtos"}
+          {result.message || 'Erro ao carregar produtos'}
         </p>
         <Button asChild>
           <Link href="/">Voltar para Home</Link>
@@ -47,8 +47,8 @@ export default async function CategoryPageComponent({
       <header className="mb-8 lg:mb-12">
         <h1 className="text-3xl lg:text-4xl font-bold text-center mb-4">{displayName}</h1>
         <p className="text-center text-muted-foreground">
-          {products.length} produto{products.length !== 1 ? "s" : ""} encontrado
-          {products.length !== 1 ? "s" : ""}
+          {products.length} produto{products.length !== 1 ? 's' : ''} encontrado
+          {products.length !== 1 ? 's' : ''}
         </p>
 
         {showFilters && (

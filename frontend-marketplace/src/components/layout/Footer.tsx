@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Store } from "lucide-react";
-import { Separator } from "../ui/separator";
+import Link from 'next/link';
+import Image from 'next/image';
+import { Store } from 'lucide-react';
+import { Separator } from '../ui/separator';
 
 interface MenuItem {
   title: string;
@@ -27,40 +27,40 @@ type FooterProps = {
 
 export const Footer = ({
   logo = {
-    url: "/",
-    title: "Loja Online",
+    url: '/',
+    title: 'Loja Online',
   },
   menuItems = [
     {
-      title: "Produtos",
+      title: 'Produtos',
       links: [
-        { text: "Tênis Masculinos", url: "/men/sneakers" },
-        { text: "Tênis Femininos", url: "/women/sneakers" },
-        { text: "Calças Masculinas", url: "/men/pants" },
-        { text: "Calças Femininas", url: "/women/pants" },
+        { text: 'Tênis Masculinos', url: '/men/sneakers' },
+        { text: 'Tênis Femininos', url: '/women/sneakers' },
+        { text: 'Calças Masculinas', url: '/men/pants' },
+        { text: 'Calças Femininas', url: '/women/pants' },
       ],
     },
     {
-      title: "Empresa",
+      title: 'Empresa',
       links: [
-        { text: "Sobre Nós", url: "/about" },
-        { text: "Contato", url: "/contact" },
-        { text: "Trabalhe Conosco", url: "/careers" },
+        { text: 'Sobre Nós', url: '/about' },
+        { text: 'Contato', url: '/contact' },
+        { text: 'Trabalhe Conosco', url: '/careers' },
       ],
     },
     {
-      title: "Suporte",
+      title: 'Suporte',
       links: [
-        { text: "Central de Ajuda", url: "/help" },
-        { text: "Política de Troca", url: "/returns" },
-        { text: "Rastreamento", url: "/tracking" },
+        { text: 'Central de Ajuda', url: '/help' },
+        { text: 'Política de Troca', url: '/returns' },
+        { text: 'Rastreamento', url: '/tracking' },
       ],
     },
   ],
-  copyright = "© 2025 Loja Online. Todos os direitos reservados.",
+  copyright = '© 2025 Loja Online. Todos os direitos reservados.',
   bottomLinks = [
-    { text: "Termos de Uso", url: "/terms" },
-    { text: "Política de Privacidade", url: "/privacy" },
+    { text: 'Termos de Uso', url: '/terms' },
+    { text: 'Política de Privacidade', url: '/privacy' },
   ],
 }: FooterProps) => {
   return (

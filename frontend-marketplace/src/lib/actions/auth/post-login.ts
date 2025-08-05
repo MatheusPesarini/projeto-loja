@@ -1,45 +1,45 @@
-"use server";
+'use server';
 
-import { cookies } from "next/headers";
-import { LoginFormSchema, type LoginFormState } from "@/lib/types/definitions";
+import { cookies } from 'next/headers';
+import { LoginFormSchema, type LoginFormState } from '@/lib/types/definitions';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export async function submitLogin(data: FormData): Promise<LoginFormState> {
   const validatedFields = LoginFormSchema.safeParse({
-    email: data.get("email") as string,
-    password: data.get("password") as string,
+    email: data.get('email') as string,
+    password: data.get('password') as string,
   });
 
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: "Erro de validação. Verifique os campos destacados.",
+      message: 'Erro de validação. Verifique os campos destacados.',
       success: false,
     };
   }
 
   try {
     const result = await fetch(`${API_URL}/login`, {
-      method: "POST",
-      credentials: "include",
+      method: 'POST',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(validatedFields.data),
     });
 
     if (!result.ok) {
-      let errorMessage = "E-mail ou senha inválidos.";
+      let errorMessage = 'E-mail ou senha inválidos.';
       try {
         const errorData = await result.json();
-        if (errorData && typeof errorData.message === "string") {
+        if (errorData && typeof errorData.message === 'string') {
           errorMessage = errorData.message;
-        } else if (errorData && typeof errorData.error === "string") {
+        } else if (errorData && typeof errorData.error === 'string') {
           errorMessage = errorData.error;
         }
       } catch (parseError) {
-        console.error("Falha ao parsear resposta de erro da API de login:", parseError);
+        console.error('Falha ao parsear resposta de erro da API de login:', parseError);
       }
 
       return {
@@ -51,16 +51,16 @@ export async function submitLogin(data: FormData): Promise<LoginFormState> {
 
     const responseData = await result.json();
 
-    const setCookieHeader = result.headers.get("set-cookie");
+    const setCookieHeader = result.headers.get('set-cookie');
     if (setCookieHeader) {
-      const [cookiePair] = setCookieHeader.split(";");
-      const [name, value] = cookiePair.split("=");
+      const [cookiePair] = setCookieHeader.split(';');
+      const [name, value] = cookiePair.split('=');
       (await cookies()).set(name, value, {
         httpOnly: true,
         secure: false,
-        path: "/",
+        path: '/',
         maxAge: 60 * 60 * 24 * 7,
-        sameSite: "lax",
+        sameSite: 'lax',
       });
     }
 
@@ -71,14 +71,14 @@ export async function submitLogin(data: FormData): Promise<LoginFormState> {
       errors: {},
     };
   } catch (error) {
-    console.error("Erro inesperado durante o login:", error);
+    console.error('Erro inesperado durante o login:', error);
     return {
       errors: {
         _form: [
-          "Não foi possível conectar ao servidor. Verifique sua conexão ou tente mais tarde.",
+          'Não foi possível conectar ao servidor. Verifique sua conexão ou tente mais tarde.',
         ],
       },
-      message: "Erro de conexão.",
+      message: 'Erro de conexão.',
       success: false,
     };
   }

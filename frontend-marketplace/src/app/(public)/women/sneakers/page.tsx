@@ -1,4 +1,4 @@
-import CategoryPageComponent, { generateCategoryMetadata } from "@/components/product/CategoryPage";
+import CategoryPageComponent, { generateCategoryMetadata } from '@/components/product/CategoryPage';
 
 export default function WomenSneakersPage() {
   return (
@@ -12,5 +12,5 @@ export default function WomenSneakersPage() {
 }
 
 export async function generateMetadata() {
-  return generateCategoryMetadata("tenis_femininos", {});
+  return generateCategoryMetadata('tenis_femininos', {});
 }

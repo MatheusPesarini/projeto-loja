@@ -12,8 +12,6 @@ jobs:
   frontend-test:
     runs-on: ubuntu-latest
 
-    if: contains(join(github.event.commits.*.modified, ' '), 'frontend-marketplace/') || github.event_name == 'pull_request'
-
     steps:
       - uses: actions/checkout@v4
 
@@ -36,13 +34,8 @@ jobs:
         working-directory: frontend-marketplace
         run: npm run format
 
-      # - name: Run tests
-      #   working-directory: frontend-marketplace
-      #   run: npm run test
-
   backend-test:
     runs-on: ubuntu-latest
-    if: contains(join(github.event.commits.*.modified, ' '), 'backend/') || github.event_name == 'pull_request'
 
     steps:
       - uses: actions/checkout@v4
@@ -57,19 +50,3 @@ jobs:
       - name: Install backend dependencies
         working-directory: backend
         run: npm ci
-
-      # - name: Run backend tests
-      #   working-directory: backend
-      #   run: npm test
-
-  deploy: 
-    runs-on: ubuntu-latest
-    needs: [frontend-test, backend-test]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
-    steps: 
-      - uses: actions/checkout@v4
-
-      - name: Deploy to production 
-        run: |
-          echo "Frontend and Backend are ready"

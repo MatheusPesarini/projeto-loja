@@ -1,9 +1,9 @@
-import type { JSX } from "react";
-import ThemeButton from "./ThemeSwitchButton";
-import { SearchBar } from "./SearchBar";
-import { MobileNav } from "./MobileNav";
-import { UserActions } from "./UserActions";
-import { DesktopNav } from "./DesktopNav";
+import type { JSX } from 'react';
+import ThemeButton from './ThemeSwitchButton';
+import { SearchBar } from './SearchBar';
+import { MobileNav } from './MobileNav';
+import { UserActions } from './UserActions';
+import { DesktopNav } from './DesktopNav';
 
 interface MenuItem {
   title: string;
@@ -32,8 +32,8 @@ type NavbarProps = {
 
 export default function Header({
   logo = {
-    url: "/",
-    title: "Loja",
+    url: '/',
+    title: 'Loja',
   },
   isAuthenticated,
 }: NavbarProps): JSX.Element {

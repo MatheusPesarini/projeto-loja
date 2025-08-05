@@ -1,4 +1,4 @@
-import CategoryPageComponent, { generateCategoryMetadata } from "@/components/product/CategoryPage";
+import CategoryPageComponent, { generateCategoryMetadata } from '@/components/product/CategoryPage';
 
 export default function WomenBagsPage() {
   return (
@@ -12,9 +12,9 @@ export default function WomenBagsPage() {
 }
 
 export async function generateMetadata() {
-  return generateCategoryMetadata("bolsas_femininas", {
-    title: "Bolsas Femininas - Moda e Estilo",
+  return generateCategoryMetadata('bolsas_femininas', {
+    title: 'Bolsas Femininas - Moda e Estilo',
     description:
-      "Explore nossa coleção de bolsas femininas, perfeitas para complementar seu estilo. Encontre a bolsa ideal para cada ocasião.",
+      'Explore nossa coleção de bolsas femininas, perfeitas para complementar seu estilo. Encontre a bolsa ideal para cada ocasião.',
   });
 }

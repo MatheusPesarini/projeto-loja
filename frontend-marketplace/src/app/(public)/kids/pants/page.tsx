@@ -1,4 +1,4 @@
-import CategoryPageComponent, { generateCategoryMetadata } from "@/components/product/CategoryPage";
+import CategoryPageComponent, { generateCategoryMetadata } from '@/components/product/CategoryPage';
 
 export default function KidsPantsPage() {
   return (
@@ -12,9 +12,9 @@ export default function KidsPantsPage() {
 }
 
 export async function generateMetadata() {
-  return generateCategoryMetadata("calcas_kids", {
-    title: "Calças Infantis - Loja Online",
+  return generateCategoryMetadata('calcas_kids', {
+    title: 'Calças Infantis - Loja Online',
     description:
-      "Explore nossa coleção de calças infantis, com estilos variados para todas as idades. Encontre a calça perfeita para o seu pequeno.",
+      'Explore nossa coleção de calças infantis, com estilos variados para todas as idades. Encontre a calça perfeita para o seu pequeno.',
   });
 }

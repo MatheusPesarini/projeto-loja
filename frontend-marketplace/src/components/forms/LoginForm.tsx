@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import { submitLogin } from "@/lib/actions/auth/post-login";
-import { useActionState } from "react";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { useAuth } from "@/context/AuthContext";
-import type { LoginFormState } from "@/lib/types/definitions";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { submitLogin } from '@/lib/actions/auth/post-login';
+import { useActionState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import type { LoginFormState } from '@/lib/types/definitions';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-import { cn } from "@/lib/types/utils";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import Link from "next/link";
+import { cn } from '@/lib/types/utils';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+import Link from 'next/link';
 
 const initialState: LoginFormState = {
   errors: {},
-  message: "",
+  message: '',
   success: false,
 };
 
-export default function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
+export default function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
   const router = useRouter();
   const { setIsAuthenticated } = useAuth();
   const [state, formAction, isPending] = useActionState(submitLogin, initialState);
@@ -28,7 +28,7 @@ export default function LoginForm({ className, ...props }: React.ComponentPropsW
   useEffect(() => {
     if (state?.success) {
       setIsAuthenticated(true);
-      router.push("/");
+      router.push('/');
     }
   }, [state, router, setIsAuthenticated]);
 
@@ -37,7 +37,7 @@ export default function LoginForm({ className, ...props }: React.ComponentPropsW
   const formErrors = state?.errors?._form;
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card className="shadow-md">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
@@ -45,7 +45,7 @@ export default function LoginForm({ className, ...props }: React.ComponentPropsW
         </CardHeader>
         <CardContent>
           <form action={formAction} className="space-y-4">
-            {" "}
+            {' '}
             <div className="grid gap-2">
               <Label htmlFor="email">E-mail</Label>
               <Input
@@ -56,8 +56,8 @@ export default function LoginForm({ className, ...props }: React.ComponentPropsW
                 required
                 aria-describedby="email-error"
                 className={cn(
-                  "text-black bg-amber-50 w-full p-2 rounded border",
-                  emailErrors ? "border-red-500" : "border-gray-300"
+                  'text-black bg-amber-50 w-full p-2 rounded border',
+                  emailErrors ? 'border-red-500' : 'border-gray-300'
                 )}
               />
               <div id="email-error" aria-live="polite" aria-atomic="true">
@@ -85,8 +85,8 @@ export default function LoginForm({ className, ...props }: React.ComponentPropsW
                 required
                 aria-describedby="password-error"
                 className={cn(
-                  "text-black bg-amber-50 w-full p-2 rounded border",
-                  passwordErrors ? "border-red-500" : "border-gray-300"
+                  'text-black bg-amber-50 w-full p-2 rounded border',
+                  passwordErrors ? 'border-red-500' : 'border-gray-300'
                 )}
               />
               <div id="password-error" aria-live="polite" aria-atomic="true">
@@ -115,11 +115,11 @@ export default function LoginForm({ className, ...props }: React.ComponentPropsW
               disabled={isPending}
               className="w-full cursor-pointer shadow-md"
             >
-              {isPending ? "Enviando..." : "Entrar"}
+              {isPending ? 'Enviando...' : 'Entrar'}
             </Button>
             <div className="mt-4 text-center text-sm">
-              Não tem uma conta?{" "}
-              <Link href={"/register"} className="underline underline-offset-4 cursor-pointer">
+              Não tem uma conta?{' '}
+              <Link href={'/register'} className="underline underline-offset-4 cursor-pointer">
                 Registrar-se
               </Link>
             </div>

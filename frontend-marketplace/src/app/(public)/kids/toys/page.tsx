@@ -1,4 +1,4 @@
-import CategoryPageComponent, { generateCategoryMetadata } from "@/components/product/CategoryPage";
+import CategoryPageComponent, { generateCategoryMetadata } from '@/components/product/CategoryPage';
 
 export default function KidsToysPage() {
   return (
@@ -12,5 +12,5 @@ export default function KidsToysPage() {
 }
 
 export async function generateMetadata() {
-  return generateCategoryMetadata("brinquedos_kids", {});
+  return generateCategoryMetadata('brinquedos_kids', {});
 }

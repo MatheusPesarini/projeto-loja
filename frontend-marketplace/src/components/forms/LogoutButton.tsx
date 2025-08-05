@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useAuth } from "@/context/AuthContext";
-import { submitLogout } from "@/lib/actions/auth/post-logout";
-import { useRouter } from "next/navigation";
+import { useAuth } from '@/context/AuthContext';
+import { submitLogout } from '@/lib/actions/auth/post-logout';
+import { useRouter } from 'next/navigation';
 
 export default function LogoutButton() {
   const router = useRouter();
@@ -12,9 +12,9 @@ export default function LogoutButton() {
     try {
       await submitLogout();
       setIsAuthenticated(false);
-      router.push("/login");
+      router.push('/login');
     } catch (error) {
-      console.error("Erro ao fazer logout", error);
+      console.error('Erro ao fazer logout', error);
     }
   };
 

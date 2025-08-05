@@ -1,36 +1,36 @@
-import type { Product, ProductFormState } from "../../types/definitions";
+import type { Product, ProductFormState } from '../../types/definitions';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export async function getProductCategory(category?: string): Promise<ProductFormState> {
   try {
-    const url = `${API_URL}/products/${category || ""}`;
+    const url = `${API_URL}/products/${category || ''}`;
 
     // console.log('Fetching products from URL:', url);
 
     const productsResponse = await fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
     if (!productsResponse.ok) {
       console.error(
-        "Erro ao obter produtos:",
+        'Erro ao obter produtos:',
         productsResponse.status,
         productsResponse.statusText
       );
       const errorDetails = await productsResponse.text();
-      console.error("Detalhes do erro:", errorDetails);
+      console.error('Detalhes do erro:', errorDetails);
 
       return {
         errors: {
           _form: [
-            `Erro ${productsResponse.status}: ${productsResponse.statusText || "Erro desconhecido do servidor"}`,
+            `Erro ${productsResponse.status}: ${productsResponse.statusText || 'Erro desconhecido do servidor'}`,
           ],
         },
-        message: "Erro ao buscar produtos no servidor.",
+        message: 'Erro ao buscar produtos no servidor.',
         success: false,
       };
     }
@@ -39,27 +39,27 @@ export async function getProductCategory(category?: string): Promise<ProductForm
 
     if (!productsResult.success) {
       return {
-        errors: { _form: ["Erro na resposta do servidor"] },
-        message: productsResult.message || "Erro desconhecido",
+        errors: { _form: ['Erro na resposta do servidor'] },
+        message: productsResult.message || 'Erro desconhecido',
         success: false,
       };
     }
 
     const products: Product[] = Array.isArray(productsResult.data) ? productsResult.data : [];
 
-    console.log("Produtos extraídos:", products);
+    console.log('Produtos extraídos:', products);
 
     return {
-      message: "Produtos obtidos com sucesso.",
+      message: 'Produtos obtidos com sucesso.',
       success: true,
       errors: {},
       products: products,
     };
   } catch (error) {
-    console.error("Erro ao obter produtos:", error);
+    console.error('Erro ao obter produtos:', error);
     return {
-      errors: { _form: ["Erro ao obter produtos."] },
-      message: "Erro de validação. Relogue novamente.",
+      errors: { _form: ['Erro ao obter produtos.'] },
+      message: 'Erro de validação. Relogue novamente.',
       success: false,
     };
   }

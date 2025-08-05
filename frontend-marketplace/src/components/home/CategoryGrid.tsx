@@ -1,7 +1,7 @@
-import { fetchSectionImages } from "@/lib/actions/images/get-section-image";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { fetchSectionImages } from '@/lib/actions/images/get-section-image';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 type Images = {
   src: string;
@@ -19,7 +19,7 @@ export default function CategoryGrid() {
         const fetchedImages = await fetchSectionImages();
         setImages(fetchedImages);
       } catch (error) {
-        console.error("Erro ao carregar imagens:", error);
+        console.error('Erro ao carregar imagens:', error);
       } finally {
         setLoading(false);
       }
@@ -39,13 +39,13 @@ export default function CategoryGrid() {
           <div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
             <div
               className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-              style={{ willChange: "transform" }}
+              style={{ willChange: 'transform' }}
             >
               <Image
-                src={images[0]?.src || "/placeholder-image.jpg"}
-                alt={images[0]?.alt || "Categoria Masculino"}
+                src={images[0]?.src || '/placeholder-image.jpg'}
+                alt={images[0]?.alt || 'Categoria Masculino'}
                 fill
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: 'cover' }}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
                 quality={100}
                 priority
@@ -61,13 +61,13 @@ export default function CategoryGrid() {
           <div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
             <div
               className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-              style={{ willChange: "transform" }}
+              style={{ willChange: 'transform' }}
             >
               <Image
-                src={images[1]?.src || "/placeholder-image.jpg"}
-                alt={images[1]?.alt || "Categoria Feminino"}
+                src={images[1]?.src || '/placeholder-image.jpg'}
+                alt={images[1]?.alt || 'Categoria Feminino'}
                 fill
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: 'cover' }}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
                 quality={100}
               />
@@ -82,13 +82,13 @@ export default function CategoryGrid() {
           <div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
             <div
               className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-              style={{ willChange: "transform" }}
+              style={{ willChange: 'transform' }}
             >
               <Image
-                src={images[2]?.src || "/placeholder-image.jpg"}
-                alt={images[2]?.alt || "Categoria Infantil"}
+                src={images[2]?.src || '/placeholder-image.jpg'}
+                alt={images[2]?.alt || 'Categoria Infantil'}
                 fill
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: 'cover' }}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
                 quality={100}
               />
@@ -103,13 +103,13 @@ export default function CategoryGrid() {
           <div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out flex items-center justify-center">
             <div
               className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-              style={{ willChange: "transform" }}
+              style={{ willChange: 'transform' }}
             >
               <Image
-                src={images[3]?.src || "/placeholder-image.jpg"}
-                alt={images[3]?.alt || "Categoria Acessórios"}
+                src={images[3]?.src || '/placeholder-image.jpg'}
+                alt={images[3]?.alt || 'Categoria Acessórios'}
                 fill
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: 'cover' }}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
                 quality={100}
               />

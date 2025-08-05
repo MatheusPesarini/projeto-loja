@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay";
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Autoplay from 'embla-carousel-autoplay';
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { fetchHomeImages } from "@/lib/actions/images/get-home-image";
+} from '@/components/ui/carousel';
+import { fetchHomeImages } from '@/lib/actions/images/get-home-image';
 
 type Images = {
   src: string;
@@ -31,7 +31,7 @@ export function ImageCarousel({ autoplay = true, autoplayDelay = 3500 }) {
         const fetchedImages = await fetchHomeImages();
         setImages(fetchedImages);
       } catch (error) {
-        console.error("Erro ao carregar imagens:", error);
+        console.error('Erro ao carregar imagens:', error);
       } finally {
         setLoading(false);
       }
@@ -64,7 +64,7 @@ export function ImageCarousel({ autoplay = true, autoplayDelay = 3500 }) {
     <section className="relative w-full bg-gray-200 dark:bg-gray-800">
       <Carousel
         opts={{
-          align: "start",
+          align: 'start',
           loop: true,
         }}
         plugins={autoplay ? [plugin.current!] : undefined}
@@ -80,7 +80,7 @@ export function ImageCarousel({ autoplay = true, autoplayDelay = 3500 }) {
                       src={image.src}
                       alt={image.alt}
                       fill
-                      style={{ objectFit: "cover" }}
+                      style={{ objectFit: 'cover' }}
                       priority={index === 0}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
                       quality={100}

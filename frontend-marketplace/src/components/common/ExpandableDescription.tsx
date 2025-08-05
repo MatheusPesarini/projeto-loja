@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { CardDescription } from "../ui/card";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { Button } from "../ui/button";
+import { useState } from 'react';
+import { CardDescription } from '../ui/card';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Button } from '../ui/button';
 
 interface ExpandableDescriptionProps {
   description: string;
@@ -14,7 +14,7 @@ interface ExpandableDescriptionProps {
 export default function ExpandableDescription({
   description,
   maxLength = 150,
-  className = "",
+  className = '',
 }: ExpandableDescriptionProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -27,7 +27,7 @@ export default function ExpandableDescription({
   }
 
   const truncatedText = description.slice(0, maxLength);
-  const displayText = isExpanded ? description : truncatedText + "...";
+  const displayText = isExpanded ? description : truncatedText + '...';
 
   return (
     <div className="space-y-2">

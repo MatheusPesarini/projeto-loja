@@ -1,33 +1,33 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import Link from "next/link";
-import Image from "next/image";
-import { Badge } from "../ui/badge";
-import { formatPrice, type ProductCardProps } from "@/lib/types/product";
-import { Button } from "../ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Badge } from '../ui/badge';
+import { formatPrice, type ProductCardProps } from '@/lib/types/product';
+import { Button } from '../ui/button';
 
 export default function ProductCardComponent({
   product,
-  variant = "default",
-  className = "",
+  variant = 'default',
+  className = '',
 }: ProductCardProps) {
   const isOutOfStock = product.quantity <= 0;
   const hadDiscount = product.discountedPrice && Number(product.discountedPrice) > 0;
 
   const cardVariants = {
-    default: "group overflow-hidden hover:shadow-lg transition-all duration-300",
-    carousel: "group overflow-hidden hover:shadow-md transition-all duration-200",
-    grid: "group overflow-hidden hover:shadow-2xl transition-all duration-300",
-    featured: "group overflow-hidden hover:shadow-2xl transition-all duration-300",
+    default: 'group overflow-hidden hover:shadow-lg transition-all duration-300',
+    carousel: 'group overflow-hidden hover:shadow-md transition-all duration-200',
+    grid: 'group overflow-hidden hover:shadow-2xl transition-all duration-300',
+    featured: 'group overflow-hidden hover:shadow-2xl transition-all duration-300',
   };
   return (
     <Card key={product.id} className={`${cardVariants[variant]} ${className}`}>
       <Link href={`/product/${product.id}`} className="block">
         <CardContent className="p-0 aspect-[1/1] relative">
           <Image
-            src={product.image || "/placeholder-image.jpg"}
+            src={product.image || '/placeholder-image.jpg'}
             alt={product.productName}
             fill
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: 'cover' }}
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
 
@@ -81,7 +81,7 @@ export default function ProductCardComponent({
         </div>
         <Link href={`/product/${product.id}`} className="w-full block">
           <Button variant="outline" className="w-full cursor-pointer" disabled={isOutOfStock}>
-            {isOutOfStock ? "Indisponível" : "Ver Produto"}
+            {isOutOfStock ? 'Indisponível' : 'Ver Produto'}
           </Button>
         </Link>
 

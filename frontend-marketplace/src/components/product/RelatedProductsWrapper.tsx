@@ -1,5 +1,5 @@
-import { getRelatedProducts } from "@/lib/actions/product/get-related-products";
-import { RelatedProductsCarousel } from "./RelatedProductsCarrousel";
+import { getRelatedProducts } from '@/lib/actions/product/get-related-products';
+import { RelatedProductsCarousel } from './RelatedProductsCarrousel';
 
 interface RelatedProductsWrapperProps {
   productId: string;

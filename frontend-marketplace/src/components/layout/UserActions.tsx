@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { LogOut, User, Store } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import Image from 'next/image';
+import { LogOut, User, Store } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,16 +12,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import LogoutButton from "../forms/LogoutButton";
+} from '@/components/ui/dropdown-menu';
+import LogoutButton from '../forms/LogoutButton';
 
 interface UserActionsProps {
   isAuthenticated: boolean;
 }
 
 const auth = {
-  login: { url: "/login", title: "Entrar" },
-  signup: { url: "/signup", title: "Registrar" },
+  login: { url: '/login', title: 'Entrar' },
+  signup: { url: '/signup', title: 'Registrar' },
 };
 
 export function UserActions({ isAuthenticated }: UserActionsProps) {

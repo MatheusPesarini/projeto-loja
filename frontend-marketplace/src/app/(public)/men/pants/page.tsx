@@ -1,4 +1,4 @@
-import CategoryPageComponent, { generateCategoryMetadata } from "@/components/product/CategoryPage";
+import CategoryPageComponent, { generateCategoryMetadata } from '@/components/product/CategoryPage';
 
 export default function MenPantsPage() {
   return (
@@ -12,9 +12,9 @@ export default function MenPantsPage() {
 }
 
 export async function generateMetadata() {
-  return generateCategoryMetadata("calcas_masculinas", {
-    title: "Calças Masculinas - Loja Online",
+  return generateCategoryMetadata('calcas_masculinas', {
+    title: 'Calças Masculinas - Loja Online',
     description:
-      "Explore nossa coleção de calças masculinas, com estilos variados para todas as ocasiões. Encontre a calça perfeita para você.",
+      'Explore nossa coleção de calças masculinas, com estilos variados para todas as ocasiões. Encontre a calça perfeita para você.',
   });
 }

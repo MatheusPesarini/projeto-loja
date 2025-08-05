@@ -1,6 +1,6 @@
-import type { SingleProductFormState } from "../../types/definitions";
+import type { SingleProductFormState } from '../../types/definitions';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export async function getProductId(id?: string): Promise<SingleProductFormState> {
   try {
@@ -9,63 +9,63 @@ export async function getProductId(id?: string): Promise<SingleProductFormState>
     console.log(`[getProductCategory] Fetching URL: ${url}`);
 
     const productResponse = await fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
     if (!productResponse.ok) {
-      console.error("Erro ao obter produtos:", productResponse.status, productResponse.statusText);
+      console.error('Erro ao obter produtos:', productResponse.status, productResponse.statusText);
 
       if (productResponse.status === 404) {
         return {
           errors: {
-            _form: ["Produto não encontrado"],
+            _form: ['Produto não encontrado'],
           },
-          message: "Produto não encontrado.",
+          message: 'Produto não encontrado.',
           success: false,
         };
       }
 
       const errorDetails = await productResponse.text();
-      console.error("Detalhes do erro:", errorDetails);
+      console.error('Detalhes do erro:', errorDetails);
 
       return {
         errors: {
           _form: [
-            `Erro ${productResponse.status}: ${productResponse.statusText || "Erro desconhecido do servidor"}`,
+            `Erro ${productResponse.status}: ${productResponse.statusText || 'Erro desconhecido do servidor'}`,
           ],
         },
-        message: "Erro ao buscar produtos no servidor.",
+        message: 'Erro ao buscar produtos no servidor.',
         success: false,
       };
     }
 
     const response = await productResponse.json();
-    console.log("Resposta do backend:", response);
+    console.log('Resposta do backend:', response);
 
     if (response.success && response.data) {
       const product = Array.isArray(response.data) ? response.data[0] : response.data;
 
       return {
-        message: "Produto obtido com sucesso.",
+        message: 'Produto obtido com sucesso.',
         success: true,
         errors: {},
         product: product,
       };
     } else {
       return {
-        errors: { _form: ["Produto não encontrado"] },
-        message: "Produto não encontrado.",
+        errors: { _form: ['Produto não encontrado'] },
+        message: 'Produto não encontrado.',
         success: false,
       };
     }
   } catch (error) {
-    console.error("Erro ao obter produtos:", error);
+    console.error('Erro ao obter produtos:', error);
     return {
-      errors: { _form: ["Erro ao obter produtos."] },
-      message: "Erro de validação. Relogue novamente.",
+      errors: { _form: ['Erro ao obter produtos.'] },
+      message: 'Erro de validação. Relogue novamente.',
       success: false,
     };
   }

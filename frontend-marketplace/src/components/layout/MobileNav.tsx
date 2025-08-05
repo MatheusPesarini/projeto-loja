@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { Menu } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Accordion } from "@/components/ui/accordion";
-import LogoutButton from "../forms/LogoutButton";
-import { renderMobileMenuItem } from "../ui/renderMobileMenuItem";
-import { MENU_ITEMS } from "@/lib/types/product";
+import { Menu } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Accordion } from '@/components/ui/accordion';
+import LogoutButton from '../forms/LogoutButton';
+import { renderMobileMenuItem } from '../ui/renderMobileMenuItem';
+import { MENU_ITEMS } from '@/lib/types/product';
 
 const auth = {
-  login: { url: "/login", title: "Entrar" },
-  signup: { url: "/signup", title: "Registrar" },
+  login: { url: '/login', title: 'Entrar' },
+  signup: { url: '/signup', title: 'Registrar' },
 };
 
 interface MobileNavProps {

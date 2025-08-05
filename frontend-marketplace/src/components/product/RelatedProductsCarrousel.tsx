@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import { formatPrice } from "@/lib/types/product";
-import type { Product } from "@/lib/types/definitions";
+import Link from 'next/link';
+import Image from 'next/image';
+import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import { formatPrice } from '@/lib/types/product';
+import type { Product } from '@/lib/types/definitions';
 
 interface RelatedProductsCarouselProps {
   products: Product[];
@@ -24,7 +24,7 @@ export function RelatedProductsCarousel({ products }: RelatedProductsCarouselPro
     <div className="relative w-full">
       <Carousel
         opts={{
-          align: "start",
+          align: 'start',
           loop: products.length > 1,
         }}
         className="w-full"
@@ -41,13 +41,13 @@ export function RelatedProductsCarousel({ products }: RelatedProductsCarouselPro
                     <div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-30 transition-opacity duration-300 ease-in-out">
                       <div
                         className="absolute w-full h-full transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-                        style={{ willChange: "transform" }}
+                        style={{ willChange: 'transform' }}
                       >
                         <Image
-                          src={product.image || "/placeholder-image.jpg"}
+                          src={product.image || '/placeholder-image.jpg'}
                           alt={product.productName}
                           fill
-                          style={{ objectFit: "cover" }}
+                          style={{ objectFit: 'cover' }}
                           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33, 200px"
                           quality={100}
                         />

@@ -1,6 +1,6 @@
-import type { Product, ProductFormState } from "../../types/definitions";
+import type { Product, ProductFormState } from '../../types/definitions';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export async function getRelatedProducts(
   category: string,
@@ -11,22 +11,22 @@ export async function getRelatedProducts(
     const url = `${API_URL}/products/${category}/related?exclude=${currentProductId}&limit=${limit}`;
 
     const productsResponse = await fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
     if (!productsResponse.ok) {
-      console.error("Erro ao obter produtos relacionados:", productsResponse.status);
+      console.error('Erro ao obter produtos relacionados:', productsResponse.status);
 
       if (productsResponse.status === 404) {
         return await getRelatedProductsFallback(category, currentProductId, limit);
       }
 
       return {
-        errors: { _form: ["Erro ao buscar produtos relacionados."] },
-        message: "Erro ao buscar produtos relacionados no servidor.",
+        errors: { _form: ['Erro ao buscar produtos relacionados.'] },
+        message: 'Erro ao buscar produtos relacionados no servidor.',
         success: false,
       };
     }
@@ -36,13 +36,13 @@ export async function getRelatedProducts(
     const products: Product[] = productsResult.success ? productsResult.data || [] : [];
 
     return {
-      message: "Produtos relacionados obtidos com sucesso.",
+      message: 'Produtos relacionados obtidos com sucesso.',
       success: true,
       errors: {},
       products: products,
     };
   } catch (error) {
-    console.error("Erro ao obter produtos relacionados:", error);
+    console.error('Erro ao obter produtos relacionados:', error);
 
     return await getRelatedProductsFallback(category, currentProductId, limit);
   }
@@ -54,7 +54,7 @@ async function getRelatedProductsFallback(
   limit: number
 ): Promise<ProductFormState> {
   try {
-    const { getProductCategory } = await import("./get-product-category");
+    const { getProductCategory } = await import('./get-product-category');
     const result = await getProductCategory(category);
 
     if (!result.success || !result.products) {
@@ -71,8 +71,8 @@ async function getRelatedProductsFallback(
     };
   } catch (error) {
     return {
-      errors: { _form: ["Erro ao buscar produtos relacionados."] },
-      message: "Erro de conexão.",
+      errors: { _form: ['Erro ao buscar produtos relacionados.'] },
+      message: 'Erro de conexão.',
       success: false,
     };
   }

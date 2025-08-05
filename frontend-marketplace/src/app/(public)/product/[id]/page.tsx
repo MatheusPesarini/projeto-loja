@@ -1,14 +1,14 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { getProductId } from "@/lib/actions/product/get-product-id";
-import Link from "next/link";
-import { formatPrice, getCategoryDisplayName, getCategoryUrl } from "@/lib/types/product";
-import ExpandableDescription from "@/components/common/ExpandableDescription";
-import RelatedProductsWrapper from "@/components/product/RelatedProductsWrapper";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { getProductId } from '@/lib/actions/product/get-product-id';
+import Link from 'next/link';
+import { formatPrice, getCategoryDisplayName, getCategoryUrl } from '@/lib/types/product';
+import ExpandableDescription from '@/components/common/ExpandableDescription';
+import RelatedProductsWrapper from '@/components/product/RelatedProductsWrapper';
 
 export default async function ProductDisplayPage({ params }: { params: Promise<{ id: string }> }) {
   const result = await getProductId((await params).id);
@@ -27,7 +27,7 @@ export default async function ProductDisplayPage({ params }: { params: Promise<{
   const product = result.product;
 
   if (!product) {
-    console.error("Product is undefined:", result);
+    console.error('Product is undefined:', result);
     return (
       <div className="container mx-auto px-4 py-8 lg:py-12 text-center">
         <h1 className="text-3xl font-semibold mb-8">Produto não encontrado</h1>
@@ -62,10 +62,10 @@ export default async function ProductDisplayPage({ params }: { params: Promise<{
           <Card className="overflow-hidden">
             <CardContent className="p-0 aspect-square relative">
               <Image
-                src={product.image || "/placeholder-image.jpg"}
+                src={product.image || '/placeholder-image.jpg'}
                 alt={product.productName}
                 fill
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: 'cover' }}
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
               />
@@ -100,8 +100,8 @@ export default async function ProductDisplayPage({ params }: { params: Promise<{
                 {product.discountedPrice !== product.originalPrice && (
                   <Badge variant="destructive">Promoção</Badge>
                 )}
-                <Badge variant={product.quantity > 0 ? "success" : "destructive"}>
-                  {product.quantity > 0 ? "Em estoque" : "Esgotado"}
+                <Badge variant={product.quantity > 0 ? 'success' : 'destructive'}>
+                  {product.quantity > 0 ? 'Em estoque' : 'Esgotado'}
                 </Badge>
                 {product.quantity > 0 && (
                   <Badge variant="secondary">{product.quantity} disponíveis</Badge>
@@ -144,7 +144,7 @@ export default async function ProductDisplayPage({ params }: { params: Promise<{
               <div>
                 <h3 className="text-lg font-semibold mb-2">Descrição</h3>
                 <ExpandableDescription
-                  description={product.description || "Descrição não disponível."}
+                  description={product.description || 'Descrição não disponível.'}
                   maxLength={200}
                   className="capitalize"
                 />
@@ -193,7 +193,7 @@ export default async function ProductDisplayPage({ params }: { params: Promise<{
                 variant="outline"
                 disabled={product.quantity === 0}
               >
-                {product.quantity === 0 ? "Produto Esgotado" : "Adicionar ao Carrinho"}
+                {product.quantity === 0 ? 'Produto Esgotado' : 'Adicionar ao Carrinho'}
               </Button>
               <Button
                 size="lg"
@@ -201,7 +201,7 @@ export default async function ProductDisplayPage({ params }: { params: Promise<{
                 className="w-full text-base cursor-pointer"
                 disabled={product.quantity === 0}
               >
-                {product.quantity === 0 ? "Indisponível" : "Comprar Agora"}
+                {product.quantity === 0 ? 'Indisponível' : 'Comprar Agora'}
               </Button>
             </CardFooter>
           </Card>
@@ -218,7 +218,7 @@ export default async function ProductDisplayPage({ params }: { params: Promise<{
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Marca:</span>
-                      <span className="font-medium">{product.brand || "Não informado"}</span>
+                      <span className="font-medium">{product.brand || 'Não informado'}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Categoria:</span>
@@ -229,13 +229,13 @@ export default async function ProductDisplayPage({ params }: { params: Promise<{
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Criado em:</span>
                       <span className="font-medium">
-                        {new Date(product.createdAt).toLocaleDateString("pt-BR")}
+                        {new Date(product.createdAt).toLocaleDateString('pt-BR')}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Atualizado em:</span>
                       <span className="font-medium">
-                        {new Date(product.updatedAt).toLocaleDateString("pt-BR")}
+                        {new Date(product.updatedAt).toLocaleDateString('pt-BR')}
                       </span>
                     </div>
                   </div>
@@ -248,14 +248,14 @@ export default async function ProductDisplayPage({ params }: { params: Promise<{
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Estoque:</span>
-                      <span className={product.quantity > 0 ? "text-green-600" : "text-red-600"}>
-                        {product.quantity > 0 ? `${product.quantity} unidades` : "Esgotado"}
+                      <span className={product.quantity > 0 ? 'text-green-600' : 'text-red-600'}>
+                        {product.quantity > 0 ? `${product.quantity} unidades` : 'Esgotado'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Status:</span>
-                      <Badge variant={product.quantity > 0 ? "success" : "destructive"}>
-                        {product.quantity > 0 ? "Disponível" : "Indisponível"}
+                      <Badge variant={product.quantity > 0 ? 'success' : 'destructive'}>
+                        {product.quantity > 0 ? 'Disponível' : 'Indisponível'}
                       </Badge>
                     </div>
                   </div>
@@ -301,7 +301,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
   if (!result.success || !result.product) {
     return {
-      title: "Produto não encontrado",
+      title: 'Produto não encontrado',
     };
   }
 

@@ -6,16 +6,11 @@
     "useIgnoreFile": false
   },
   "files": {
-    "ignoreUnknown": false,
-    "experimentalScannerIgnores": [
-      "node_modules",
-      ".next",
-      "coverage",
-      "dist",
-      "jest.setup.ts",
-      "**/*.test.ts",
-      "**/*.test.tsx",
-      "**/__tests__/**"
+    "includes": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "biome.json",
+      "package.json",
+      "tsconfig.json"
     ]
   },
   "formatter": {
@@ -37,14 +32,6 @@
       }
     }
   },
-  "overrides": [
-    {
-      "includes": ["jest.setup.ts", "**/*.test.{ts,tsx}", "**/__tests__/**"],
-      "linter": {
-        "enabled": false
-      }
-    }
-  ],
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
