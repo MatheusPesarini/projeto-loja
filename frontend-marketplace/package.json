@@ -6,18 +6,18 @@
     "dev": "next dev --turbopack",
     "build": "prisma generate && next build",
     "start": "next start",
-
     "lint:check": "npx @biomejs/biome lint ./src --max-diagnostics=1000",
     "lint": "npx @biomejs/biome lint ./src --max-diagnostics=1000 --write",
-
     "format:check": "npx @biomejs/biome format --max-diagnostics=1000 --indent-width=2 --indent-style=space --javascript-formatter-quote-style=single",
     "format": "npx @biomejs/biome format --max-diagnostics=1000 --write --indent-width=2 --indent-style=space --javascript-formatter-quote-style=single",
-    
     "check:fix": "npx @biomejs/biome check ./src --max-diagnostics=1000 --write --indent-width=2 --indent-style=space --javascript-formatter-quote-style=single",
-
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci --coverage --watchAll=false"
+    "test:ci": "jest --ci --coverage --watchAll=false",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.15",
@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.3",
+    "@playwright/test": "^1.54.2",
     "@tailwindcss/postcss": "^4.1.11",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.6.4",
